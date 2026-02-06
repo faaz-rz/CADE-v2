@@ -1,0 +1,27 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    theme: {
+        extend: {
+            colors: {
+                // Premium, curated palette (not just default blue)
+                brand: {
+                    50: '#f0f9ff',
+                    100: '#e0f2fe',
+                    500: '#0ea5e9', // Sky 500
+                    600: '#0284c7',
+                    900: '#0c4a6e',
+                },
+                risk: {
+                    low: '#22c55e',    // Green
+                    medium: '#f59e0b', // Amber
+                    high: '#ef4444',   // Red
+                }
+            }
+        },
+    },
+    plugins: [],
+}

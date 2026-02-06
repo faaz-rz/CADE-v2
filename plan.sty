@@ -1,0 +1,395 @@
+Below is the **complete, end-to-end project description** — written as a **technical + business specification**.
+This is the version you could hand to:
+
+* an investor
+* a senior engineer
+* a PE operating partner
+* or future-you
+
+Nothing is vague. Nothing is hand-wavy.
+
+---
+
+# 📌 COMPLETE PROJECT DESCRIPTION
+
+## Capital Allocation Decision Engine (Overlay-First Decision Infrastructure)
+
+---
+
+## 1. Project Overview (What this product is)
+
+The **Capital Allocation Decision Engine** is an **enterprise decision-intelligence system** that helps organizations **identify, justify, and safely execute short-term capital reallocation decisions** that improve EBITDA.
+
+It does **not replace** existing enterprise systems (ERP, workflow, finance tools).
+It sits **above them** as a **decision layer**.
+
+> **Core idea:**
+> Existing systems execute work.
+> **We decide what work should be executed.**
+
+---
+
+## 2. The Problem It Solves
+
+Enterprises already have:
+
+* ERPs (SAP, Oracle)
+* Workflow tools (ServiceNow)
+* BI dashboards
+* Finance systems
+* Consultants
+
+Yet they still lose money because:
+
+1. Data is fragmented across systems
+2. Decisions are slow and political
+3. No system owns accountability
+4. Tools stop at “insights”, not decisions
+5. Consultants are expensive and non-repeatable
+
+**Result:**
+Capital is misallocated for months before action is taken.
+
+---
+
+## 3. What the Product Does (Core Functionality)
+
+### Primary Function (v1 – locked scope)
+
+> **Recommend low-risk cost reductions or reallocations that improve EBITDA within 90 days — with full human control and auditability.**
+
+---
+
+## 4. Decisions the System Makes (Current Scope)
+
+### ✅ Included Decisions
+
+1. **Vendor Spend Optimization**
+
+   * Identify vendors with high cost and low measurable value
+   * Recommend renegotiation, reduction, consolidation, or pause
+
+2. **Software & Tool Rationalization**
+
+   * Detect overlapping tools
+   * Identify under-utilized subscriptions
+   * Recommend downgrade or cancellation
+
+3. **Project Budget Efficiency**
+
+   * Identify high-burn, low-ROI projects
+   * Recommend pause, trim, or re-evaluation
+
+4. **Cost Creep Detection**
+
+   * Identify costs rising faster than revenue
+   * Flag anomalies and silent budget drift
+
+These decisions are:
+
+* Financial (not emotional)
+* Reversible
+* Explainable
+* Measurable
+* Human-approved
+
+---
+
+### ❌ Explicitly Out of Scope (v1)
+
+* Hiring or firing
+* Individual employee evaluation
+* Organizational restructuring
+* Long-term strategy
+* Pricing decisions
+* Autonomous execution
+
+These are intentionally excluded to preserve trust and adoption.
+
+---
+
+## 5. System Architecture (Why It Is Designed This Way)
+
+### High-Level Architecture
+
+```
+┌──────────────────────────────┐
+│   Existing Enterprise Tools  │
+│  (ERP / Workflow / Finance)  │
+└─────────────┬────────────────┘
+              │  (read-only data)
+              ▼
+┌──────────────────────────────┐
+│ Capital Allocation Decision  │
+│          Engine              │
+│                              │
+│  - Analysis                  │
+│  - Recommendation            │
+│  - Risk & Confidence         │
+│  - Explanation               │
+│  - Audit                     │
+└─────────────┬────────────────┘
+              │ (recommendations only)
+              ▼
+┌──────────────────────────────┐
+│ Existing Approval & Execution│
+│  (Humans + Existing Systems) │
+└──────────────────────────────┘
+```
+
+---
+
+### Architectural Purpose
+
+This architecture ensures:
+
+* **No workflow replacement**
+* **No retraining**
+* **No compliance bypass**
+* **No execution risk**
+* **Maximum adoption speed**
+
+The system influences **decisions**, not **operations**.
+
+---
+
+## 6. Core System Components & Their Functions
+
+---
+
+### 6.1 Data Ingestion Layer
+
+**Purpose:**
+Normalize messy enterprise data into a consistent internal format.
+
+**Functions:**
+
+* Accept CSV / Excel inputs
+* Handle partial or missing data
+* Normalize cost, revenue, project, vendor data
+* Score data quality
+* Preserve historical snapshots
+
+**Why it matters:**
+Perfect data is rare. The system must work with reality.
+
+---
+
+### 6.2 Decision Logic Engine (Core Intelligence)
+
+**Purpose:**
+Identify financially inefficient allocations using explicit, defensible logic.
+
+**Functions:**
+
+* Rule-based financial checks
+* Cost-to-value ratio analysis
+* Trend detection (cost vs revenue)
+* Cross-category comparisons
+* Conservative savings estimation
+
+**Design principle:**
+Correct > clever
+Transparent > complex
+
+No black-box ML in v1.
+
+---
+
+### 6.3 Impact & Risk Estimation Engine
+
+**Purpose:**
+Quantify outcomes so executives can decide safely.
+
+**Functions:**
+
+* Monthly EBITDA impact estimation
+* Annualized savings projection
+* Cost of inaction calculation
+* Risk classification (Low / Medium / High)
+* Confidence scoring based on data quality
+
+**Why it matters:**
+Executives decide by comparing **two futures**:
+
+* act
+* don’t act
+
+---
+
+### 6.4 Explanation & Reasoning Layer
+
+**Purpose:**
+Translate technical analysis into board-ready language.
+
+**Functions:**
+
+* Explain “why this decision”
+* Explain assumptions
+* Explain risks
+* Explain cost of delay
+* Avoid technical jargon
+
+**Role of AI here:**
+Narrator, not decider.
+
+---
+
+### 6.5 Human-in-the-Loop Control Layer
+
+**Purpose:**
+Preserve human authority and psychological safety.
+
+**Functions:**
+
+* Approve / reject / modify recommendations
+* Mandatory override reason capture
+* No automatic execution
+* Optional phased automation later
+
+**Why it matters:**
+Control builds trust. Trust builds adoption.
+
+---
+
+### 6.6 Audit & Accountability Layer
+
+**Purpose:**
+Make every decision defensible.
+
+**Functions:**
+
+* Timestamped decision logs
+* Data snapshot preservation
+* Approval history
+* Rationale tracking
+* Outcome tracking (later)
+
+This is critical for:
+
+* Boards
+* Legal
+* Compliance
+* Executive cover
+
+---
+
+### 6.7 Overlay Integration Layer (Optional)
+
+**Purpose:**
+Reduce adoption friction.
+
+**Functions:**
+
+* Inject recommendations into existing workflows
+* Create tickets/tasks in tools they already use
+* Never replace execution systems
+* Remain platform-neutral
+
+**Key rule:**
+Integration is a **delivery mechanism**, not a product.
+
+---
+
+## 7. User Experience (How It Feels to Use)
+
+### For a CFO / PE Partner
+
+1. Upload data or connect read-only
+2. See top 3 recommendations
+3. Review:
+
+   * savings
+   * risk
+   * confidence
+   * cost of inaction
+4. Approve / reject
+5. Export or inject into workflow
+6. Track outcomes
+
+No dashboards for the sake of dashboards.
+Only decisions.
+
+---
+
+## 8. Monetization Model
+
+### Early-Stage Pricing
+
+* Performance-based (% of realized savings)
+* Or hybrid (setup fee + success fee)
+
+### Why this works
+
+* Aligns incentives
+* Reduces buyer risk
+* Speeds up sales
+* Builds trust
+
+---
+
+## 9. Competitive Positioning
+
+We do **not compete with**:
+
+* ERP systems
+* Workflow tools
+* BI dashboards
+* Automation platforms
+
+We compete with:
+
+> **Excel, PowerPoint, consultants, and delay.**
+
+Our moat:
+
+* Decision history
+* Outcome accuracy
+* Trust
+* Embeddedness
+* Auditability
+
+---
+
+## 10. Expansion Roadmap (Earned Authority)
+
+1. **Stage 1:** Cost reallocation (now)
+2. **Stage 2:** Work redeployment (no firing)
+3. **Stage 3:** Role-level headcount justification
+4. **Stage 4:** Individual hiring/firing support (optional, years later)
+
+Expansion only happens after trust is earned.
+
+---
+
+## 11. Why This Architecture Wins Long-Term
+
+* Technology changes fast
+* **Decision authority changes slowly**
+
+By sitting at:
+
+* trust
+* accountability
+* governance
+* capital flow
+
+This product becomes **hard to replace** and **easy to acquire**.
+
+---
+
+## 12. One-Paragraph Summary (Ultimate Compression)
+
+> The Capital Allocation Decision Engine is a decision-intelligence system that helps enterprises improve EBITDA by identifying, justifying, and safely executing short-term capital reallocation decisions. It works as an overlay on top of existing enterprise systems, preserves human control, provides audit-grade accountability, and focuses on measurable financial outcomes rather than dashboards or automation. Its core value lies in making hard financial decisions faster, safer, and defensible.
+
+---
+
+## Final Note (Important)
+
+This is **not a tool**.
+This is **decision infrastructure**.
+
+Tools get replaced.
+Infrastructure gets embedded.
+
+You are building the latter.
