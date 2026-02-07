@@ -12,6 +12,7 @@ class DecisionScope(str, Enum):
 
 class DecisionType(str, Enum):
     VENDOR_REDUCE = "VENDOR_REDUCE"
+    VENDOR_CONSOLIDATE = "VENDOR_CONSOLIDATE"
     PROJECT_PAUSE = "PROJECT_PAUSE"
     SUBSCRIPTION_CANCEL = "SUBSCRIPTION_CANCEL"
     COST_ANOMALY = "COST_ANOMALY"
@@ -21,16 +22,24 @@ class RiskLevel(str, Enum):
     MEDIUM = "MEDIUM"
     HIGH = "HIGH"
 
+class ImpactLabel(str, Enum):
+    HIGH = "HIGH"    # > $10k
+    MEDIUM = "MEDIUM" # > $1k
+    LOW = "LOW"      # <= $1k
+
 class DecisionStatus(str, Enum):
     PENDING = "PENDING"
-    APPROVED = "APPROVED"
-    REJECTED = "REJECTED"
+# ... (DecisionStatus enum content if any)
+
+class DecisionContext(BaseModel):
+    # ... (existing content)
+    analysis_period: str
+    rule_id: str
+    thresholds: Dict[str, float]
+    metrics: Dict[str, float] # Evidence used
 
 class Decision(BaseModel):
-    """
-    First-class Decision object.
-    Everything (UI, audit, integration) hangs off this.
-    """
+    # ... (existing content)
     id: str
     decision_type: DecisionType
     scope: DecisionScope
@@ -39,9 +48,16 @@ class Decision(BaseModel):
     recommended_action: str
     explanation: str
     
+    # Context & Evidence (New Block)
+    context: DecisionContext
+
     # Financial Impact
     expected_monthly_impact: float
     cost_of_inaction: float
+    
+    # Prioritization (New Block)
+    annual_impact: float
+    impact_label: ImpactLabel
     
     # Intelligence & Risk
     risk_level: RiskLevel

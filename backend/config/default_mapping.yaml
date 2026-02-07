@@ -1,0 +1,13 @@
+
+# Default Mapping for existing "Spend Analysis" Dataset
+column_mapping:
+  date: "PurchaseDate"
+  entity: "Supplier"
+  amount: "TotalCost"
+  category: "Category"  # Assumes column exists or will be defaulted
+
+date_format: "%Y-%m-%d"
+
+defaults:
+  currency: "USD"
+  category: "Uncategorized"  # Fallback if column missing or value empty

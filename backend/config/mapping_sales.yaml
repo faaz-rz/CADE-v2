@@ -1,0 +1,15 @@
+
+# Mapping for "Companies Clean" Sales/Marketing Dataset
+name: "Companies Marketing Spend"
+column_mapping:
+  entity: "Company_ID"
+  amount: "Marketing_Spend (K₺)"
+  category: "Campaign_Type"
+  
+defaults:
+  currency: "TRY"
+  date: "2023-01-01" # Snapshot data, defaulting to start of year
+
+multipliers:
+  amount: 1000 # "Marketing_Spend (K₺)" is in thousands
+

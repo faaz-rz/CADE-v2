@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import decisions, approvals, upload
+from app.api import decisions, approvals, upload, summary
 
 app = FastAPI(
     title="Capital Allocation Decision Engine",
@@ -27,6 +27,7 @@ app.add_middleware(
 app.include_router(decisions.router, prefix="/api/decisions", tags=["Decisions"])
 app.include_router(approvals.router, prefix="/api/decisions", tags=["Approvals"]) # Nested under decisions for RESTful feel
 app.include_router(upload.router, prefix="/api/upload", tags=["Upload"])
+app.include_router(summary.router, prefix="/api/summary", tags=["Summary"])
 
 @app.get("/")
 def health_check():

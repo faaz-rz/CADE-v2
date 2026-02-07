@@ -1,0 +1,5874 @@
+[
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "SEM",
+    "entity": "C0001",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Content Marketing",
+    "entity": "C0002",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Content Marketing",
+    "entity": "C0003",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Trade Show",
+    "entity": "C0004",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Trade Show",
+    "entity": "C0005",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Webinar",
+    "entity": "C0006",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 38000.0,
+    "category": "SEM",
+    "entity": "C0007",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Trade Show",
+    "entity": "C0008",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 32000.0,
+    "category": "Email",
+    "entity": "C0009",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Content Marketing",
+    "entity": "C0010",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0011",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "SEM",
+    "entity": "C0012",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Trade Show",
+    "entity": "C0013",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 34000.0,
+    "category": "Email",
+    "entity": "C0014",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0015",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Email",
+    "entity": "C0016",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0017",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Webinar",
+    "entity": "C0018",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0019",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Email",
+    "entity": "C0020",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Trade Show",
+    "entity": "C0021",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Trade Show",
+    "entity": "C0022",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0023",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Email",
+    "entity": "C0024",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "SEM",
+    "entity": "C0025",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Webinar",
+    "entity": "C0026",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 38000.0,
+    "category": "SEM",
+    "entity": "C0027",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Email",
+    "entity": "C0028",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0029",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "SEM",
+    "entity": "C0030",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Trade Show",
+    "entity": "C0031",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Email",
+    "entity": "C0032",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "Content Marketing",
+    "entity": "C0033",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Content Marketing",
+    "entity": "C0034",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0035",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "SEM",
+    "entity": "C0036",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Email",
+    "entity": "C0037",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Webinar",
+    "entity": "C0038",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "Webinar",
+    "entity": "C0039",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0040",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Webinar",
+    "entity": "C0041",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0042",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Email",
+    "entity": "C0043",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "SEM",
+    "entity": "C0044",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Webinar",
+    "entity": "C0045",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Webinar",
+    "entity": "C0046",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0047",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0048",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Email",
+    "entity": "C0049",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0050",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "SEM",
+    "entity": "C0051",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Trade Show",
+    "entity": "C0052",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0053",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0054",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Content Marketing",
+    "entity": "C0055",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Webinar",
+    "entity": "C0056",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Trade Show",
+    "entity": "C0057",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Trade Show",
+    "entity": "C0058",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0059",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0060",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "SEM",
+    "entity": "C0061",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Trade Show",
+    "entity": "C0062",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "SEM",
+    "entity": "C0063",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "SEM",
+    "entity": "C0064",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Webinar",
+    "entity": "C0065",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "SEM",
+    "entity": "C0066",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Email",
+    "entity": "C0067",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Email",
+    "entity": "C0068",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0069",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0070",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Trade Show",
+    "entity": "C0071",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0072",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Webinar",
+    "entity": "C0073",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Trade Show",
+    "entity": "C0074",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Content Marketing",
+    "entity": "C0075",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0076",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Webinar",
+    "entity": "C0077",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Email",
+    "entity": "C0078",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "Email",
+    "entity": "C0079",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Trade Show",
+    "entity": "C0080",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "SEM",
+    "entity": "C0081",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Webinar",
+    "entity": "C0082",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 44000.0,
+    "category": "Trade Show",
+    "entity": "C0083",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "SEM",
+    "entity": "C0084",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Content Marketing",
+    "entity": "C0085",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0086",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0087",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Email",
+    "entity": "C0088",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0089",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0090",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0091",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Content Marketing",
+    "entity": "C0092",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "SEM",
+    "entity": "C0093",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0094",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "SEM",
+    "entity": "C0095",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0096",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Email",
+    "entity": "C0097",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0098",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Content Marketing",
+    "entity": "C0099",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0100",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Email",
+    "entity": "C0101",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Email",
+    "entity": "C0102",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Trade Show",
+    "entity": "C0103",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0104",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Trade Show",
+    "entity": "C0105",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Trade Show",
+    "entity": "C0106",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Content Marketing",
+    "entity": "C0107",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Trade Show",
+    "entity": "C0108",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Trade Show",
+    "entity": "C0109",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Email",
+    "entity": "C0110",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0111",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Webinar",
+    "entity": "C0112",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Trade Show",
+    "entity": "C0113",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0114",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Email",
+    "entity": "C0115",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0116",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0117",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 31000.0,
+    "category": "Content Marketing",
+    "entity": "C0118",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Webinar",
+    "entity": "C0119",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Content Marketing",
+    "entity": "C0120",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Content Marketing",
+    "entity": "C0121",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0122",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Email",
+    "entity": "C0123",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Content Marketing",
+    "entity": "C0124",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Webinar",
+    "entity": "C0125",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0126",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Trade Show",
+    "entity": "C0127",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0128",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Email",
+    "entity": "C0129",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0130",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Email",
+    "entity": "C0131",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0132",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Content Marketing",
+    "entity": "C0133",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Webinar",
+    "entity": "C0134",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Webinar",
+    "entity": "C0135",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "Trade Show",
+    "entity": "C0136",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Email",
+    "entity": "C0137",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Content Marketing",
+    "entity": "C0138",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Trade Show",
+    "entity": "C0139",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Trade Show",
+    "entity": "C0140",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Email",
+    "entity": "C0141",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0142",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Webinar",
+    "entity": "C0143",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Content Marketing",
+    "entity": "C0144",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Content Marketing",
+    "entity": "C0145",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 32000.0,
+    "category": "Content Marketing",
+    "entity": "C0146",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Trade Show",
+    "entity": "C0147",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "SEM",
+    "entity": "C0148",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "SEM",
+    "entity": "C0149",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "SEM",
+    "entity": "C0150",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0151",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "SEM",
+    "entity": "C0152",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 34000.0,
+    "category": "Email",
+    "entity": "C0153",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Email",
+    "entity": "C0154",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "SEM",
+    "entity": "C0155",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Trade Show",
+    "entity": "C0156",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "Content Marketing",
+    "entity": "C0157",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Email",
+    "entity": "C0158",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Content Marketing",
+    "entity": "C0159",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Content Marketing",
+    "entity": "C0160",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Trade Show",
+    "entity": "C0161",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Email",
+    "entity": "C0162",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "SEM",
+    "entity": "C0163",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Email",
+    "entity": "C0164",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Email",
+    "entity": "C0165",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0166",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0167",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0168",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Webinar",
+    "entity": "C0169",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Trade Show",
+    "entity": "C0170",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0171",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Trade Show",
+    "entity": "C0172",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0173",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0174",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "SEM",
+    "entity": "C0175",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Email",
+    "entity": "C0176",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 46000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0177",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Webinar",
+    "entity": "C0178",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 44000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0179",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Email",
+    "entity": "C0180",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Email",
+    "entity": "C0181",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Trade Show",
+    "entity": "C0182",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Email",
+    "entity": "C0183",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0184",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0185",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Webinar",
+    "entity": "C0186",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Trade Show",
+    "entity": "C0187",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0188",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0189",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Content Marketing",
+    "entity": "C0190",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "SEM",
+    "entity": "C0191",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "SEM",
+    "entity": "C0192",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "SEM",
+    "entity": "C0193",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0194",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Trade Show",
+    "entity": "C0195",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0196",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0197",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0198",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0199",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0200",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "SEM",
+    "entity": "C0201",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0202",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Trade Show",
+    "entity": "C0203",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0204",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Webinar",
+    "entity": "C0205",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0206",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0207",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0208",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0209",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0210",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Trade Show",
+    "entity": "C0211",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Trade Show",
+    "entity": "C0212",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Trade Show",
+    "entity": "C0213",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0214",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Webinar",
+    "entity": "C0215",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 34000.0,
+    "category": "Webinar",
+    "entity": "C0216",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Webinar",
+    "entity": "C0217",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Email",
+    "entity": "C0218",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 45000.0,
+    "category": "SEM",
+    "entity": "C0219",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Trade Show",
+    "entity": "C0220",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Email",
+    "entity": "C0221",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Email",
+    "entity": "C0222",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "SEM",
+    "entity": "C0223",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "SEM",
+    "entity": "C0224",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Content Marketing",
+    "entity": "C0225",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Webinar",
+    "entity": "C0226",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0227",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Content Marketing",
+    "entity": "C0228",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "SEM",
+    "entity": "C0229",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0230",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Email",
+    "entity": "C0231",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Webinar",
+    "entity": "C0232",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0233",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "SEM",
+    "entity": "C0234",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Trade Show",
+    "entity": "C0235",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Content Marketing",
+    "entity": "C0236",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0237",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0238",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Email",
+    "entity": "C0239",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "SEM",
+    "entity": "C0240",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Webinar",
+    "entity": "C0241",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0242",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Webinar",
+    "entity": "C0243",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0244",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "SEM",
+    "entity": "C0245",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0246",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 42000.0,
+    "category": "Email",
+    "entity": "C0247",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0248",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Webinar",
+    "entity": "C0249",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Trade Show",
+    "entity": "C0250",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "SEM",
+    "entity": "C0251",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Email",
+    "entity": "C0252",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Content Marketing",
+    "entity": "C0253",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "SEM",
+    "entity": "C0254",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0255",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Webinar",
+    "entity": "C0256",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Trade Show",
+    "entity": "C0257",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Email",
+    "entity": "C0258",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Email",
+    "entity": "C0259",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Webinar",
+    "entity": "C0260",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Trade Show",
+    "entity": "C0261",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Content Marketing",
+    "entity": "C0262",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0263",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0264",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "SEM",
+    "entity": "C0265",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "SEM",
+    "entity": "C0266",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Email",
+    "entity": "C0267",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0268",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0269",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Content Marketing",
+    "entity": "C0270",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Content Marketing",
+    "entity": "C0271",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0272",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0273",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0274",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0275",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0276",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 42000.0,
+    "category": "SEM",
+    "entity": "C0277",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Content Marketing",
+    "entity": "C0278",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0279",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0280",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0281",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0282",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0283",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Trade Show",
+    "entity": "C0284",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0285",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "SEM",
+    "entity": "C0286",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0287",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0288",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0289",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Trade Show",
+    "entity": "C0290",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Trade Show",
+    "entity": "C0291",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "Content Marketing",
+    "entity": "C0292",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Webinar",
+    "entity": "C0293",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Webinar",
+    "entity": "C0294",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0295",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0296",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Email",
+    "entity": "C0297",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Email",
+    "entity": "C0298",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0299",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Email",
+    "entity": "C0300",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0301",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0302",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0303",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0304",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0305",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0306",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Content Marketing",
+    "entity": "C0307",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0308",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "SEM",
+    "entity": "C0309",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "SEM",
+    "entity": "C0310",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Content Marketing",
+    "entity": "C0311",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0312",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Trade Show",
+    "entity": "C0313",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Trade Show",
+    "entity": "C0314",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "SEM",
+    "entity": "C0315",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Trade Show",
+    "entity": "C0316",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Webinar",
+    "entity": "C0317",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Trade Show",
+    "entity": "C0318",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Content Marketing",
+    "entity": "C0319",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0320",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Email",
+    "entity": "C0321",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Webinar",
+    "entity": "C0322",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Trade Show",
+    "entity": "C0323",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Content Marketing",
+    "entity": "C0324",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Trade Show",
+    "entity": "C0325",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Trade Show",
+    "entity": "C0326",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Content Marketing",
+    "entity": "C0327",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Trade Show",
+    "entity": "C0328",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 50000.0,
+    "category": "Content Marketing",
+    "entity": "C0329",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "SEM",
+    "entity": "C0330",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Content Marketing",
+    "entity": "C0331",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Content Marketing",
+    "entity": "C0332",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0333",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0334",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0335",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0336",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "SEM",
+    "entity": "C0337",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "SEM",
+    "entity": "C0338",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Content Marketing",
+    "entity": "C0339",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "SEM",
+    "entity": "C0340",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Content Marketing",
+    "entity": "C0341",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0342",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Email",
+    "entity": "C0343",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Email",
+    "entity": "C0344",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "SEM",
+    "entity": "C0345",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Email",
+    "entity": "C0346",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0347",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0348",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "SEM",
+    "entity": "C0349",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Trade Show",
+    "entity": "C0350",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0351",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0352",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Content Marketing",
+    "entity": "C0353",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Webinar",
+    "entity": "C0354",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0355",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0356",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0357",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 31000.0,
+    "category": "Webinar",
+    "entity": "C0358",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0359",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "SEM",
+    "entity": "C0360",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "SEM",
+    "entity": "C0361",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 47000.0,
+    "category": "SEM",
+    "entity": "C0362",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Webinar",
+    "entity": "C0363",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0364",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Content Marketing",
+    "entity": "C0365",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Content Marketing",
+    "entity": "C0366",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Email",
+    "entity": "C0367",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0368",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Content Marketing",
+    "entity": "C0369",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 45000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0370",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 39000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0371",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Trade Show",
+    "entity": "C0372",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Webinar",
+    "entity": "C0373",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0374",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 32000.0,
+    "category": "Trade Show",
+    "entity": "C0375",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 46000.0,
+    "category": "Email",
+    "entity": "C0376",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Content Marketing",
+    "entity": "C0377",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Email",
+    "entity": "C0378",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0379",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "SEM",
+    "entity": "C0380",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0381",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 49000.0,
+    "category": "Trade Show",
+    "entity": "C0382",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Content Marketing",
+    "entity": "C0383",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "SEM",
+    "entity": "C0384",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0385",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Content Marketing",
+    "entity": "C0386",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "Email",
+    "entity": "C0387",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Content Marketing",
+    "entity": "C0388",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Webinar",
+    "entity": "C0389",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Webinar",
+    "entity": "C0390",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0391",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Webinar",
+    "entity": "C0392",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Webinar",
+    "entity": "C0393",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Trade Show",
+    "entity": "C0394",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "SEM",
+    "entity": "C0395",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Trade Show",
+    "entity": "C0396",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0397",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Webinar",
+    "entity": "C0398",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0399",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Webinar",
+    "entity": "C0400",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0401",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0402",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0403",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0404",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Webinar",
+    "entity": "C0405",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0406",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Content Marketing",
+    "entity": "C0407",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Trade Show",
+    "entity": "C0408",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Content Marketing",
+    "entity": "C0409",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Email",
+    "entity": "C0410",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0411",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Content Marketing",
+    "entity": "C0412",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0413",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0414",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Trade Show",
+    "entity": "C0415",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0416",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0417",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Trade Show",
+    "entity": "C0418",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0419",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Content Marketing",
+    "entity": "C0420",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0421",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0422",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0423",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0424",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "SEM",
+    "entity": "C0425",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0426",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Email",
+    "entity": "C0427",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0428",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0429",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Content Marketing",
+    "entity": "C0430",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Webinar",
+    "entity": "C0431",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0432",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 31000.0,
+    "category": "Webinar",
+    "entity": "C0433",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "SEM",
+    "entity": "C0434",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "SEM",
+    "entity": "C0435",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "Email",
+    "entity": "C0436",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Webinar",
+    "entity": "C0437",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Content Marketing",
+    "entity": "C0438",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0439",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 42000.0,
+    "category": "Webinar",
+    "entity": "C0440",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0441",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Webinar",
+    "entity": "C0442",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0443",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0444",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0445",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Email",
+    "entity": "C0446",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "SEM",
+    "entity": "C0447",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Webinar",
+    "entity": "C0448",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0449",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Trade Show",
+    "entity": "C0450",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Email",
+    "entity": "C0451",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Content Marketing",
+    "entity": "C0452",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Webinar",
+    "entity": "C0453",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 42000.0,
+    "category": "Webinar",
+    "entity": "C0454",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0455",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Trade Show",
+    "entity": "C0456",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Trade Show",
+    "entity": "C0457",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "SEM",
+    "entity": "C0458",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "SEM",
+    "entity": "C0459",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Email",
+    "entity": "C0460",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0461",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0462",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Email",
+    "entity": "C0463",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Trade Show",
+    "entity": "C0464",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Webinar",
+    "entity": "C0465",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0466",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Content Marketing",
+    "entity": "C0467",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0468",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "SEM",
+    "entity": "C0469",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0470",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Webinar",
+    "entity": "C0471",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Webinar",
+    "entity": "C0472",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0473",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Email",
+    "entity": "C0474",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Trade Show",
+    "entity": "C0475",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "SEM",
+    "entity": "C0476",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Email",
+    "entity": "C0477",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Webinar",
+    "entity": "C0478",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0479",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Trade Show",
+    "entity": "C0480",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "Trade Show",
+    "entity": "C0481",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "SEM",
+    "entity": "C0482",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Content Marketing",
+    "entity": "C0483",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "SEM",
+    "entity": "C0484",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Email",
+    "entity": "C0485",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0486",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 39000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0487",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Content Marketing",
+    "entity": "C0488",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0489",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Email",
+    "entity": "C0490",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0491",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0492",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Content Marketing",
+    "entity": "C0493",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Webinar",
+    "entity": "C0494",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 38000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0495",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Trade Show",
+    "entity": "C0496",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0497",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0498",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Content Marketing",
+    "entity": "C0499",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0500",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0501",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0502",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0503",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "SEM",
+    "entity": "C0504",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Webinar",
+    "entity": "C0505",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Trade Show",
+    "entity": "C0506",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Content Marketing",
+    "entity": "C0507",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "SEM",
+    "entity": "C0508",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 39000.0,
+    "category": "SEM",
+    "entity": "C0509",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "SEM",
+    "entity": "C0510",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Email",
+    "entity": "C0511",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Webinar",
+    "entity": "C0512",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Email",
+    "entity": "C0513",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0514",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Trade Show",
+    "entity": "C0515",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0516",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Email",
+    "entity": "C0517",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0518",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Trade Show",
+    "entity": "C0519",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Email",
+    "entity": "C0520",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Email",
+    "entity": "C0521",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0522",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Webinar",
+    "entity": "C0523",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Content Marketing",
+    "entity": "C0524",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0525",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "SEM",
+    "entity": "C0526",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0527",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0528",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0529",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0530",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Webinar",
+    "entity": "C0531",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0532",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Email",
+    "entity": "C0533",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0534",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "SEM",
+    "entity": "C0535",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Content Marketing",
+    "entity": "C0536",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Webinar",
+    "entity": "C0537",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0538",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0539",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Webinar",
+    "entity": "C0540",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Webinar",
+    "entity": "C0541",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 40000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0542",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Trade Show",
+    "entity": "C0543",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Trade Show",
+    "entity": "C0544",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0545",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 42000.0,
+    "category": "Webinar",
+    "entity": "C0546",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0547",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Webinar",
+    "entity": "C0548",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "Trade Show",
+    "entity": "C0549",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Email",
+    "entity": "C0550",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Trade Show",
+    "entity": "C0551",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0552",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0553",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 34000.0,
+    "category": "Email",
+    "entity": "C0554",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Webinar",
+    "entity": "C0555",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0556",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Webinar",
+    "entity": "C0557",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0558",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "SEM",
+    "entity": "C0559",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Webinar",
+    "entity": "C0560",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Webinar",
+    "entity": "C0561",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0562",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Trade Show",
+    "entity": "C0563",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Webinar",
+    "entity": "C0564",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0565",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "SEM",
+    "entity": "C0566",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0567",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 38000.0,
+    "category": "Trade Show",
+    "entity": "C0568",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "SEM",
+    "entity": "C0569",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Webinar",
+    "entity": "C0570",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0571",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Webinar",
+    "entity": "C0572",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0573",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "SEM",
+    "entity": "C0574",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0575",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "SEM",
+    "entity": "C0576",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Content Marketing",
+    "entity": "C0577",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Content Marketing",
+    "entity": "C0578",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0579",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0580",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Webinar",
+    "entity": "C0581",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0582",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Trade Show",
+    "entity": "C0583",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Email",
+    "entity": "C0584",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0585",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0586",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Email",
+    "entity": "C0587",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0588",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Webinar",
+    "entity": "C0589",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Email",
+    "entity": "C0590",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 44000.0,
+    "category": "Content Marketing",
+    "entity": "C0591",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0592",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0593",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Email",
+    "entity": "C0594",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Content Marketing",
+    "entity": "C0595",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0596",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0597",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Webinar",
+    "entity": "C0598",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Email",
+    "entity": "C0599",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Content Marketing",
+    "entity": "C0600",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 34000.0,
+    "category": "Email",
+    "entity": "C0601",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0602",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Trade Show",
+    "entity": "C0603",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 24000.0,
+    "category": "Trade Show",
+    "entity": "C0604",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Content Marketing",
+    "entity": "C0605",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Email",
+    "entity": "C0606",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Email",
+    "entity": "C0607",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "SEM",
+    "entity": "C0608",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "SEM",
+    "entity": "C0609",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0610",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 21000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0611",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0612",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0613",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Email",
+    "entity": "C0614",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0615",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "Webinar",
+    "entity": "C0616",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0617",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0618",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Content Marketing",
+    "entity": "C0619",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0620",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0621",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Webinar",
+    "entity": "C0622",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Trade Show",
+    "entity": "C0623",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Webinar",
+    "entity": "C0624",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0625",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Email",
+    "entity": "C0626",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0627",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "Email",
+    "entity": "C0628",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Email",
+    "entity": "C0629",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Trade Show",
+    "entity": "C0630",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0631",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Content Marketing",
+    "entity": "C0632",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "SEM",
+    "entity": "C0633",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Webinar",
+    "entity": "C0634",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Webinar",
+    "entity": "C0635",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Email",
+    "entity": "C0636",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Email",
+    "entity": "C0637",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Content Marketing",
+    "entity": "C0638",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0639",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Webinar",
+    "entity": "C0640",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Email",
+    "entity": "C0641",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Content Marketing",
+    "entity": "C0642",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Trade Show",
+    "entity": "C0643",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0644",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Trade Show",
+    "entity": "C0645",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Trade Show",
+    "entity": "C0646",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "SEM",
+    "entity": "C0647",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Email",
+    "entity": "C0648",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Content Marketing",
+    "entity": "C0649",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0650",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0651",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "SEM",
+    "entity": "C0652",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Webinar",
+    "entity": "C0653",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 39000.0,
+    "category": "Content Marketing",
+    "entity": "C0654",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0655",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Trade Show",
+    "entity": "C0656",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Content Marketing",
+    "entity": "C0657",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Webinar",
+    "entity": "C0658",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Webinar",
+    "entity": "C0659",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 46000.0,
+    "category": "SEM",
+    "entity": "C0660",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "SEM",
+    "entity": "C0661",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Trade Show",
+    "entity": "C0662",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Content Marketing",
+    "entity": "C0663",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Webinar",
+    "entity": "C0664",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Email",
+    "entity": "C0665",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Content Marketing",
+    "entity": "C0666",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "Email",
+    "entity": "C0667",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0668",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 42000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0669",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 33000.0,
+    "category": "Content Marketing",
+    "entity": "C0670",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Trade Show",
+    "entity": "C0671",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 28000.0,
+    "category": "Webinar",
+    "entity": "C0672",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Email",
+    "entity": "C0673",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0674",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 34000.0,
+    "category": "Webinar",
+    "entity": "C0675",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0676",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Content Marketing",
+    "entity": "C0677",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 36000.0,
+    "category": "Content Marketing",
+    "entity": "C0678",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 20000.0,
+    "category": "Trade Show",
+    "entity": "C0679",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Webinar",
+    "entity": "C0680",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Content Marketing",
+    "entity": "C0681",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "Webinar",
+    "entity": "C0682",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Webinar",
+    "entity": "C0683",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Content Marketing",
+    "entity": "C0684",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 17000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0685",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 6000.0,
+    "category": "Webinar",
+    "entity": "C0686",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0687",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0688",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 35000.0,
+    "category": "Email",
+    "entity": "C0689",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Email",
+    "entity": "C0690",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 10000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0691",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Email",
+    "entity": "C0692",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 15000.0,
+    "category": "Email",
+    "entity": "C0693",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Content Marketing",
+    "entity": "C0694",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "SEM",
+    "entity": "C0695",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "Content Marketing",
+    "entity": "C0696",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Content Marketing",
+    "entity": "C0697",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "Webinar",
+    "entity": "C0698",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 25000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0699",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 23000.0,
+    "category": "Email",
+    "entity": "C0700",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0701",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Trade Show",
+    "entity": "C0702",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Webinar",
+    "entity": "C0703",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Trade Show",
+    "entity": "C0704",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 43000.0,
+    "category": "Webinar",
+    "entity": "C0705",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Trade Show",
+    "entity": "C0706",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0707",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Email",
+    "entity": "C0708",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 29000.0,
+    "category": "Trade Show",
+    "entity": "C0709",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 8000.0,
+    "category": "Webinar",
+    "entity": "C0710",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 30000.0,
+    "category": "Webinar",
+    "entity": "C0711",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0712",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Trade Show",
+    "entity": "C0713",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Email",
+    "entity": "C0714",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 11000.0,
+    "category": "Email",
+    "entity": "C0715",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 22000.0,
+    "category": "Email",
+    "entity": "C0716",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Trade Show",
+    "entity": "C0717",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 13000.0,
+    "category": "Content Marketing",
+    "entity": "C0718",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 26000.0,
+    "category": "Trade Show",
+    "entity": "C0719",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 12000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0720",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 16000.0,
+    "category": "Webinar",
+    "entity": "C0721",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 9000.0,
+    "category": "Email",
+    "entity": "C0722",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "SEM",
+    "entity": "C0723",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 18000.0,
+    "category": "Content Marketing",
+    "entity": "C0724",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 37000.0,
+    "category": "Trade Show",
+    "entity": "C0725",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 31000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0726",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 27000.0,
+    "category": "Content Marketing",
+    "entity": "C0727",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 5000.0,
+    "category": "Trade Show",
+    "entity": "C0728",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 48000.0,
+    "category": "Email",
+    "entity": "C0729",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 41000.0,
+    "category": "Email",
+    "entity": "C0730",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 14000.0,
+    "category": "Email",
+    "entity": "C0731",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 7000.0,
+    "category": "Email",
+    "entity": "C0732",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 19000.0,
+    "category": "LinkedIn Ads",
+    "entity": "C0733",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  },
+  {
+    "date": "2023-01-01",
+    "amount": 39000.0,
+    "category": "Email",
+    "entity": "C0734",
+    "description": null,
+    "source_file": "mapping_sales.yaml"
+  }
+]
