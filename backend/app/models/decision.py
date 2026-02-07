@@ -1,5 +1,6 @@
 from enum import Enum
-from typing import Dict, Optional
+from typing import Dict, Optional, List
+from datetime import datetime
 from pydantic import BaseModel, Field
 
 class DecisionScope(str, Enum):
@@ -29,17 +30,46 @@ class ImpactLabel(str, Enum):
 
 class DecisionStatus(str, Enum):
     PENDING = "PENDING"
-# ... (DecisionStatus enum content if any)
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
+    DEFERRED = "DEFERRED"
+
+class DecisionEventType(str, Enum):
+    CREATED = "CREATED"
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
+    DEFERRED = "DEFERRED"
+    REOPENED = "REOPENED"
+
+class DecisionEvent(BaseModel):
+    """
+    Immutable Audit Log Entry.
+    Source of truth for history.
+    """
+    id: str
+    decision_id: str
+    event_type: DecisionEventType
+    previous_status: Optional[DecisionStatus]
+    new_status: DecisionStatus
+    actor_id: str = "system" # Default to system for now
+    note: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
 class DecisionContext(BaseModel):
-    # ... (existing content)
+    """
+    Structured context for the decision.
+    Makes the decision auditable and reproducible.
+    """
     analysis_period: str
     rule_id: str
     thresholds: Dict[str, float]
     metrics: Dict[str, float] # Evidence used
 
 class Decision(BaseModel):
-    # ... (existing content)
+    """
+    First-class Decision object.
+    Everything (UI, audit, integration) hangs off this.
+    """
     id: str
     decision_type: DecisionType
     scope: DecisionScope
@@ -67,3 +97,10 @@ class Decision(BaseModel):
     # State
     status: DecisionStatus = DecisionStatus.PENDING
     rejection_reason: Optional[str] = None
+    
+    # Metadata
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    # Audit Entension
+    events: List[DecisionEvent] = []

@@ -18,6 +18,12 @@ class DecisionEngine:
         # Standard Savings Estimation
         SAVINGS_RATE = 0.10 # 10% estimated savings for prioritization
 
+        # Custom Import to avoid circular dependency
+        from app.services.decision_store import DecisionStore
+        
+        # Reset Store for "Upload" workflow (v1 behavior)
+        DecisionStore.clear()
+
         vendor_stats = SpendingAnalyzer.get_vendor_stats()
         decisions = []
         
@@ -69,8 +75,11 @@ class DecisionEngine:
                     }
                 )
 
+                # DETERMINISTIC ID: Ensure ID is stable across restarts for the same vendor/rule
+                decision_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"{vendor}_{template.rule_id}"))
+
                 decision = Decision(
-                     id=str(uuid.uuid4()),
+                     id=decision_id,
                      decision_type=DecisionType.VENDOR_REDUCE,
                      scope=DecisionScope.VENDOR,
                      entity=vendor,
@@ -108,8 +117,11 @@ class DecisionEngine:
                     }
                 )
 
+                # DETERMINISTIC ID
+                decision_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"{vendor}_{template.rule_id}"))
+
                 decision = Decision(
-                     id=str(uuid.uuid4()),
+                     id=decision_id,
                      decision_type=DecisionType.VENDOR_CONSOLIDATE,
                      scope=DecisionScope.VENDOR,
                      entity=vendor,
@@ -132,6 +144,12 @@ class DecisionEngine:
 
         # SORTING: High Impact First
         decisions.sort(key=lambda d: d.annual_impact, reverse=True)
+        
+        # PERSISTENCE: Save to Store
+        from app.services.decision_store import DecisionStore
+        for d in decisions:
+            DecisionStore.save_decision(d)
+            
         return decisions
 
     @staticmethod
@@ -142,21 +160,33 @@ class DecisionEngine:
         from app.models.summary import DecisionSummary
         
         total_savings = sum(d.annual_impact for d in decisions)
+        # Count Pending Actions
+        pending_count = len([d for d in decisions if d.status == DecisionStatus.PENDING])
+        # Count Pending High Impact
+        from app.models.decision import ImpactLabel
+        pending_high_impact = len([d for d in decisions if d.status == DecisionStatus.PENDING and d.impact_label == ImpactLabel.HIGH])
+
         impact_counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0}
         risk_counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0}
 
         for d in decisions:
-            # Impact Breakdown
+            # Impact Breakdown - Only count PENDING? 
+            # Usually Summary shows "Total Identified Opportunity", so we keep all.
+            # But the counts in the breakdown might be confusing if they include approved.
+            # User wants "Pending Actions" card updated. Breakdowns usually match the total.
+            # Let's keep breakdowns as Total for now, but ensure Pending Count is distinct.
+            
             if d.impact_label.value in impact_counts:
                 impact_counts[d.impact_label.value] += 1
             
-            # Risk Breakdown
             if d.risk_level.value in risk_counts:
                 risk_counts[d.risk_level.value] += 1
 
         return DecisionSummary(
             total_savings=total_savings,
             total_decisions=len(decisions),
+            pending_count=pending_count,
+            pending_high_impact=pending_high_impact,
             impact_breakdown=impact_counts,
             risk_breakdown=risk_counts
         )

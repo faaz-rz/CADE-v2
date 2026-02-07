@@ -1,20 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { Decision, DecisionService } from '../services/api';
+import { Decision, DecisionService, DecisionSummary } from '../services/api';
 import { DecisionCard } from '../components/DecisionCard';
-import { LayoutDashboard, Loader2, RefreshCw } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { DecisionDetail } from '../components/DecisionDetail';
+import { PortfolioSummary } from '../components/PortfolioSummary';
+import { UploadDataButton } from '../components/UploadDataButton';
+import { RefreshCw, Filter, CheckCircle } from 'lucide-react';
 
 export const DecisionsPage: React.FC = () => {
     const [decisions, setDecisions] = useState<Decision[]>([]);
+    const [summary, setSummary] = useState<DecisionSummary | null>(null);
+    const [selectedId, setSelectedId] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
+    const [viewMode, setViewMode] = useState<'pending' | 'history'>('pending');
+
+    const selectedDecision = decisions.find(d => d.id === selectedId) || null;
+
+    const pendingDecisions = decisions.filter(d => d.status === 'PENDING');
+    const historyDecisions = decisions.filter(d => d.status !== 'PENDING');
+
+    const displayedDecisions = viewMode === 'pending' ? pendingDecisions : historyDecisions;
+    const pendingCount = pendingDecisions.length;
+    const historyCount = historyDecisions.length;
 
     const loadData = async () => {
         setLoading(true);
         try {
-            const data = await DecisionService.getDecisions();
+            const [data, summaryData] = await Promise.all([
+                DecisionService.getDecisions(),
+                DecisionService.getSummary()
+            ]);
             setDecisions(data);
+            setSummary(summaryData);
         } catch (e) {
-            console.error(e);
+            console.error('Failed to load data', e);
         } finally {
             setLoading(false);
         }
@@ -24,53 +42,94 @@ export const DecisionsPage: React.FC = () => {
         loadData();
     }, []);
 
-    // Helper: Sort pending first
-    const sortedDecisions = [...decisions].sort((a, b) => {
-        if (a.status === 'PENDING' && b.status !== 'PENDING') return -1;
-        if (a.status !== 'PENDING' && b.status === 'PENDING') return 1;
-        return 0;
-    });
-
-    const pendingCount = decisions.filter(d => d.status === 'PENDING').length;
-
     return (
-        <div className="max-w-4xl mx-auto py-10 px-4">
-            <header className="flex justify-between items-center mb-10">
+        <div className="max-w-5xl mx-auto px-4 py-8">
+            <header className="mb-8 flex justify-between items-center">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Decision Inbox</h1>
-                    <p className="text-gray-500 mt-1">
-                        You have <span className="font-semibold text-brand-600">{pendingCount} pending decisions</span> requiring attention.
-                    </p>
+                    <p className="text-gray-500 mt-1">AI-Recommended Capital Allocation Actions</p>
                 </div>
                 <div className="flex gap-3">
-                    <Link to="/upload" className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                        Upload Data
-                    </Link>
-                    <button onClick={loadData} className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">
-                        <RefreshCw className="w-5 h-5" />
+                    <UploadDataButton onUploadComplete={loadData} />
+                    <button
+                        onClick={loadData}
+                        className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+                        title="Refresh Data"
+                    >
+                        <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
                     </button>
                 </div>
             </header>
 
+            {/* Portfolio Summary Dashboard */}
+            <PortfolioSummary summary={summary} isLoading={loading} />
+
+            <h2 className="text-lg font-semibold text-gray-800">
+                {viewMode === 'pending' ? `Pending Decisions (${pendingCount})` : `Decision History (${historyCount})`}
+            </h2>
+            <div className="flex bg-gray-100 p-1 rounded-lg">
+                <button
+                    onClick={() => setViewMode('pending')}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${viewMode === 'pending' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                        }`}
+                >
+                    Pending
+                </button>
+                <button
+                    onClick={() => setViewMode('history')}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${viewMode === 'history' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                        }`}
+                >
+                    History
+                </button>
+            </div>
+
             {loading ? (
-                <div className="flex justify-center py-20">
-                    <Loader2 className="w-8 h-8 animate-spin text-gray-300" />
+                <div className="space-y-4 mt-8">
+                    {[1, 2, 3].map(i => (
+                        <div key={i} className="h-48 bg-gray-100 rounded-xl animate-pulse" />
+                    ))}
                 </div>
             ) : (
-                <div className="space-y-6">
-                    {sortedDecisions.map(d => (
-                        <DecisionCard key={d.id} decision={d} onUpdate={loadData} />
-                    ))}
-
-                    {decisions.length === 0 && (
-                        <div className="text-center py-20 bg-white rounded-xl border border-dashed border-gray-300">
-                            <LayoutDashboard className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                            <p className="text-gray-500">No decisions generated yet.</p>
-                            <Link to="/upload" className="text-brand-600 font-medium hover:underline text-sm mt-2 block">Upload data to start</Link>
+                <div className="space-y-4 mt-8">
+                    {displayedDecisions.length > 0 ? (
+                        displayedDecisions.map((decision) => (
+                            <DecisionCard
+                                key={decision.id}
+                                decision={decision}
+                                onUpdate={loadData}
+                                onViewDetails={() => setSelectedId(decision.id)}
+                            />
+                        ))
+                    ) : (
+                        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+                            {viewMode === 'pending' ? (
+                                <>
+                                    <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-3" />
+                                    <h3 className="text-lg font-medium text-gray-900">All Caught Up!</h3>
+                                    <p className="text-gray-500">No pending decisions found.</p>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 text-gray-400">
+                                        <Filter className="w-6 h-6" />
+                                    </div>
+                                    <h3 className="text-lg font-medium text-gray-900">No History Yet</h3>
+                                    <p className="text-gray-500">Decisions you process will appear here.</p>
+                                </>
+                            )}
                         </div>
                     )}
                 </div>
             )}
-        </div>
+
+            {/* Detail Modal */}
+            {selectedDecision && (
+                <DecisionDetail
+                    decision={selectedDecision}
+                    onClose={() => setSelectedId(null)}
+                />
+            )}
+        </div >
     );
 };

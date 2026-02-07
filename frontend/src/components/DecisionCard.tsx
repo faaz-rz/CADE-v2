@@ -3,26 +3,34 @@ import { clsx } from 'clsx';
 
 import { Decision, DecisionService } from '../services/api';
 import { RiskBadge } from './RiskBadge';
-import { ArrowRight, Check, X, Loader2, DollarSign } from 'lucide-react';
+import { ArrowRight, Check, X, Loader2, DollarSign, AlertCircle, CheckCircle } from 'lucide-react';
 
 interface DecisionCardProps {
     decision: Decision;
     onUpdate: () => void;
+    onViewDetails: () => void;
 }
 
-export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate }) => {
+export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate, onViewDetails }) => {
     const [processing, setProcessing] = useState(false);
     const [showRejectForm, setShowRejectForm] = useState(false);
+    const [showDoubleCheck, setShowDoubleCheck] = useState(false);
     const [rejectReason, setRejectReason] = useState('');
 
     const handleApprove = async () => {
-        if (!confirm('Confirm approval? This will log an audit entry.')) return;
+        if (!showDoubleCheck) {
+            setShowDoubleCheck(true);
+            return;
+        }
+
         setProcessing(true);
         try {
             await DecisionService.approve(decision.id);
-            onUpdate();
+            // Wait a moment for UX
+            setTimeout(() => onUpdate(), 500);
         } catch (e) {
             alert('Failed to approve');
+            setShowDoubleCheck(false);
         } finally {
             setProcessing(false);
         }
@@ -94,10 +102,15 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate }
                             <button
                                 onClick={handleApprove}
                                 disabled={processing}
-                                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 rounded-lg shadow-sm transition-colors"
+                                className={clsx(
+                                    "flex items-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg shadow-sm transition-colors",
+                                    processing ? "bg-brand-400 cursor-not-allowed" :
+                                        showDoubleCheck ? "bg-red-600 hover:bg-red-700 animate-pulse" : "bg-brand-600 hover:bg-brand-700"
+                                )}
                             >
-                                {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
-                                Approve Recommendation
+                                {processing ? <Loader2 className="w-4 h-4 animate-spin" /> :
+                                    showDoubleCheck ? <AlertCircle className="w-4 h-4" /> : <Check className="w-4 h-4" />}
+                                {showDoubleCheck ? "Confirm: IRREVERSIBLE" : "Approve"}
                             </button>
                         </>
                     ) : (
@@ -113,7 +126,7 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate }
                             <button
                                 onClick={handleReject}
                                 disabled={!rejectReason || processing}
-                                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg"
+                                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg whitespace-nowrap"
                             >
                                 Confirm Reject
                             </button>
@@ -123,18 +136,32 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate }
                             >
                                 Cancel
                             </button>
+                            <span className="text-xs text-red-500 flex items-center ml-2">
+                                <AlertCircle className="w-3 h-3 mr-1" /> Irreversible
+                            </span>
                         </div>
                     )
                 ) : (
                     <div className={clsx(
-                        "px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2",
-                        decision.status === 'APPROVED' ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-600"
+                        "px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 opacity-75 cursor-default",
+                        decision.status === 'APPROVED' ? "bg-green-50 text-green-700 border border-green-100" :
+                            decision.status === 'REJECTED' ? "bg-red-50 text-red-700 border border-red-100" :
+                                "bg-gray-100 text-gray-600"
                     )}>
-                        {decision.status === 'APPROVED' ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
+                        {decision.status === 'APPROVED' ? <CheckCircle className="w-4 h-4" /> :
+                            decision.status === 'REJECTED' ? <X className="w-4 h-4" /> :
+                                <div className="w-4 h-4 rounded-full bg-gray-400" />}
                         {decision.status}
                     </div>
                 )}
             </div>
+
+            <button
+                onClick={onViewDetails}
+                className="w-full mt-4 py-2 text-xs font-medium text-gray-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors border border-transparent hover:border-brand-100 flex items-center justify-center gap-1"
+            >
+                View Full Context & Audit Log <ArrowRight className="w-3 h-3" />
+            </button>
         </div>
     );
 };

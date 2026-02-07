@@ -10,8 +10,13 @@ def get_decision_summary():
     Returns the Executive Dashboard Summary.
     Calculates real-time stats from the current decision set.
     """
-    # For v1, we re-analyze the uploaded data.
-    # In v2, this would fetch from a database.
-    decisions = DecisionEngine.analyze_uploaded_data()
+    # v2 FIX: Get current state from store, DO NOT re-analyze (resets state)
+    from app.services.decision_store import DecisionStore
+    decisions = DecisionStore.get_all_decisions()
+    
+    if not decisions:
+         # Only analyze if store is truly empty (first load after restart)
+         decisions = DecisionEngine.analyze_uploaded_data()
+         
     summary = DecisionEngine.get_summary_stats(decisions)
     return summary
