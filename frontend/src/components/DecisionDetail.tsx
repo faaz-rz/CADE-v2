@@ -1,6 +1,8 @@
 import React from 'react';
 import { Decision } from '../services/api';
 import { X, Calendar, Hash, FileText, User } from 'lucide-react';
+import { ExposurePanel } from './ExposurePanel';
+import { PriceShockPanel } from './PriceShockPanel';
 
 interface DecisionDetailProps {
     decision: Decision;
@@ -96,6 +98,12 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                             </div>
                         </section>
                     )}
+
+                    {/* Exposure Panel */}
+                    <ExposurePanel vendorId={decision.entity} />
+
+                    {/* Price Shock Simulator */}
+                    <PriceShockPanel vendorId={decision.entity} />
 
                     {/* Explanation */}
                     <section>

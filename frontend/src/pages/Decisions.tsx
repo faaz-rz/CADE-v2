@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Decision, DecisionService, DecisionSummary } from '../services/api';
+import { Decision, DecisionService, DecisionSummary, ExportService } from '../services/api';
 import { DecisionCard } from '../components/DecisionCard';
 import { DecisionDetail } from '../components/DecisionDetail';
 import { PortfolioSummary } from '../components/PortfolioSummary';
 import { UploadDataButton } from '../components/UploadDataButton';
-import { RefreshCw, Filter, CheckCircle } from 'lucide-react';
+import { RefreshCw, Filter, CheckCircle, Shield, Download } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const DecisionsPage: React.FC = () => {
     const [decisions, setDecisions] = useState<Decision[]>([]);
@@ -50,6 +51,20 @@ export const DecisionsPage: React.FC = () => {
                     <p className="text-gray-500 mt-1">AI-Recommended Capital Allocation Actions</p>
                 </div>
                 <div className="flex gap-3">
+                    <Link
+                        to="/exposure"
+                        className="flex items-center gap-2 px-3 py-2 bg-orange-50 text-orange-700 border border-orange-200 rounded-lg hover:bg-orange-100 transition-colors text-sm font-medium"
+                    >
+                        <Shield className="w-4 h-4" />
+                        Exposure
+                    </Link>
+                    <button
+                        onClick={() => ExportService.downloadExecutiveReport()}
+                        className="flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 transition-colors text-sm font-medium"
+                    >
+                        <Download className="w-4 h-4" />
+                        Export
+                    </button>
                     <UploadDataButton onUploadComplete={loadData} />
                     <button
                         onClick={loadData}

@@ -14,6 +14,8 @@ class VendorStats(BaseModel):
     total_spend: float
     transaction_count: int
     avg_value: float
+    category: str = "Uncategorized"
+    vendor_share_of_category: float = 0.0
     spend_period: str = "Uploaded Period" # Explicit window
 
 class SpendingAnalyzer:
@@ -38,6 +40,7 @@ class SpendingAnalyzer:
             return {}
 
         stats_map: Dict[str, VendorStats] = {}
+        category_spend: Dict[str, float] = {}
 
         for r in records:
             if r.entity not in stats_map:
@@ -45,16 +48,24 @@ class SpendingAnalyzer:
                     entity=r.entity,
                     total_spend=0.0,
                     transaction_count=0,
-                    avg_value=0.0
+                    avg_value=0.0,
+                    category=r.category,
+                    vendor_share_of_category=0.0
                 )
             
             stats = stats_map[r.entity]
             stats.total_spend += r.amount
             stats.transaction_count += 1
+            
+            if r.category not in category_spend:
+                category_spend[r.category] = 0.0
+            category_spend[r.category] += r.amount
         
         # Calculate averages
         for entity, stats in stats_map.items():
             if stats.transaction_count > 0:
                 stats.avg_value = stats.total_spend / stats.transaction_count
+            if category_spend.get(stats.category, 0) > 0:
+                stats.vendor_share_of_category = stats.total_spend / category_spend[stats.category]
                 
         return stats_map

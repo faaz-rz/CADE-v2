@@ -64,6 +64,9 @@ class DecisionContext(BaseModel):
     rule_id: str
     thresholds: Dict[str, float]
     metrics: Dict[str, float] # Evidence used
+    vendor_share_of_category: float = 0.0
+    rule_version: str = "v1.2-context-aware"
+    applied_thresholds: Dict[str, float] = {}
 
 class Decision(BaseModel):
     """
@@ -91,6 +94,7 @@ class Decision(BaseModel):
     
     # Intelligence & Risk
     risk_level: RiskLevel
+    risk_score: int = 0
     risk_range: Dict[str, float] = Field(..., description="Dictionary with 'best_case' and 'worst_case' keys")
     confidence: float = Field(..., ge=0.0, le=1.0)
     

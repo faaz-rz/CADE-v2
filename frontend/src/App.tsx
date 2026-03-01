@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DecisionsPage } from './pages/Decisions';
 import { UploadPage } from './pages/Upload';
+import { ExposureDashboard } from './pages/ExposureDashboard';
 
 function App() {
     return (
@@ -9,6 +10,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<DecisionsPage />} />
                     <Route path="/upload" element={<UploadPage />} />
+                    <Route path="/exposure" element={<ExposureDashboard />} />
                 </Routes>
             </div>
         </BrowserRouter>

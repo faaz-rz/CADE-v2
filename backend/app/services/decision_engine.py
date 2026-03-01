@@ -1,4 +1,3 @@
-
 import uuid
 from typing import List
 from app.models.decision import Decision, DecisionType, DecisionScope, DecisionStatus, RiskLevel
@@ -11,13 +10,11 @@ class DecisionEngine:
         Generates decisions based on actual uploaded transaction data.
         Uses Standard Templates and Structured Context.
         """
-        from app.services.analytics import SpendingAnalyzer, HIGH_SPEND_THRESHOLD, HIGH_FREQUENCY_THRESHOLD
+        from app.services.analytics import SpendingAnalyzer
         from app.core.decision_templates import get_template, TEMPLATES
         from app.models.decision import DecisionContext, ImpactLabel
-
-        # Standard Savings Estimation
-        SAVINGS_RATE = 0.10 # 10% estimated savings for prioritization
-
+        from app.services.policy_engine import policy_engine
+        
         # Custom Import to avoid circular dependency
         from app.services.decision_store import DecisionStore
         
@@ -31,24 +28,12 @@ class DecisionEngine:
         analysis_period = "Uploaded Period" 
 
         for vendor, stats in vendor_stats.items():
-            # Calculate Standardized Annual Impact First
-            # "annual_impact = total_spend × SAVINGS_RATE" x 12 months? 
-            # Wait, user said "total_spend x SAVINGS_RATE".
-            # If total_spend is for the *uploaded period*, we need to annualize it?
-            # Assuming uploaded data is ~1 month or treat total_spend as annual?
-            # Code previously did `total_spend * 0.1 * 12`. This implies total_spend is MONTHLY.
-            # But header says "Uploaded Period". 
-            # If `enterprise_spend_mixed_units.csv` spans Jan-Mar (3 months).
-            # Then `total_spend` is 3 months spend.
-            # `annual_impact` logic: `total_spend * 0.1 * 12` assumes `total_spend` is MONTHLY.
-            # IF `total_spend` is 3 months sum, then `total_spend * 0.1 * 12` is HUGE overestimate (4x).
-            # However, to match user's number for SoftCorp (2400 total -> 2880 impact).
-            # 2400 * 0.1 * 12 = 2880.
-            # This calculation matches ONLY IF we assume the input `total_spend` is treated as a "Monthly Run Rate" base for the calculation, 
-            # OR if the user simply wants `Total Spend * 1.2`.
-            # I will stick to the FORMULA that produced 2880: `spend * 0.1 * 12`.
             
-            estimated_monthly_savings = stats.total_spend * SAVINGS_RATE
+            policy = policy_engine.get_policy(stats.category)
+            
+            savings_rate = policy.get("savings_rate", 0.10)
+            
+            estimated_monthly_savings = stats.total_spend * savings_rate
             annual_impact = estimated_monthly_savings * 12
 
             if annual_impact >= 10000:
@@ -58,21 +43,40 @@ class DecisionEngine:
             else:
                 impact_label = ImpactLabel.LOW
 
+            spend_threshold = policy.get("spend_threshold", 5000)
+            frequency_threshold = policy.get("frequency_threshold", 5)
+
+            # Risk Evaluation
+            risk_level, risk_score, risk_range, confidence = RiskEngine.evaluate_risk(
+                scope=DecisionScope.VENDOR,
+                amount=stats.total_spend,
+                impact=annual_impact,
+                policy=policy,
+                vendor_share=stats.vendor_share_of_category
+            )
+
             # ONE DECISION PER VENDOR RULE: Prioritize Spend > Frequency
             
             # Rule 1: High Spend
-            # FIX: Use >= to include exact threshold matches (e.g., 5000)
-            if stats.total_spend >= HIGH_SPEND_THRESHOLD:
+            if spend_threshold > 0 and stats.total_spend >= spend_threshold:
                 template = TEMPLATES["HIGH_SPEND"]
                 
+                applied_thresholds = {
+                    "spend_threshold": spend_threshold,
+                    "frequency_threshold": frequency_threshold
+                }
+
                 context = DecisionContext(
                     analysis_period=analysis_period,
                     rule_id=template.rule_id,
-                    thresholds={"spend_threshold": HIGH_SPEND_THRESHOLD},
+                    thresholds={"spend_threshold": spend_threshold},
                     metrics={
                         "total_spend": stats.total_spend,
                         "transaction_count": float(stats.transaction_count)
-                    }
+                    },
+                    vendor_share_of_category=stats.vendor_share_of_category,
+                    rule_version="v1.2-context-aware",
+                    applied_thresholds=applied_thresholds
                 )
 
                 # DETERMINISTIC ID: Ensure ID is stable across restarts for the same vendor/rule
@@ -87,34 +91,42 @@ class DecisionEngine:
                      explanation=template.render_explanation(
                          entity=vendor, 
                          total_spend=stats.total_spend, 
-                         threshold=HIGH_SPEND_THRESHOLD
+                         threshold=spend_threshold
                      ),
                      context=context,
                      expected_monthly_impact=estimated_monthly_savings,
                      cost_of_inaction=annual_impact,
                      annual_impact=annual_impact,
                      impact_label=impact_label,
-                     risk_level=RiskLevel.LOW,
-                     risk_range={"best_case": annual_impact, "worst_case": 0},
-                     confidence=0.9,
+                     risk_level=risk_level,
+                     risk_score=risk_score,
+                     risk_range=risk_range,
+                     confidence=confidence,
                      status=DecisionStatus.PENDING
                 )
                 decisions.append(decision)
                 continue 
             
             # Rule 2: High Frequency
-            # FIX: Use >= presumably? No, usually count > 5 means 6+. >5 is fine for count.
-            if stats.transaction_count > HIGH_FREQUENCY_THRESHOLD:
+            if frequency_threshold > 0 and stats.transaction_count > frequency_threshold:
                 template = TEMPLATES["HIGH_FREQUENCY"]
+
+                applied_thresholds = {
+                    "spend_threshold": spend_threshold,
+                    "frequency_threshold": frequency_threshold
+                }
 
                 context = DecisionContext(
                     analysis_period=analysis_period,
                     rule_id=template.rule_id,
-                    thresholds={"frequency_threshold": HIGH_FREQUENCY_THRESHOLD},
+                    thresholds={"frequency_threshold": frequency_threshold},
                     metrics={
                         "total_spend": stats.total_spend,
                         "transaction_count": float(stats.transaction_count)
-                    }
+                    },
+                    vendor_share_of_category=stats.vendor_share_of_category,
+                    rule_version="v1.2-context-aware",
+                    applied_thresholds=applied_thresholds
                 )
 
                 # DETERMINISTIC ID
@@ -135,9 +147,10 @@ class DecisionEngine:
                      cost_of_inaction=annual_impact,
                      annual_impact=annual_impact,
                      impact_label=impact_label,
-                     risk_level=RiskLevel.LOW,
-                     risk_range={"best_case": annual_impact, "worst_case": 0},
-                     confidence=0.9,
+                     risk_level=risk_level,
+                     risk_score=risk_score,
+                     risk_range=risk_range,
+                     confidence=confidence,
                      status=DecisionStatus.PENDING
                 )
                 decisions.append(decision)
@@ -170,12 +183,6 @@ class DecisionEngine:
         risk_counts = {"HIGH": 0, "MEDIUM": 0, "LOW": 0}
 
         for d in decisions:
-            # Impact Breakdown - Only count PENDING? 
-            # Usually Summary shows "Total Identified Opportunity", so we keep all.
-            # But the counts in the breakdown might be confusing if they include approved.
-            # User wants "Pending Actions" card updated. Breakdowns usually match the total.
-            # Let's keep breakdowns as Total for now, but ensure Pending Count is distinct.
-            
             if d.impact_label.value in impact_counts:
                 impact_counts[d.impact_label.value] += 1
             

@@ -1,43 +1,64 @@
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Any
 from app.models.decision import RiskLevel, DecisionScope
 
 class RiskEngine:
     @staticmethod
-    def evaluate_risk(scope: DecisionScope, amount: float, impact: float) -> Tuple[RiskLevel, Dict[str, float], float]:
+    def evaluate_risk(
+        scope: DecisionScope, 
+        amount: float, 
+        impact: float, 
+        policy: Dict[str, Any], 
+        vendor_share: float = 0.0
+    ) -> Tuple[RiskLevel, int, Dict[str, float], float]:
         """
-        Returns: (RiskLevel, RiskRange, Confidence)
+        Returns: (RiskLevel, RiskScore, RiskRange, Confidence)
         
-        Logic:
-        - Higher impact removals are generally riskier.
-        - Vendor logic: Cutting small vendors is low risk. Cutting large ones is high risk.
+        Risk Factors (0-3 each):
+        1. Spend Volume (vs threshold)
+        2. Operational Criticality
+        3. Regulatory Sensitivity
+        4. Vendor Concentration
         """
+        score = 0
+        threshold = policy.get("spend_threshold", 5000)
         
-        # Default Baseline
-        risk_level = RiskLevel.LOW
-        confidence = 0.9
-        worst_case = 0.0
-        
-        if scope == DecisionScope.VENDOR:
-            # Heuristic: If we cut a vendor, worst case is we have to re-onboard them at a premium + lost productivity
-            if impact > 10000:
-                risk_level = RiskLevel.MEDIUM
-                confidence = 0.8
-                worst_case = - (impact * 0.5) # Losing 50% more than the savings in productivity
+        # 1. Spend Volume
+        if threshold > 0:
+            if amount >= 5 * threshold:
+                score += 3
+            elif amount >= 2 * threshold:
+                score += 2
+            elif amount >= threshold:
+                score += 1
                 
-            if impact > 50000:
-                risk_level = RiskLevel.HIGH
-                confidence = 0.6
-                worst_case = - (impact * 1.5) # Major disruption risk
-                
-        elif scope == DecisionScope.PROJECT:
-            # Project pauses are inherently riskier than vendor cuts
-            risk_level = RiskLevel.MEDIUM
-            confidence = 0.75
-            worst_case = - (impact * 0.2)
+        # 2. Operational Criticality
+        if policy.get("operational_critical", False):
+            score += 3
             
-            if impact > 20000:
-                risk_level = RiskLevel.HIGH
-                confidence = 0.6
-                worst_case = - impact # Worst case: project fails, money wasted
-                
-        return risk_level, {"best_case": impact, "worst_case": worst_case}, confidence
+        # 3. Regulatory Sensitivity
+        if policy.get("regulatory_sensitive", False):
+            score += 3
+            
+        # 4. Vendor Concentration
+        if vendor_share >= 0.6:
+            score += 3
+        elif vendor_share >= 0.4:
+            score += 2
+        elif vendor_share >= 0.25:
+            score += 1
+            
+        # Map Score -> Risk Level
+        if score <= 4:
+            risk_level = RiskLevel.LOW
+            worst_case = 0.0
+            confidence = 0.9
+        elif score <= 8:
+            risk_level = RiskLevel.MEDIUM
+            worst_case = - (impact * 0.5)
+            confidence = 0.8
+        else:
+            risk_level = RiskLevel.HIGH
+            worst_case = - impact
+            confidence = 0.6
+            
+        return risk_level, score, {"best_case": impact, "worst_case": worst_case}, confidence

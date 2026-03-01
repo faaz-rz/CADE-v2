@@ -74,6 +74,9 @@ def reject_decision(decision_id: str, review: ReviewNote):
     if decision.status != DecisionStatus.PENDING and decision.status != DecisionStatus.DEFERRED:
         raise HTTPException(status_code=400, detail=f"Cannot reject a decision in {decision.status} state")
 
+    if not review.note or not review.note.strip():
+        raise HTTPException(status_code=400, detail="Rejection requires a reason note")
+
     old_status = decision.status
     decision.status = DecisionStatus.REJECTED
     
