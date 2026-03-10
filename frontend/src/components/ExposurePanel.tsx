@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FinancialExposure, ExposureService } from '../services/api';
 import { Shield, TrendingUp, AlertTriangle } from 'lucide-react';
+import { formatCurrency, formatPct } from '../utils/formatters';
 
 interface ExposurePanelProps {
     vendorId: string;
@@ -26,11 +27,6 @@ export const ExposurePanel: React.FC<ExposurePanelProps> = ({ vendorId }) => {
         };
         fetchExposure();
     }, [vendorId]);
-
-    const fmt = (val: number) =>
-        new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
-
-    const pct = (val: number) => `${(val * 100).toFixed(1)}%`;
 
     if (loading) {
         return (
@@ -60,15 +56,15 @@ export const ExposurePanel: React.FC<ExposurePanelProps> = ({ vendorId }) => {
                 <div className="grid grid-cols-3 gap-3">
                     <div>
                         <span className="text-xs text-gray-500 block mb-0.5">Annual Spend</span>
-                        <span className="text-lg font-bold text-gray-900">{fmt(exposure.annual_spend)}</span>
+                        <span className="text-lg font-bold text-gray-900">{formatCurrency(exposure.annual_spend)}</span>
                     </div>
                     <div>
                         <span className="text-xs text-gray-500 block mb-0.5">Category Share</span>
-                        <span className="text-lg font-bold text-gray-900">{pct(exposure.vendor_share_pct)}</span>
+                        <span className="text-lg font-bold text-gray-900">{formatPct(exposure.vendor_share_pct)}</span>
                     </div>
                     <div>
                         <span className="text-xs text-gray-500 block mb-0.5">Worst Case</span>
-                        <span className="text-lg font-bold text-red-600">{fmt(exposure.worst_case_exposure)}</span>
+                        <span className="text-lg font-bold text-red-600">{formatCurrency(exposure.worst_case_exposure)}</span>
                     </div>
                 </div>
 
@@ -80,13 +76,13 @@ export const ExposurePanel: React.FC<ExposurePanelProps> = ({ vendorId }) => {
                     <div className="grid grid-cols-2 gap-3 text-sm">
                         <div className="space-y-1">
                             <span className="text-xs text-gray-500 block">10% Shock</span>
-                            <span className="font-semibold text-orange-700">{fmt(exposure.price_shock_impact_10pct)}</span>
-                            <span className="text-xs text-gray-500 block">EBITDA Δ: <span className="text-red-600 font-medium">{fmt(exposure.estimated_ebitda_delta_10pct)}</span></span>
+                            <span className="font-semibold text-orange-700">{formatCurrency(exposure.price_shock_impact_10pct)}</span>
+                            <span className="text-xs text-gray-500 block">EBITDA Δ: <span className="text-red-600 font-medium">{formatCurrency(exposure.estimated_ebitda_delta_10pct)}</span></span>
                         </div>
                         <div className="space-y-1">
                             <span className="text-xs text-gray-500 block">20% Shock</span>
-                            <span className="font-semibold text-red-700">{fmt(exposure.price_shock_impact_20pct)}</span>
-                            <span className="text-xs text-gray-500 block">EBITDA Δ: <span className="text-red-600 font-medium">{fmt(exposure.estimated_ebitda_delta_20pct)}</span></span>
+                            <span className="font-semibold text-red-700">{formatCurrency(exposure.price_shock_impact_20pct)}</span>
+                            <span className="text-xs text-gray-500 block">EBITDA Δ: <span className="text-red-600 font-medium">{formatCurrency(exposure.estimated_ebitda_delta_20pct)}</span></span>
                         </div>
                     </div>
                 </div>

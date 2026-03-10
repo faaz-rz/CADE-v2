@@ -34,7 +34,7 @@ def test_aligned_decisions():
     filename = "test_decisions.csv"
     
     print("Ingesting data...")
-    IngestionService.process_file(csv_content, filename)
+    IngestionService.ingest_file(csv_content, filename)
     
     # 3. Generate Decisions
     print("Generating decisions...")

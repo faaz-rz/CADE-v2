@@ -3,7 +3,9 @@ import { clsx } from 'clsx';
 
 import { Decision, DecisionService } from '../services/api';
 import { RiskBadge } from './RiskBadge';
-import { ArrowRight, Check, X, Loader2, DollarSign, AlertCircle, CheckCircle } from 'lucide-react';
+import { ArrowRight, Check, X, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
+import { usePermission } from '../hooks/usePermission';
+import { formatCurrency } from '../utils/formatters';
 
 interface DecisionCardProps {
     decision: Decision;
@@ -16,6 +18,7 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate, 
     const [showRejectForm, setShowRejectForm] = useState(false);
     const [showDoubleCheck, setShowDoubleCheck] = useState(false);
     const [rejectReason, setRejectReason] = useState('');
+    const hasApprovePermission = usePermission('APPROVER');
 
     const handleApprove = async () => {
         if (!showDoubleCheck) {
@@ -49,10 +52,6 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate, 
         }
     };
 
-    const formatMoney = (val: number) => {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Math.abs(val));
-    };
-
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 transition-all hover:shadow-md">
             {/* Header */}
@@ -66,7 +65,7 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate, 
                 </div>
                 <div className="text-right">
                     <p className="text-sm text-gray-500">Monthly Impact</p>
-                    <p className="text-lg font-bold text-green-600">+{formatMoney(decision.expected_monthly_impact)}</p>
+                    <p className="text-lg font-bold text-green-600">+{formatCurrency(decision.expected_monthly_impact)}</p>
                 </div>
             </div>
 
@@ -78,11 +77,11 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate, 
                 <div className="mt-3 flex gap-4 text-sm">
                     <div>
                         <span className="text-gray-500 block text-xs">Worst Case Risk</span>
-                        <span className="font-medium text-red-600">{formatMoney(decision.risk_range.worst_case)}</span>
+                        <span className="font-medium text-red-600">{formatCurrency(decision.risk_range.worst_case)}</span>
                     </div>
                     <div>
                         <span className="text-gray-500 block text-xs">Cost of Inaction (1yr)</span>
-                        <span className="font-medium text-gray-900">{formatMoney(decision.cost_of_inaction)}</span>
+                        <span className="font-medium text-gray-900">{formatCurrency(decision.cost_of_inaction)}</span>
                     </div>
                 </div>
             </div>
@@ -90,55 +89,61 @@ export const DecisionCard: React.FC<DecisionCardProps> = ({ decision, onUpdate, 
             {/* Actions */}
             <div className="flex justify-end items-center gap-3">
                 {decision.status === 'PENDING' ? (
-                    !showRejectForm ? (
-                        <>
-                            <button
-                                onClick={() => setShowRejectForm(true)}
-                                disabled={processing}
-                                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg border border-transparent hover:border-gray-200 transition-colors"
-                            >
-                                <X className="w-4 h-4" /> Reject
-                            </button>
-                            <button
-                                onClick={handleApprove}
-                                disabled={processing}
-                                className={clsx(
-                                    "flex items-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg shadow-sm transition-colors",
-                                    processing ? "bg-brand-400 cursor-not-allowed" :
-                                        showDoubleCheck ? "bg-red-600 hover:bg-red-700 animate-pulse" : "bg-brand-600 hover:bg-brand-700"
-                                )}
-                            >
-                                {processing ? <Loader2 className="w-4 h-4 animate-spin" /> :
-                                    showDoubleCheck ? <AlertCircle className="w-4 h-4" /> : <Check className="w-4 h-4" />}
-                                {showDoubleCheck ? "Confirm: IRREVERSIBLE" : "Approve"}
-                            </button>
-                        </>
+                    hasApprovePermission ? (
+                        !showRejectForm ? (
+                            <>
+                                <button
+                                    onClick={() => setShowRejectForm(true)}
+                                    disabled={processing}
+                                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg border border-transparent hover:border-gray-200 transition-colors"
+                                >
+                                    <X className="w-4 h-4" /> Reject
+                                </button>
+                                <button
+                                    onClick={handleApprove}
+                                    disabled={processing}
+                                    className={clsx(
+                                        "flex items-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-lg shadow-sm transition-colors",
+                                        processing ? "bg-brand-400 cursor-not-allowed" :
+                                            showDoubleCheck ? "bg-red-600 hover:bg-red-700 animate-pulse" : "bg-brand-600 hover:bg-brand-700"
+                                    )}
+                                >
+                                    {processing ? <Loader2 className="w-4 h-4 animate-spin" /> :
+                                        showDoubleCheck ? <AlertCircle className="w-4 h-4" /> : <Check className="w-4 h-4" />}
+                                    {showDoubleCheck ? "Confirm: IRREVERSIBLE" : "Approve"}
+                                </button>
+                            </>
+                        ) : (
+                            <div className="flex-1 flex gap-2 animate-in fade-in slide-in-from-right-2 duration-200">
+                                <input
+                                    type="text"
+                                    placeholder="Reason for rejection (mandatory)..."
+                                    className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none"
+                                    value={rejectReason}
+                                    onChange={(e) => setRejectReason(e.target.value)}
+                                    autoFocus
+                                />
+                                <button
+                                    onClick={handleReject}
+                                    disabled={!rejectReason || processing}
+                                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg whitespace-nowrap"
+                                >
+                                    Confirm Reject
+                                </button>
+                                <button
+                                    onClick={() => setShowRejectForm(false)}
+                                    className="px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 rounded-lg"
+                                >
+                                    Cancel
+                                </button>
+                                <span className="text-xs text-red-500 flex items-center ml-2">
+                                    <AlertCircle className="w-3 h-3 mr-1" /> Irreversible
+                                </span>
+                            </div>
+                        )
                     ) : (
-                        <div className="flex-1 flex gap-2 animate-in fade-in slide-in-from-right-2 duration-200">
-                            <input
-                                type="text"
-                                placeholder="Reason for rejection (mandatory)..."
-                                className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none"
-                                value={rejectReason}
-                                onChange={(e) => setRejectReason(e.target.value)}
-                                autoFocus
-                            />
-                            <button
-                                onClick={handleReject}
-                                disabled={!rejectReason || processing}
-                                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg whitespace-nowrap"
-                            >
-                                Confirm Reject
-                            </button>
-                            <button
-                                onClick={() => setShowRejectForm(false)}
-                                className="px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 rounded-lg"
-                            >
-                                Cancel
-                            </button>
-                            <span className="text-xs text-red-500 flex items-center ml-2">
-                                <AlertCircle className="w-3 h-3 mr-1" /> Irreversible
-                            </span>
+                        <div className="px-4 py-2 bg-gray-50 text-gray-500 border border-gray-200 rounded-lg text-sm font-medium flex items-center gap-2 opacity-75 cursor-default">
+                            <div className="w-3 h-3 rounded-full bg-yellow-400" /> Pending Approval (Read-Only)
                         </div>
                     )
                 ) : (

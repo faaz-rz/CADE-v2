@@ -43,8 +43,8 @@ class DecisionEngine:
             else:
                 impact_label = ImpactLabel.LOW
 
-            spend_threshold = policy.get("spend_threshold", 5000)
-            frequency_threshold = policy.get("frequency_threshold", 5)
+            spend_threshold = policy.get("spend_threshold", 100)
+            frequency_threshold = policy.get("frequency_threshold", 1)
 
             # Risk Evaluation
             risk_level, risk_score, risk_range, confidence = RiskEngine.evaluate_risk(

@@ -4,7 +4,7 @@ from app.services.decision_engine import DecisionEngine
 
 router = APIRouter()
 
-@router.get("/", response_model=DecisionSummary)
+@router.get("", response_model=DecisionSummary)
 def get_decision_summary():
     """
     Returns the Executive Dashboard Summary.

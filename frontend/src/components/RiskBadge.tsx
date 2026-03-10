@@ -8,9 +8,9 @@ interface RiskBadgeProps {
 
 export const RiskBadge: React.FC<RiskBadgeProps> = ({ level }) => {
     const styles = {
-        LOW: 'bg-green-100 text-green-800 border-green-200',
-        MEDIUM: 'bg-amber-100 text-amber-800 border-amber-200',
-        HIGH: 'bg-red-100 text-red-800 border-red-200',
+        LOW: 'bg-green-100 text-green-700 font-bold border-green-200',
+        MEDIUM: 'bg-amber-100 text-amber-700 font-bold border-amber-200',
+        HIGH: 'bg-red-100 text-red-700 font-bold border-red-200',
     };
 
     const icons = {
@@ -23,7 +23,7 @@ export const RiskBadge: React.FC<RiskBadgeProps> = ({ level }) => {
 
     return (
         <div className={clsx(
-            'flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border',
+            'flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold border',
             styles[level]
         )}>
             <Icon className="w-3.5 h-3.5" />

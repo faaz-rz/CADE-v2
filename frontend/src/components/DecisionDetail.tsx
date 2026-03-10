@@ -3,6 +3,7 @@ import { Decision } from '../services/api';
 import { X, Calendar, Hash, FileText, User } from 'lucide-react';
 import { ExposurePanel } from './ExposurePanel';
 import { PriceShockPanel } from './PriceShockPanel';
+import { formatCurrency } from '../utils/formatters';
 
 interface DecisionDetailProps {
     decision: Decision;
@@ -15,6 +16,14 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
     const formatDate = (dateStr: string) => {
         return new Date(dateStr).toLocaleString();
     };
+
+    const isValidVendorId = (id: string) => {
+        if (!id) return false;
+        if (/^Vendor_\d+$/.test(id)) return false;
+        return true;
+    };
+
+    if (!isValidVendorId(decision.entity)) return null;
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
@@ -89,7 +98,7 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                                         <span className="text-xs text-gray-500 block mb-1 capitalize">{key.replace(/_/g, ' ')}</span>
                                         <span className="text-sm font-medium text-gray-900 block">
                                             {typeof value === 'number' && key.includes('spend')
-                                                ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value)
+                                                ? formatCurrency(value)
                                                 : value
                                             }
                                         </span>
@@ -99,11 +108,13 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                         </section>
                     )}
 
+                    {/* Price Shock Simulator */}
+                    <div className="mb-8">
+                        <PriceShockPanel vendorId={decision.entity} />
+                    </div>
+
                     {/* Exposure Panel */}
                     <ExposurePanel vendorId={decision.entity} />
-
-                    {/* Price Shock Simulator */}
-                    <PriceShockPanel vendorId={decision.entity} />
 
                     {/* Explanation */}
                     <section>

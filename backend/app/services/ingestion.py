@@ -1,141 +1,234 @@
 import pandas as pd
 import io
 import json
-from typing import List, Dict
-from app.models.data import FinancialRecord
+import asyncio
+from typing import List, Dict, Any, Optional
+from pydantic import BaseModel
+from app.models.canonical import CanonicalFinancialRecord
+from app.core.file_detector import detect_file_type
+from app.core.heuristics import find_header_row, map_columns
+from app.core.value_cleaners import clean_amount, clean_date, clean_vendor_name, clean_currency
+
+class RejectionReason(BaseModel):
+    row: int
+    reason: str
+    raw: str
+
+class IngestResult(BaseModel):
+    status: str = "success"
+    rows_total: int = 0
+    rows_accepted: int = 0
+    rows_rejected: int = 0
+    sheets_processed: List[str] = []
+    mapping_method: str = "none"
+    confidence_score: float = 0.0
+    column_mapping: Dict[str, str] = {}
+    rejections_summary: List[RejectionReason] = []
+    decisions_generated: int = 0
+    warnings: List[str] = []
+    records: List[CanonicalFinancialRecord] = []
+
+class IngestError(ValueError):
+    pass
 
 class IngestionService:
     @staticmethod
-    def process_file(file_content: bytes, filename: str, mapping_config: dict = None) -> Dict[str, int]:
-        """
-        Universal Ingestion Adapter.
-        Transforms ANY dataset into CanonicalFinancialRecord using a schema mapping.
-        """
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+        
+        if header_idx >= 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            # Fallback if somehow negative (though find_header_row returns 0 min)
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+            
+        columns = df.columns.tolist()
+        print("COLUMNS: ", columns)
+        
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
         try:
-            # 1. Load Data
-            if filename.endswith('.csv'):
-                df = pd.read_csv(io.BytesIO(file_content))
-            elif filename.endswith('.xlsx'):
-                df = pd.read_excel(io.BytesIO(file_content))
-            else:
-                raise ValueError("Unsupported file type")
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+        
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+            raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
             
-            # 2. Schema Mapping Detection
-            from app.core.mappings import SchemaMapping
-            import yaml
-            import os
+        # 6. per row: clean all values, skip if vendor or amount is None
+        records = []
+        rejections = []
+        warnings = []
+        
+        currency_default = mapping.defaults.get("currency", "USD")
+        category_default = mapping.defaults.get("category", "Uncategorized")
+        
+        for idx, row in df.iterrows():
+            row_num = idx + 2 + header_idx
+            raw_vals = row.to_dict()
             
-            mapping_data = None
+            raw_amt = row.get(mapping.column_mapping.get("amount", ""))
+            raw_entity = row.get(mapping.column_mapping.get("entity", ""))
+            raw_date = row.get(mapping.column_mapping.get("date", ""))
+            raw_cat = row.get(mapping.column_mapping.get("category", ""))
+            raw_ccy = row.get(mapping.column_mapping.get("currency", ""))
+            raw_gl = row.get(mapping.column_mapping.get("gl_code", ""))
+            raw_cc = row.get(mapping.column_mapping.get("cost_center", ""))
+            raw_po = row.get(mapping.column_mapping.get("po_number", ""))
+            raw_desc = row.get(mapping.column_mapping.get("description", ""))
             
-            # If explicit config provided, use it
-            if mapping_config:
-                 mapping_data = mapping_config
-            else:
-                # Auto-detect from config directory
-                config_dir = "config"
-                for filename in os.listdir(config_dir):
-                    if filename.endswith(".yaml") or filename.endswith(".yml"):
-                        try:
-                            with open(os.path.join(config_dir, filename), "r", encoding='utf-8') as f:
-                                candidate = yaml.safe_load(f)
-                                # Check if required source columns exist in DF
-                                if not candidate.get("column_mapping"): continue
-                                
-                                required_cols = [
-                                    col for field, col in candidate["column_mapping"].items()
-                                    if field in ["entity", "amount"] # Minimal requirements
-                                ]
-                                
-                                if all(col in df.columns for col in required_cols):
-                                    mapping_data = candidate
-                                    print(f"Detected mapping: {filename}")
-                                    break
-                        except Exception as e:
-                            print(f"Error loading config {filename}: {e}")
-                            continue
+            amt = clean_amount(raw_amt)
+            entity = clean_vendor_name(raw_entity)
+            dt = clean_date(raw_date)
             
-            # 3. Heuristic Fallback (SAFE MODE)
-            if not mapping_data:
-                from app.core.heuristics import HeuristicMapper
-                analysis = HeuristicMapper.analyze_columns(df.columns.tolist())
+            if amt is None:
+                rejections.append(RejectionReason(row=row_num, reason="amount could not be parsed or is zero", raw=str(raw_amt)))
+                continue
                 
-                if analysis.is_valid and analysis.confidence_score >= HeuristicMapper.CONFIDENCE_THRESHOLD:
-                    mapping = analysis.mapping
-                    print(f"SAFE HEURISTIC APPLIED (Score: {analysis.confidence_score:.2f})")
-                    print(f"Mapped: {mapping.column_mapping}")
-                else:
-                    # FAILED SAFETY GATE
-                    error_msg = "Ambiguous Dataset Structure. "
-                    if analysis.missing_required:
-                        error_msg += f"Could not confidently map required fields: {analysis.missing_required}. \n"
-                    else:
-                        error_msg += f"Confidence score ({analysis.confidence_score:.2f}) below threshold ({HeuristicMapper.CONFIDENCE_THRESHOLD}). \n"
-                    
-                    error_msg += "System Refused to Guess. Please provide an explicit mapping configuration."
-                    raise ValueError(error_msg)
-            else:
-                 mapping = SchemaMapping(**mapping_data)
-
-            # 3. Normalization & Transformation
-            canonical_data = []
-            
-            for _, row in df.iterrows():
-                record_data = {}
+            if entity == "UNKNOWN" or not raw_entity or pd.isna(raw_entity):
+                rejections.append(RejectionReason(row=row_num, reason="missing vendor name", raw=str(raw_entity)))
+                continue
                 
-                # Map fields
-                for canonical_field, source_col in mapping.column_mapping.items():
-                    if source_col in df.columns:
-                        val = row[source_col]
-                        # Handle NaN
-                        if pd.isna(val) and canonical_field in mapping.defaults:
-                             val = mapping.defaults[canonical_field]
-                        
-                        # Apply Multipliers (e.g. for K units)
-                        if canonical_field in mapping.multipliers:
-                            try:
-                                val = float(val) * mapping.multipliers[canonical_field]
-                            except (ValueError, TypeError):
-                                pass # Keep original if conversion fails
-                        
-                        record_data[canonical_field] = val
-                
-                # Apply static defaults
-                for default_field, default_val in mapping.defaults.items():
-                    if default_field not in record_data or pd.isna(record_data.get(default_field)):
-                        record_data[default_field] = default_val
-
-
-                # Add metadata
-                record_data['source_file'] = filename
-
-                # 4. Canonical Model Validation
-                from app.models.canonical import CanonicalFinancialRecord
-                try:
-                    record = CanonicalFinancialRecord(**record_data)
-                    canonical_data.append(record)
-                except Exception as e:
-                    # Log error but maybe continue? For strict mode, we fail.
-                    print(f"Skipping invalid row: {e}")
+            if dt is None:
+                if "date" in mapping.column_mapping:
+                    rejections.append(RejectionReason(row=row_num, reason="date could not be parsed", raw=str(raw_date)))
                     continue
+                else:
+                    from datetime import date
+                    dt = date(2023, 1, 1)
+                    
+            ccy = clean_currency(raw_ccy) if "currency" in mapping.column_mapping else currency_default
+            if "currency" not in mapping.column_mapping:
+                warnings.append("No currency column found \u2014 defaulted to USD")
+                
+            cat = str(raw_cat).strip() if pd.notna(raw_cat) and "category" in mapping.column_mapping else category_default
+            
+            if "amount" in mapping.multipliers and amt is not None:
+                amt = float(amt) * mapping.multipliers["amount"]
 
-            if not canonical_data:
-                raise ValueError("No valid records found after ingestion.")
+            try:
+                rec = CanonicalFinancialRecord(
+                    date=dt,
+                    amount=amt,
+                    category=cat,
+                    entity=entity,
+                    currency=ccy,
+                    gl_code=str(raw_gl).strip() if pd.notna(raw_gl) else None,
+                    cost_center=str(raw_cc).strip() if pd.notna(raw_cc) else None,
+                    po_number=str(raw_po).strip() if pd.notna(raw_po) else None,
+                    description=str(raw_desc).strip() if pd.notna(raw_desc) else None,
+                    source_file=f"{filename} - {sheet_name}" if sheet_name != "default" else filename
+                )
+                records.append(rec)
+            except Exception as e:
+                rejections.append(RejectionReason(row=row_num, reason=str(e), raw=str(raw_vals)))
+                
+        unique_warnings = list(set(warnings))
+        return records, rejections, mapping.column_mapping, method, conf, unique_warnings
 
-            # PERSISTENCE (v1): Save to JSON for analysis
-            import os
+    @staticmethod
+    def ingest_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+        
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+            
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+            
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+                    raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+            else:
+                enc = file_meta.get("encoding", "utf-8")
+                df_raw = pd.read_csv(temp_path, encoding=enc, header=None)
+                recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                all_records.extend(recs)
+                all_rejections.extend(rejs)
+                all_warnings.extend(warns)
+                final_mapping = col_map
+                final_method = method
+                final_conf = conf
+                sheets_processed.append("default")
+                
+            # 7. deduplicate by (vendor_name, amount, transaction_date)
+            dedup_records = []
+            seen = set()
+            for r in all_records:
+                key = (r.entity, r.amount, r.date)
+                if key not in seen:
+                    seen.add(key)
+                    dedup_records.append(r)
+            
+            duplicates_removed = len(all_records) - len(dedup_records)
+            if duplicates_removed > 0:
+                all_warnings.append(f"Removed {duplicates_removed} duplicate row(s) across sheets.")
+                
+            # 8. persist to database (existing logic unchanged)
             data_dir = "data"
             os.makedirs(data_dir, exist_ok=True)
+            output_data = [r.model_dump(mode='json') for r in dedup_records]
             
-            # Serialize
-            output_data = [r.model_dump(mode='json') for r in canonical_data]
             with open(os.path.join(data_dir, "transactions.json"), "w") as f:
                 json.dump(output_data, f, indent=2)
 
-            return {
-                "total_rows_read": len(df),
-                "processed_canonical": len(canonical_data),
-                "errors": len(df) - len(canonical_data)
-            }
+            # 9. return IngestResult
+            res = IngestResult(
+                status="success",
+                rows_total=file_meta.get("estimated_row_count", 0) if file_meta else 0,
+                rows_accepted=len(dedup_records),
+                rows_rejected=len(all_rejections),
+                sheets_processed=sheets_processed,
+                mapping_method=final_method,
+                confidence_score=final_conf,
+                column_mapping=final_mapping,
+                rejections_summary=all_rejections[:10],
+                decisions_generated=len(dedup_records),
+                warnings=all_warnings,
+                records=dedup_records
+            )
+            return res
             
-        except Exception as e:
-            raise ValueError(f"Universal Adapter Failed: {str(e)}")
+        finally:
+            os.remove(temp_path)

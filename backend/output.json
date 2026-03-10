@@ -1,0 +1,52 @@
+{
+  "UPLOAD_ACCEPTED": 9,
+  "UPLOAD_REJECTED": 3,
+  "UPLOAD_DECISIONS": 6,
+  "STATUS": {
+    "decisions_count": 6,
+    "transactions_count": 9,
+    "has_data": true
+  },
+  "VENDORS": [
+    [
+      "AMAZON WEB SERVICES",
+      4200.0,
+      "Engineering"
+    ],
+    [
+      "SALESFORCE.COM",
+      -500.0,
+      "Sales"
+    ],
+    [
+      "SLACK TECHNOLOGIES",
+      1200.0,
+      "Product"
+    ],
+    [
+      "ATLASSIAN PTY",
+      1500000.0,
+      "Engineering"
+    ],
+    [
+      "ZOOM VIDEO COMMUNICATIONS",
+      95.0,
+      "General"
+    ],
+    [
+      "NOTION",
+      250.5,
+      "Uncategorized"
+    ],
+    [
+      "MICROSOFT",
+      15500.0,
+      "IT"
+    ],
+    [
+      "GOOGLECLOUD",
+      2000.0,
+      "Engineering"
+    ]
+  ]
+}

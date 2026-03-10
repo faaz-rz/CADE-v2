@@ -1,14 +1,14 @@
 categories:
   Cloud Infrastructure:
-    spend_threshold: 20000
-    frequency_threshold: 8
+    spend_threshold: 100
+    frequency_threshold: 1
     savings_rate: 0.08
     regulatory_sensitive: false
     operational_critical: true
 
   SaaS:
-    spend_threshold: 10000
-    frequency_threshold: 6
+    spend_threshold: 100
+    frequency_threshold: 1
     savings_rate: 0.12
     regulatory_sensitive: false
     operational_critical: false
@@ -21,8 +21,8 @@ categories:
     operational_critical: true
 
 default:
-  spend_threshold: 5000
-  frequency_threshold: 5
+  spend_threshold: 100
+  frequency_threshold: 1
   savings_rate: 0.10
   regulatory_sensitive: false
   operational_critical: false

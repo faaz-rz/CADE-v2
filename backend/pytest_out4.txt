@@ -1,0 +1,782 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Workfllow\backend
+plugins: anyio-4.12.1
+collecting ... collected 15 items
+
+tests/test_universal_ingestion.py::test_explicit_mapping_config FAILED   [  6%]
+tests/test_universal_ingestion.py::test_heuristic_auto_detection FAILED  [ 13%]
+tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros FAILED [ 20%]
+tests/test_universal_ingestion.py::test_multiplier_application FAILED    [ 26%]
+tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data PASSED [ 33%]
+tests/test_universal_ingestion.py::test_extended_canonical_fields_integration FAILED [ 40%]
+tests/test_universal_ingestion.py::test_finds_header_at_row5 FAILED      [ 46%]
+tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates FAILED [ 53%]
+tests/test_universal_ingestion.py::test_cleans_all_amount_formats FAILED [ 60%]
+tests/test_universal_ingestion.py::test_handles_all_date_formats FAILED  [ 66%]
+tests/test_universal_ingestion.py::test_normalises_vendor_names FAILED   [ 73%]
+tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns FAILED [ 80%]
+tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct PASSED [ 86%]
+tests/test_universal_ingestion.py::test_result_object_has_all_fields FAILED [ 93%]
+tests/test_universal_ingestion.py::test_idempotency_same_file_same_records FAILED [100%]
+
+================================== FAILURES ===================================
+________________________ test_explicit_mapping_config _________________________
+
+    def test_explicit_mapping_config():
+        """Test that providing an explicit mapping bypasses detection and heuristics."""
+        data = [
+            {"TxDate": "2023-01-01", "MerchantName": "AWS", "Cost": "100.00", "Dept": "Engineering"}
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        mapping = {
+            "column_mapping": {
+                "date": "TxDate",
+                "entity": "MerchantName",
+                "amount": "Cost",
+                "cost_center": "Dept"
+            },
+            "defaults": {
+                "category": "Cloud computing"
+            }
+        }
+    
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.process_file(csv_bytes, "test.csv", mapping_config=mapping)
+>           assert res.rows_accepted == 1
+E           AssertionError: assert 0 == 1
+E            +  where 0 = IngestResult(status='success', rows_total=1, rows_accepted=0, rows_rejected=2, sheets_processed=['default'], mapping_method='explicit', confidence_score=1.0, column_mapping={'date': 'TxDate', 'entity': 'MerchantName', 'amount': 'Cost', 'cost_center': 'Dept'}, rejections_summary=[RejectionReason(row=2, reason='amount could not be parsed or is zero', raw='None'), RejectionReason(row=3, reason='amount could not be parsed or is zero', raw='None')], decisions_generated=0, warnings=[], records=[]).rows_accepted
+
+tests\test_universal_ingestion.py:48: AssertionError
+________________________ test_heuristic_auto_detection ________________________
+
+    def test_heuristic_auto_detection():
+        """Test standard fuzzy keyword matching on unknown schema."""
+        data = [
+            {"Purchase Date": "2023-01-01", "Supplier": "Salesforce", "Total Cost": "5000", "Type": "SaaS", "CCY": "USD", "GL Account": "GL-6000"}
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "test_fuzzy.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =                0           1           2     3    4           5
+0  Purchase Date    Supplier  Total Cost  Type  CCY  GL Account
+1     2023-01-01  Salesforce        5000  SaaS  USD     GL-6000
+sheet_name = 'default', filename = 'test_fuzzy.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+___________________ test_amount_cleaner_and_skipping_zeros ____________________
+
+    def test_amount_cleaner_and_skipping_zeros():
+        """Test that clean_amount strips currency chars, and zero amounts trigger row skips cleanly."""
+        data = [
+            {"date": "2023-01-01", "entity": "Valid Vendor", "amount": "$1,000.50", "category": "IT"},
+            {"date": "2023-01-02", "entity": "Zero Vendor", "amount": "$0.00", "category": "IT"},
+            {"date": "2023-01-03", "entity": "Negative Vendor", "amount": "(500)", "category": "IT"},
+            {"date": "2023-01-04", "entity": "Broken Vendor", "amount": "Invalid", "category": "IT"},
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        mapping = {
+            "column_mapping": {
+                "date": "date",
+                "entity": "entity",
+                "amount": "amount",
+                "category": "category"
+            }
+        }
+    
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.process_file(csv_bytes, "test_cleaner.csv", mapping_config=mapping)
+>           assert res.rows_accepted == 2
+E           AssertionError: assert 0 == 2
+E            +  where 0 = IngestResult(status='success', rows_total=4, rows_accepted=0, rows_rejected=5, sheets_processed=['default'], mapping_method='explicit', confidence_score=1.0, column_mapping={'date': 'date', 'entity': 'entity', 'amount': 'amount', 'category': 'category'}, rejections_summary=[RejectionReason(row=2, reason='amount could not be parsed or is zero', raw='None'), RejectionReason(row=3, reason='amount could not be parsed or is zero', raw='None'), RejectionReason(row=4, reason='amount could not be parsed or is zero', raw='None'), RejectionReason(row=5, reason='amount could not be parsed or is zero', raw='None'), RejectionReason(row=6, reason='amount could not be parsed or is zero', raw='None')], decisions_generated=0, warnings=[], records=[]).rows_accepted
+
+tests\test_universal_ingestion.py:84: AssertionError
+_________________________ test_multiplier_application _________________________
+
+    def test_multiplier_application():
+        """Test that detection of multipliers (like thousands) scales amounts."""
+        data = [
+            {"date": "2023-01-01", "entity": "AWS", "Spend (k)": "1.5", "category": "Cloud"}
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "test_multiplier.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =             0       1          2         3
+0        date  entity  Spend (k)  category
+1  2023-01-01     AWS        1.5     Cloud
+sheet_name = 'default', filename = 'test_multiplier.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+_________________ test_extended_canonical_fields_integration __________________
+
+    def test_extended_canonical_fields_integration():
+        """Test that new fields (po_number, etc) are correctly parsed."""
+        data = [
+            {"date": "2023-01-01", "vendor_name": "Snowflake", "total_cost": "5000", "currency": "EUR", "po_number": "PO-12345"}
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "test_extended.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =             0            1           2         3          4
+0        date  vendor_name  total_cost  currency  po_number
+1  2023-01-01    Snowflake        5000       EUR   PO-12345
+sheet_name = 'default', filename = 'test_extended.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+__________________________ test_finds_header_at_row5 __________________________
+
+    def test_finds_header_at_row5():
+        csv_bytes = get_fixture_bytes("headers_row5.xlsx")
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.process_file(csv_bytes, "headers_row5.xlsx")
+            assert res.rows_accepted == 2
+            assert res.records[0].entity == "AWS"
+>           assert res.records[1].entity == "Google"
+E           AssertionError: assert 'GOOGLE' == 'Google'
+E             
+E             - Google
+E             + GOOGLE
+
+tests\test_universal_ingestion.py:138: AssertionError
+__________________ test_ingests_multi_sheet_and_deduplicates __________________
+
+file_content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00\x10\xaeh\\F\xc7MH\x97\x00\x00\x00\xcd\x00\x00\x00\x10\x00\x00\x00docProps/app.xml...x80\x01%\x13\x00\x00[Content_Types].xmlPK\x05\x06\x00\x00\x00\x00\x0b\x00\x0b\x00\xca\x02\x00\x00y\x14\x00\x00\x00\x00'
+filename = 'multi_sheet.xlsx', mapping_config = None
+
+    @staticmethod
+    def process_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+    
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+    
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+    
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+    
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+>                   raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+E                   app.services.ingestion.IngestError: All recommended sheets failed to parse or fell below confidence threshholds.
+
+app\services\ingestion.py:180: IngestError
+
+During handling of the above exception, another exception occurred:
+
+    def test_ingests_multi_sheet_and_deduplicates():
+        csv_bytes = get_fixture_bytes("multi_sheet.xlsx")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "multi_sheet.xlsx")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+file_content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00\x10\xaeh\\F\xc7MH\x97\x00\x00\x00\xcd\x00\x00\x00\x10\x00\x00\x00docProps/app.xml...x80\x01%\x13\x00\x00[Content_Types].xmlPK\x05\x06\x00\x00\x00\x00\x0b\x00\x0b\x00\xca\x02\x00\x00y\x14\x00\x00\x00\x00'
+filename = 'multi_sheet.xlsx', mapping_config = None
+
+    @staticmethod
+    def process_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+    
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+    
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+    
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+    
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+                    raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+            else:
+                enc = file_meta.get("encoding", "utf-8")
+                df_raw = pd.read_csv(temp_path, encoding=enc, header=None)
+                recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                all_records.extend(recs)
+                all_rejections.extend(rejs)
+                all_warnings.extend(warns)
+                final_mapping = col_map
+                final_method = method
+                final_conf = conf
+                sheets_processed.append("default")
+    
+            # 7. deduplicate by (vendor_name, amount, transaction_date)
+            dedup_records = []
+            seen = set()
+            for r in all_records:
+                key = (r.entity, r.amount, r.date)
+                if key not in seen:
+                    seen.add(key)
+                    dedup_records.append(r)
+    
+            duplicates_removed = len(all_records) - len(dedup_records)
+            if duplicates_removed > 0:
+                all_warnings.append(f"Removed {duplicates_removed} duplicate row(s) across sheets.")
+    
+            # 8. persist to database (existing logic unchanged)
+            data_dir = "data"
+            os.makedirs(data_dir, exist_ok=True)
+            output_data = [r.model_dump(mode='json') for r in dedup_records]
+    
+            with open(os.path.join(data_dir, "transactions.json"), "w") as f:
+                json.dump(output_data, f, indent=2)
+    
+            # 9. return IngestResult
+            res = IngestResult(
+                status="success",
+                rows_total=file_meta["estimated_row_count"],
+                rows_accepted=len(dedup_records),
+                rows_rejected=len(all_rejections),
+                sheets_processed=sheets_processed,
+                mapping_method=final_method,
+                confidence_score=final_conf,
+                column_mapping=final_mapping,
+                rejections_summary=all_rejections[:10],
+                decisions_generated=len(dedup_records),
+                warnings=all_warnings,
+                records=dedup_records
+            )
+            return res
+    
+        finally:
+>           os.remove(temp_path)
+E           PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\faaz\\AppData\\Local\\Temp\\tmpcq6susme_multi_sheet.xlsx'
+
+app\services\ingestion.py:232: PermissionError
+_______________________ test_cleans_all_amount_formats ________________________
+
+    def test_cleans_all_amount_formats():
+        csv_bytes = get_fixture_bytes("messy_amounts.csv")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "messy_amounts.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =         0              1
+0  Entity           Cost
+1       A  $2,100,000.00
+2       B       (48,500)
+3       C           1.2M
+4       D     Ç95.000,00
+5       E            NaN
+6       F            NaN
+sheet_name = 'default', filename = 'messy_amounts.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+________________________ test_handles_all_date_formats ________________________
+
+    def test_handles_all_date_formats():
+        csv_bytes = get_fixture_bytes("date_chaos.csv")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "date_chaos.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =         0       1                2
+0  Entity  Amount             When
+1       A     100       15/01/2025
+2       B    ...        Jan-25
+3       C     100            44941
+4       D     100          2025-01
+5       E     100  January 15 2025
+sheet_name = 'default', filename = 'date_chaos.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+________________________ test_normalises_vendor_names _________________________
+
+    def test_normalises_vendor_names():
+        csv_bytes = get_fixture_bytes("vendor_noise.csv")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "vendor_noise.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =                            0      1
+0              Supplier Name  Spend
+1  Amazon Web Services, Inc.    100
+2        A...ICES    100
+3              AWS EMEA SARL    100
+4       Salesforce.com, Inc.    100
+5                 SALESFORCE    200
+sheet_name = 'default', filename = 'vendor_noise.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+___________________ test_llm_fallback_maps_unusual_columns ____________________
+
+args = (), keywargs = {}
+
+    @wraps(func)
+    def patched(*args, **keywargs):
+>       with self.decoration_helper(patched,
+                                    args,
+                                    keywargs) as (newargs, newkeywargs):
+
+C:\Python314\Lib\unittest\mock.py:1429: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python314\Lib\contextlib.py:141: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+C:\Python314\Lib\unittest\mock.py:1411: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\contextlib.py:530: in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+C:\Python314\Lib\unittest\mock.py:1503: in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <unittest.mock._patch object at 0x0000025865617B60>
+
+    def get_original(self):
+        target = self.getter()
+        name = self.attribute
+    
+        original = DEFAULT
+        local = False
+    
+        try:
+            original = target.__dict__[name]
+        except (AttributeError, KeyError):
+            original = getattr(target, name, DEFAULT)
+        else:
+            local = True
+    
+        if name in _builtins and isinstance(target, ModuleType):
+            self.create = True
+    
+        if not self.create and original is DEFAULT:
+>           raise AttributeError(
+                "%s does not have the attribute %r" % (target, name)
+            )
+E           AttributeError: <module 'app.core.heuristics' from 'D:\\Workfllow\\backend\\app\\core\\heuristics.py'> does not have the attribute 'map_columns_with_llm'
+
+C:\Python314\Lib\unittest\mock.py:1473: AttributeError
+______________________ test_result_object_has_all_fields ______________________
+
+    def test_result_object_has_all_fields():
+        data = [{"Supplier": "AWS", "Cost": "100.00", "Date": "2025-01-01"}]
+        csv_bytes = create_csv_bytes(data)
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "test_fields.csv")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =           0       1           2
+0  Supplier    Cost        Date
+1       AWS  100.00  2025-01-01
+sheet_name = 'default', filename = 'test_fields.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+___________________ test_idempotency_same_file_same_records ___________________
+
+    def test_idempotency_same_file_same_records():
+        data = [{"Supplier": "AWS", "Cost": "100.00", "Date": "2025-01-01"}]
+        csv_bytes = create_csv_bytes(data)
+        with patch("json.dump"), patch("os.makedirs"):
+>           res1 = IngestionService.process_file(csv_bytes, "test1.csv")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:184: in process_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =           0       1           2
+0  Supplier    Cost        Date
+1       AWS  100.00  2025-01-01
+sheet_name = 'default', filename = 'test1.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx > 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:64: IngestError
+=========================== short test summary info ===========================
+FAILED tests/test_universal_ingestion.py::test_explicit_mapping_config - Asse...
+FAILED tests/test_universal_ingestion.py::test_heuristic_auto_detection - app...
+FAILED tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros
+FAILED tests/test_universal_ingestion.py::test_multiplier_application - app.s...
+FAILED tests/test_universal_ingestion.py::test_extended_canonical_fields_integration
+FAILED tests/test_universal_ingestion.py::test_finds_header_at_row5 - Asserti...
+FAILED tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates
+FAILED tests/test_universal_ingestion.py::test_cleans_all_amount_formats - ap...
+FAILED tests/test_universal_ingestion.py::test_handles_all_date_formats - app...
+FAILED tests/test_universal_ingestion.py::test_normalises_vendor_names - app....
+FAILED tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns
+FAILED tests/test_universal_ingestion.py::test_result_object_has_all_fields
+FAILED tests/test_universal_ingestion.py::test_idempotency_same_file_same_records
+======================== 13 failed, 2 passed in 2.13s =========================

@@ -27,7 +27,7 @@ def test_universal_ingestion():
 
     try:
         # 3. Process
-        result = IngestionService.process_file(csv_content, filename, mapping_config=config)
+        result = IngestionService.ingest_file(csv_content, filename, mapping_config=config)
         print("Success:", result)
         
         # Verify result content (mocking internal check)
@@ -62,7 +62,7 @@ def test_custom_mapping():
     }
 
     try:
-        result = IngestionService.process_file(csv_content, filename, mapping_config=custom_config)
+        result = IngestionService.ingest_file(csv_content, filename, mapping_config=custom_config)
         print("Custom Mapping Success:", result)
         assert result['processed_canonical'] == 1
         print("Verification PASSED: Processed custom dataset successfully.")

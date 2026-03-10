@@ -63,6 +63,12 @@ export interface FinancialExposure {
     estimated_ebitda_delta_20pct: number;
 }
 
+export interface MitigationOption {
+    strategy: string;
+    estimated_savings: number;
+    residual_ebitda_delta: number;
+}
+
 export interface PriceShockResponse {
     base_spend: number;
     shock_percentage: number;
@@ -70,6 +76,31 @@ export interface PriceShockResponse {
     delta_spend: number;
     estimated_ebitda_delta: number;
     risk_classification_shift: string;
+    mitigations?: MitigationOption[];
+}
+
+export interface PortfolioShockRequest {
+    category?: string | null;
+    vendor_ids?: string[] | null;
+    shock_percentage: number;
+    ebitda_margin: number;
+}
+
+export interface PortfolioShockResponse {
+    total_base_spend: number;
+    total_new_spend: number;
+    total_delta_spend: number;
+    total_ebitda_delta: number;
+    affected_vendors: number;
+}
+
+export interface ScenarioDefinition {
+    id: string;
+    name: string;
+    description: string;
+    shock_percentage: number;
+    ebitda_margin: number;
+    category_focus: string;
 }
 
 export interface VendorTrend {
@@ -128,13 +159,26 @@ export const ExposureService = {
 };
 
 export const SimulationService = {
-    runPriceShock: async (vendorId: string, shockPercentage: number) => {
+    runPriceShock: async (vendorId: string, shockPercentage: number, ebitdaMargin: number = 0.25) => {
         const response = await axios.post<PriceShockResponse>(
             `${BASE_URL}/simulate/price_shock`,
-            { vendor_id: vendorId, shock_percentage: shockPercentage }
+            { vendor_id: vendorId, shock_percentage: shockPercentage, ebitda_margin: ebitdaMargin }
         );
         return response.data;
     },
+    runPortfolioShock: async (request: PortfolioShockRequest) => {
+        const response = await axios.post<PortfolioShockResponse>(
+            `${BASE_URL}/simulate/portfolio_shock`,
+            request
+        );
+        return response.data;
+    },
+    getScenarios: async () => {
+        const response = await axios.get<ScenarioDefinition[]>(
+            `${BASE_URL}/simulate/scenarios`
+        );
+        return response.data;
+    }
 };
 
 export const ExportService = {

@@ -13,7 +13,8 @@ export const ExposureDashboard: React.FC = () => {
             setLoading(true);
             try {
                 const data = await ExposureService.getAllExposures();
-                setExposures(data);
+                const filtered = data.filter(e => !/^Vendor_\d+$/.test(e.vendor_id));
+                setExposures(filtered);
             } catch (e: any) {
                 setError(e?.response?.data?.detail || 'Failed to load exposure data. Upload a dataset first.');
             } finally {

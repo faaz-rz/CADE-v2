@@ -1,0 +1,13 @@
+src/components/PriceShockPanel.tsx(9,10): error TS6133: 'ArrowRight' is declared but its value is never read.
+src/components/PriceShockPanel.tsx(304,102): error TS2304: Cannot find name 'Target'.
+src/data/sampleData.ts(15,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(56,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(97,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(138,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(179,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(220,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(261,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/data/sampleData.ts(302,13): error TS2353: Object literal may only specify known properties, and 'thresholds' does not exist in type '{ analysis_period: string; rule_id: string; metrics: Record<string, number>; vendor_share_of_category?: number | undefined; }'.
+src/main.tsx(10,33): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/main.tsx(11,35): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/main.tsx(14,39): error TS2339: Property 'env' does not exist on type 'ImportMeta'.

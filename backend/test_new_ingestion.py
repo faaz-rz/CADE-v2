@@ -31,7 +31,7 @@ C002,Space,Medium,12,Content Marketing
     filename = "test_companies.csv"
     
     try:
-        result = IngestionService.process_file(full_csv, filename)
+        result = IngestionService.ingest_file(full_csv, filename)
         print("Ingestion Result:", result)
         
         # Verify Output

@@ -1,0 +1,150 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Workfllow\backend
+plugins: anyio-4.12.1
+collecting ... collected 15 items
+
+tests/test_universal_ingestion.py::test_explicit_mapping_config PASSED   [  6%]
+tests/test_universal_ingestion.py::test_heuristic_auto_detection PASSED  [ 13%]
+tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros FAILED [ 20%]
+tests/test_universal_ingestion.py::test_multiplier_application FAILED    [ 26%]
+tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data PASSED [ 33%]
+tests/test_universal_ingestion.py::test_extended_canonical_fields_integration PASSED [ 40%]
+tests/test_universal_ingestion.py::test_finds_header_at_row5 PASSED      [ 46%]
+tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates FAILED [ 53%]
+tests/test_universal_ingestion.py::test_cleans_all_amount_formats PASSED [ 60%]
+tests/test_universal_ingestion.py::test_handles_all_date_formats PASSED  [ 66%]
+tests/test_universal_ingestion.py::test_normalises_vendor_names FAILED   [ 73%]
+tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns PASSED [ 80%]
+tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct PASSED [ 86%]
+tests/test_universal_ingestion.py::test_result_object_has_all_fields PASSED [ 93%]
+tests/test_universal_ingestion.py::test_idempotency_same_file_same_records PASSED [100%]
+
+================================== FAILURES ===================================
+___________________ test_amount_cleaner_and_skipping_zeros ____________________
+
+    def test_amount_cleaner_and_skipping_zeros():
+        """Test that clean_amount strips currency chars, and zero amounts trigger row skips cleanly."""
+        data = [
+            {"date": "2023-01-01", "entity": "Valid Vendor", "amount": "$1,000.50", "category": "IT"},
+            {"date": "2023-01-02", "entity": "Zero Vendor", "amount": "$0.00", "category": "IT"},
+            {"date": "2023-01-03", "entity": "Negative Vendor", "amount": "(500)", "category": "IT"},
+            {"date": "2023-01-04", "entity": "Broken Vendor", "amount": "Invalid", "category": "IT"},
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        mapping = {
+            "column_mapping": {
+                "date": "date",
+                "entity": "entity",
+                "amount": "amount",
+                "category": "category"
+            }
+        }
+    
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.process_file(csv_bytes, "test_cleaner.csv", mapping_config=mapping)
+            assert res.rows_accepted == 2
+>           assert res.rows_total == 3
+E           assert 4 == 3
+E            +  where 4 = IngestResult(status='success', rows_total=4, rows_accepted=2, rows_rejected=2, sheets_processed=['default'], mapping_method='explicit', confidence_score=1.0, column_mapping={'date': 'date', 'entity': 'entity', 'amount': 'amount', 'category': 'category'}, rejections_summary=[RejectionReason(row=3, reason='1 validation error for CanonicalFinancialRecord\namount\n  Value error, Transaction amount cannot be zero [type=value_error, input_value=0.0, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.12/v/value_error', raw="{'date': '2023-01-02', 'entity': 'Zero Vendor', 'amount': '$0.00', 'category': 'IT'}"), RejectionReason(row=5, reason='amount could not be parsed or is zero', raw='Invalid')], decisions_generated=2, warnings=['No currency column found ù defaulted to USD'], records=[CanonicalFinancialRecord(date=datetime.date(2023, 1, 1), amount=1000.5, category='IT', entity='Valid Vendor', description=None, currency='USD', gl_code=None, cost_center=None, po_number=None, source_file='test_cleaner.csv'), CanonicalFinancialRecord(date=datetime.date(2023, 1, 3), amount=-500.0, category='IT', entity='Negative Vendor', description=None, currency='USD', gl_code=None, cost_center=None, po_number=None, source_file='test_cleaner.csv')]).rows_total
+
+tests\test_universal_ingestion.py:85: AssertionError
+_________________________ test_multiplier_application _________________________
+
+    def test_multiplier_application():
+        """Test that detection of multipliers (like thousands) scales amounts."""
+        data = [
+            {"date": "2023-01-01", "entity": "AWS", "Spend (k)": "1.5", "category": "Cloud"}
+        ]
+        csv_bytes = create_csv_bytes(data)
+    
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.process_file(csv_bytes, "test_multiplier.csv")
+            assert res.rows_accepted == 1
+>           assert res.records[0].amount == 1500.0
+E           AssertionError: assert 1.5 == 1500.0
+E            +  where 1.5 = CanonicalFinancialRecord(date=datetime.date(2023, 1, 1), amount=1.5, category='Cloud', entity='AWS', description=None, currency='USD', gl_code=None, cost_center=None, po_number=None, source_file='test_multiplier.csv').amount
+
+tests\test_universal_ingestion.py:98: AssertionError
+__________________ test_ingests_multi_sheet_and_deduplicates __________________
+
+    def test_ingests_multi_sheet_and_deduplicates():
+        csv_bytes = get_fixture_bytes("multi_sheet.xlsx")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.process_file(csv_bytes, "multi_sheet.xlsx")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+file_content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00\x10\xaeh\\F\xc7MH\x97\x00\x00\x00\xcd\x00\x00\x00\x10\x00\x00\x00docProps/app.xml...x80\x01%\x13\x00\x00[Content_Types].xmlPK\x05\x06\x00\x00\x00\x00\x0b\x00\x0b\x00\xca\x02\x00\x00y\x14\x00\x00\x00\x00'
+filename = 'multi_sheet.xlsx', mapping_config = None
+
+    @staticmethod
+    def process_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+    
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+    
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+    
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+    
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+>                   raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+E                   app.services.ingestion.IngestError: All recommended sheets failed to parse or fell below confidence threshholds.
+
+app\services\ingestion.py:181: IngestError
+________________________ test_normalises_vendor_names _________________________
+
+    def test_normalises_vendor_names():
+        csv_bytes = get_fixture_bytes("vendor_noise.csv")
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.process_file(csv_bytes, "vendor_noise.csv")
+            # Ensure 'Amazon Web Services, Inc.', 'AMAZON WEB SERVICES', 'AWS EMEA SARL'
+            entities = [r.entity for r in res.records]
+            assert "AMAZON WEB SERVICES" in entities
+>           assert "SALESFORCE.COM" in entities
+E           AssertionError: assert 'SALESFORCE.COM' in ['Amazon Web Services', 'AMAZON WEB SERVICES', 'AWS EMEA SARL', 'Salesforce.com', 'SALESFORCE']
+
+tests\test_universal_ingestion.py:174: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros
+FAILED tests/test_universal_ingestion.py::test_multiplier_application - Asser...
+FAILED tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates
+FAILED tests/test_universal_ingestion.py::test_normalises_vendor_names - Asse...
+======================== 4 failed, 11 passed in 2.00s =========================

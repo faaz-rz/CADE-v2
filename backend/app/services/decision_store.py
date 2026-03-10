@@ -57,9 +57,23 @@ class DecisionStore:
 
     @classmethod
     def clear(cls):
-        """Resets the in-memory store (useful for testing/re-upload)."""
+        """Resets the in-memory store (useful for testing/re-upload) and DB."""
         cls._decisions.clear()
         cls._events.clear()
+        
+        if cls._db_enabled:
+            try:
+                from app.db.database import SessionLocal
+                from sqlalchemy import text
+                db = SessionLocal()
+                try:
+                    db.execute(text("DELETE FROM decision_events"))
+                    db.execute(text("DELETE FROM decisions"))
+                    db.commit()
+                finally:
+                    db.close()
+            except Exception as e:
+                print(f"[DecisionStore] DB clear failed: {e}")
 
     @classmethod
     def load_from_db(cls):
@@ -82,6 +96,10 @@ class DecisionStore:
                 for row in rows:
                     context_data = json.loads(row.context_json) if row.context_json else None
                     context = DecisionContext(**context_data) if context_data else None
+
+                    import re
+                    if re.match(r"^Vendor_\d+$", row.entity):
+                        continue
 
                     risk_range = json.loads(row.risk_range_json) if row.risk_range_json else {"best_case": 0, "worst_case": 0}
 

@@ -4,8 +4,9 @@ import { DecisionCard } from '../components/DecisionCard';
 import { DecisionDetail } from '../components/DecisionDetail';
 import { PortfolioSummary } from '../components/PortfolioSummary';
 import { UploadDataButton } from '../components/UploadDataButton';
-import { RefreshCw, Filter, CheckCircle, Shield, Download } from 'lucide-react';
+import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { sampleData } from '../data/sampleData';
 
 export const DecisionsPage: React.FC = () => {
     const [decisions, setDecisions] = useState<Decision[]>([]);
@@ -13,6 +14,7 @@ export const DecisionsPage: React.FC = () => {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'pending' | 'history'>('pending');
+    const [showDemoBanner, setShowDemoBanner] = useState(false);
 
     const selectedDecision = decisions.find(d => d.id === selectedId) || null;
 
@@ -30,7 +32,13 @@ export const DecisionsPage: React.FC = () => {
                 DecisionService.getDecisions(),
                 DecisionService.getSummary()
             ]);
-            setDecisions(data);
+            if (data.length === 0) {
+                setDecisions(sampleData);
+                setShowDemoBanner(true);
+            } else {
+                setDecisions(data);
+                setShowDemoBanner(false);
+            }
             setSummary(summaryData);
         } catch (e) {
             console.error('Failed to load data', e);
@@ -40,11 +48,34 @@ export const DecisionsPage: React.FC = () => {
     };
 
     useEffect(() => {
+        const storedVendor = localStorage.getItem('selectedVendor');
+        if (storedVendor && /^Vendor_\d+/.test(storedVendor)) {
+            localStorage.removeItem('selectedVendor');
+        }
         loadData();
     }, []);
 
     return (
         <div className="max-w-5xl mx-auto px-4 py-8">
+            {showDemoBanner && (
+                <div className="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md flex justify-between items-start shadow-sm">
+                    <div className="flex items-start">
+                        <AlertTriangle className="h-5 w-5 text-yellow-400 mt-0.5 mr-3" />
+                        <div>
+                            <h3 className="text-sm font-medium text-yellow-800">Viewing Sample Data</h3>
+                            <p className="mt-1 text-sm text-yellow-700">
+                                You are currently viewing simulated portfolio scenarios. Upload your own structured CSV data to securely generate your live intelligent vendor decisions.
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={() => setShowDemoBanner(false)}
+                        className="text-yellow-500 hover:text-yellow-600 focus:outline-none"
+                    >
+                        <X className="h-5 w-5" />
+                    </button>
+                </div>
+            )}
             <header className="mb-8 flex justify-between items-center">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Decision Inbox</h1>
@@ -65,7 +96,11 @@ export const DecisionsPage: React.FC = () => {
                         <Download className="w-4 h-4" />
                         Export
                     </button>
-                    <UploadDataButton onUploadComplete={loadData} />
+                    <UploadDataButton onUploadComplete={async () => {
+                        setDecisions([]);
+                        setSelectedId(null);
+                        await loadData();
+                    }} />
                     <button
                         onClick={loadData}
                         className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"

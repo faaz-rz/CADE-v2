@@ -14,7 +14,7 @@ def test_missing_category():
 
     print(f"Testing ingestion with content: {csv_content}")
     try:
-        result = IngestionService.process_file(csv_content, filename)
+        result = IngestionService.ingest_file(csv_content, filename)
         print("Success:", result)
     except Exception as e:
         print(f"Caught expected error: {e}")

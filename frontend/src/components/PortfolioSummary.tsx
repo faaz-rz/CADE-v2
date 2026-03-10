@@ -1,6 +1,7 @@
 import React from 'react';
 import { DecisionSummary } from '../services/api';
 import { DollarSign, Activity, BarChart3 } from 'lucide-react';
+import { formatCurrency } from '../utils/formatters';
 
 interface PortfolioSummaryProps {
     summary: DecisionSummary | null;
@@ -18,10 +19,6 @@ export const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ summary, isL
         );
     }
 
-    const formatMoney = (val: number) => {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
-    };
-
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {/* Total Opportunity */}
@@ -34,7 +31,7 @@ export const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ summary, isL
                 </div>
                 <div>
                     <span className="text-3xl font-bold text-gray-900 block mb-1">
-                        {formatMoney(summary.total_savings)}
+                        {formatCurrency(summary.total_savings)}
                     </span>
                     <span className="text-sm text-gray-500">Annualized Savings</span>
                 </div>

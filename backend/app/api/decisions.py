@@ -7,7 +7,7 @@ from app.services.decision_store import DecisionStore
 
 router = APIRouter()
 
-@router.get("/", response_model=List[Decision])
+@router.get("", response_model=List[Decision])
 def get_decisions():
     """
     Returns the current list of decisions from the System of Record.

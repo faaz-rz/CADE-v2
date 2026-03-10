@@ -1,0 +1,1 @@
+[STARTUP] Database initialized. Decisions loaded from SQLite.

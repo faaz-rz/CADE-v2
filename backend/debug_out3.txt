@@ -1,0 +1,71 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Workfllow\backend
+plugins: anyio-4.12.1
+collecting ... collected 1 item
+
+tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns COLUMNS:  ['2023-01-01', 'TestVendor', '100', 'foo', 'bar']
+FAILED
+
+================================== FAILURES ===================================
+____________________ TestDataRobustness.test_extra_columns ____________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_extra_columns>
+
+    def test_extra_columns(self):
+        """Test 102: Extra Irrelevant Columns"""
+        csv_content = b"Date,Vendor,Amount,Junk1,Junk2\n2023-01-01,TestVendor,100,foo,bar"
+>       result = IngestionService.ingest_file(csv_content, "extra_cols.csv")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\stress\test_robustness.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:186: in ingest_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =             0           1       2      3      4
+0        Date      Vendor  Amount  Junk1  Junk2
+1  2023-01-01  TestVendor     100    foo    bar
+sheet_name = 'default', filename = 'extra_cols.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx >= 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            # Fallback if somehow negative (though find_header_row returns 0 min)
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+        print("COLUMNS: ", columns)
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:66: IngestError
+=========================== short test summary info ===========================
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns
+============================== 1 failed in 1.30s ==============================

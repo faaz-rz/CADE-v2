@@ -35,7 +35,7 @@ BigCorp,2.5,2023-01-01
     try:
         # TEST 1: Millions
         print("\n[TEST 1] Millions Suffix (M)")
-        result = IngestionService.process_file(csv_content_safe, "test_millions.csv")
+        result = IngestionService.ingest_file(csv_content_safe, "test_millions.csv")
         
         with open("data/transactions.json", "r") as f:
             data = json.load(f)
@@ -52,7 +52,7 @@ BigCorp,2.5,2023-01-01
         csv_content_k = b"""Vendor,Project Cost (k),Date
 SmallCorp,150,2023-01-01
 """
-        IngestionService.process_file(csv_content_k, "test_thousands.csv")
+        IngestionService.ingest_file(csv_content_k, "test_thousands.csv")
         
         with open("data/transactions.json", "r") as f:
             data = json.load(f)

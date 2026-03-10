@@ -38,7 +38,7 @@ C002,12.5,Content Marketing
         with open("config/mapping_sales.yaml", "r", encoding='utf-8') as f:
             config = yaml.safe_load(f)
             
-        result = IngestionService.process_file(full_csv, filename, mapping_config=config)
+        result = IngestionService.ingest_file(full_csv, filename, mapping_config=config)
         print("Ingestion Result:", result)
         
         # Verify Output

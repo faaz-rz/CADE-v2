@@ -18,7 +18,7 @@ Uber,25.50,2023-05-01,Travel
 Amazon,120.00,2023-05-02,Office Supplies
 """
     try:
-        result = IngestionService.process_file(ds_high_conf, "high_conf_test.csv")
+        result = IngestionService.ingest_file(ds_high_conf, "high_conf_test.csv")
         print("SUCCESS: Ingestion proceeded as expected.")
         print(result)
     except Exception as e:
@@ -38,7 +38,7 @@ Uber,25.50,2023-05-01,Travel
     # So "Amount" will be missing.
     
     try:
-        IngestionService.process_file(ds_low_conf, "low_conf_test.csv")
+        IngestionService.ingest_file(ds_low_conf, "low_conf_test.csv")
         print("FAIL: Should have refused ingestion!")
     except ValueError as e:
         print(f"SUCCESS: System refused ingestion as expected.")

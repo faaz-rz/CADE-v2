@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\Workfllow\backend\debug_upload.py", line 26, in <module>
+    r = IngestionService._ingest_sheet(df, sheet, 'test_manual_upload.xlsx')
+  File "D:\Workfllow\backend\app\services\ingestion.py", line 65, in _ingest_sheet
+    raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+Meta: {'format': 'xlsx', 'encoding': 'utf-8', 'sheet_names': ['Sheet1'], 'recommended_sheets': [], 'file_size_mb': 0.0, 'estimated_row_count': 6}
+--- Sheet: Sheet1
+Error: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+Traceback (most recent call last):
+  File "D:\Workfllow\backend\debug_upload.py", line 32, in <module>
+    os.remove(temp_path)
+    ~~~~~~~~~^^^^^^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\faaz\\AppData\\Local\\Temp\\tmphdys27g3.xlsx'

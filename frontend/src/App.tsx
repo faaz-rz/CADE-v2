@@ -2,11 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DecisionsPage } from './pages/Decisions';
 import { UploadPage } from './pages/Upload';
 import { ExposureDashboard } from './pages/ExposureDashboard';
+import { Navbar } from './components/Navbar';
+
 
 function App() {
     return (
         <BrowserRouter>
             <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-brand-100 selection:text-brand-900">
+                <Navbar />
                 <Routes>
                     <Route path="/" element={<DecisionsPage />} />
                     <Route path="/upload" element={<UploadPage />} />

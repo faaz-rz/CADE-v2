@@ -1,0 +1,319 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Workfllow\backend
+plugins: anyio-4.12.1
+collecting ... collected 67 items
+
+tests/stress/test_audit.py::TestAudit::test_immutable_history PASSED     [  1%]
+tests/stress/test_audit.py::TestAudit::test_invalid_transition_approve_then_reject PASSED [  2%]
+tests/stress/test_audit.py::TestAudit::test_reject_without_reason PASSED [  4%]
+tests/stress/test_boundaries.py::TestBoundaries::test_frequency_boundaries PASSED [  5%]
+tests/stress/test_boundaries.py::TestBoundaries::test_spend_boundaries PASSED [  7%]
+tests/stress/test_consistency.py::TestLogicalConsistency::test_idempotency PASSED [  8%]
+tests/stress/test_consistency.py::TestLogicalConsistency::test_restart_persistence PASSED [ 10%]
+tests/stress/test_robustness.py::TestDataRobustness::test_ambiguous_columns PASSED [ 11%]
+tests/stress/test_robustness.py::TestDataRobustness::test_empty_lines_and_duplicates FAILED [ 13%]
+tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns PASSED [ 14%]
+tests/stress/test_robustness.py::TestDataRobustness::test_missing_optional_columns PASSED [ 16%]
+tests/stress/test_robustness.py::TestDataRobustness::test_missing_required_columns PASSED [ 17%]
+tests/stress/test_robustness.py::TestDataRobustness::test_negative_values PASSED [ 19%]
+tests/stress/test_robustness.py::TestDataRobustness::test_row_level_mixed_units FAILED [ 20%]
+tests/stress/test_robustness.py::TestDataRobustness::test_unit_k PASSED  [ 22%]
+tests/stress/test_robustness.py::TestDataRobustness::test_unit_millions PASSED [ 23%]
+tests/stress/test_scale.py::TestScale::test_scale_10k_transactions PASSED [ 25%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_category_threshold_and_savings_rate PASSED [ 26%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_default_fallback_and_concentration PASSED [ 28%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_high_risk_scoring_actual PASSED [ 29%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_10pct_shock PASSED [ 31%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_20pct_shock PASSED [ 32%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_determinism PASSED [ 34%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_zero_shock PASSED [ 35%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_basic_exposure PASSED [ 37%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_determinism PASSED [ 38%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_full_concentration PASSED [ 40%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_zero_share PASSED [ 41%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_basic_shock PASSED [ 43%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_determinism PASSED [ 44%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_risk_escalation PASSED [ 46%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_vendor_not_found PASSED [ 47%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_zero_shock PASSED [ 49%]
+tests/test_state_transitions.py::TestValidTransitions::test_deferred_to_approved PASSED [ 50%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_approved PASSED [ 52%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_deferred PASSED [ 53%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_rejected PASSED [ 55%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_clear PASSED [ 56%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_get_all PASSED [ 58%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_not_found_returns_none PASSED [ 59%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_save_and_retrieve PASSED [ 61%]
+tests/test_state_transitions.py::TestDeterministicDecisionIds::test_different_input_different_id PASSED [ 62%]
+tests/test_state_transitions.py::TestDeterministicDecisionIds::test_same_input_same_id PASSED [ 64%]
+tests/test_trend_engine.py::TestRollingAverage::test_basic_3m PASSED     [ 65%]
+tests/test_trend_engine.py::TestRollingAverage::test_longer_series PASSED [ 67%]
+tests/test_trend_engine.py::TestRollingAverage::test_not_enough_data PASSED [ 68%]
+tests/test_trend_engine.py::TestGrowthPct::test_basic_growth PASSED      [ 70%]
+tests/test_trend_engine.py::TestGrowthPct::test_decline PASSED           [ 71%]
+tests/test_trend_engine.py::TestGrowthPct::test_earlier_zero_spend PASSED [ 73%]
+tests/test_trend_engine.py::TestGrowthPct::test_no_growth PASSED         [ 74%]
+tests/test_trend_engine.py::TestGrowthPct::test_not_enough_data PASSED   [ 76%]
+tests/test_trend_engine.py::TestEmergingRiskThreshold::test_threshold_value PASSED [ 77%]
+tests/test_universal_ingestion.py::test_explicit_mapping_config FAILED   [ 79%]
+tests/test_universal_ingestion.py::test_heuristic_auto_detection FAILED  [ 80%]
+tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros FAILED [ 82%]
+tests/test_universal_ingestion.py::test_multiplier_application FAILED    [ 83%]
+tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data FAILED [ 85%]
+tests/test_universal_ingestion.py::test_extended_canonical_fields_integration FAILED [ 86%]
+tests/test_universal_ingestion.py::test_finds_header_at_row5 PASSED      [ 88%]
+tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates PASSED [ 89%]
+tests/test_universal_ingestion.py::test_cleans_all_amount_formats PASSED [ 91%]
+tests/test_universal_ingestion.py::test_handles_all_date_formats FAILED  [ 92%]
+tests/test_universal_ingestion.py::test_normalises_vendor_names PASSED   [ 94%]
+tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns PASSED [ 95%]
+tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct FAILED [ 97%]
+tests/test_universal_ingestion.py::test_result_object_has_all_fields FAILED [ 98%]
+tests/test_universal_ingestion.py::test_idempotency_same_file_same_records FAILED [100%]
+
+================================== FAILURES ===================================
+_____________ TestDataRobustness.test_empty_lines_and_duplicates ______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_empty_lines_and_duplicates>
+
+    def test_empty_lines_and_duplicates(self):
+        """Test 104: Empty Rows & Duplicates"""
+        # Pandas read_csv often skips blank lines by default.
+        # Duplicate rows should be ingested as distinct records.
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,100\n\n\n2023-01-01,V1,100"
+        result = IngestionService.ingest_file(csv_content, "duplicates.csv")
+        # Should digest 2 records
+>       self.assertEqual(result.rows_accepted, 2)
+E       AssertionError: 1 != 2
+
+tests\stress\test_robustness.py:75: AssertionError
+---------------------------- Captured stdout call -----------------------------
+COLUMNS:  ['Date', 'Vendor', 'Amount']
+________________ TestDataRobustness.test_row_level_mixed_units ________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_row_level_mixed_units>
+
+    def test_row_level_mixed_units(self):
+        """Test 103c: Row-level Units (10k, 5000)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,10k\n2023-01-02,V1,5000"
+        # The '10k' will fail float() conversion.
+        # IngestionService catches ValueError/TypeError and ignores the row?
+        # Or keeps original?
+        # Code:
+        # try: val = float(val) * multiplier ... except: pass
+        # But this is only if a multiplier exists. Here NONE exists.
+        # Later: CanonicalFinancialRecord(**record_data).
+        # This Pydantic model expects float for amount.
+        # So '10k' (string) passed to float field -> Validation Error.
+        # IngestionService catches Exception -> "Skipping invalid row".
+        # So '10k' row is skipped. '5000' row is processed.
+        result = IngestionService.ingest_file(csv_content, "row_mixed.csv")
+        # Should have 1 success (5000), 1 fail (10k)
+>       self.assertEqual(result.rows_accepted, 1)
+E       AssertionError: 2 != 1
+
+tests\stress\test_robustness.py:115: AssertionError
+---------------------------- Captured stdout call -----------------------------
+COLUMNS:  ['Date', 'Vendor', 'Amount']
+________________________ test_explicit_mapping_config _________________________
+
+    def test_explicit_mapping_config():
+>       csv_bytes = get_fixture_bytes("test.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+________________________ test_heuristic_auto_detection ________________________
+
+    def test_heuristic_auto_detection():
+>       csv_bytes = get_fixture_bytes("test_fuzzy.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_fuzzy.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_fuzzy.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+___________________ test_amount_cleaner_and_skipping_zeros ____________________
+
+    def test_amount_cleaner_and_skipping_zeros():
+>       csv_bytes = get_fixture_bytes("test_cleaner.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_cleaner.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_cleaner.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+_________________________ test_multiplier_application _________________________
+
+    def test_multiplier_application():
+>       csv_bytes = get_fixture_bytes("test_multiplier.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_multiplier.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_multiplier.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+__________________ test_heuristic_refusal_on_ambiguous_data ___________________
+
+    def test_heuristic_refusal_on_ambiguous_data():
+>       csv_bytes = get_fixture_bytes("test_bad.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_bad.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_bad.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+_________________ test_extended_canonical_fields_integration __________________
+
+    def test_extended_canonical_fields_integration():
+>       csv_bytes = get_fixture_bytes("test_extended.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_extended.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_extended.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+________________________ test_handles_all_date_formats ________________________
+
+    def test_handles_all_date_formats():
+        csv_bytes = get_fixture_bytes("date_chaos.csv")
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.ingest_file(csv_bytes, "date_chaos.csv")
+>           assert res.rows_accepted == 4
+E           AssertionError: assert 5 == 4
+E            +  where 5 = IngestResult(status='success', rows_total=6, rows_accepted=5, rows_rejected=0, sheets_processed=['default'], mapping_method='fuzzy', confidence_score=1.0, column_mapping={'entity': 'Entity', 'amount': 'Amount', 'date': 'When'}, rejections_summary=[], decisions_generated=5, warnings=['No currency column found ù defaulted to USD'], records=[CanonicalFinancialRecord(date=datetime.date(2025, 1, 15), amount=100.0, category='Uncategorized', entity='A', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2026, 1, 25), amount=100.0, category='Uncategorized', entity='B', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2023, 1, 15), amount=100.0, category='Uncategorized', entity='C', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2025, 1, 9), amount=100.0, category='Uncategorized', entity='D', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2025, 1, 15), amount=100.0, category='Uncategorized', entity='E', description=None, source_file='date_chaos.csv')]).rows_accepted
+
+tests\test_universal_ingestion.py:80: AssertionError
+---------------------------- Captured stdout call -----------------------------
+COLUMNS:  ['Entity', 'Amount', 'When']
+__________________ test_confidence_gate_rejects_below_80pct ___________________
+
+    def test_confidence_gate_rejects_below_80pct():
+>       csv_bytes = get_fixture_bytes("gate.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'gate.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\gate.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+______________________ test_result_object_has_all_fields ______________________
+
+    def test_result_object_has_all_fields():
+>       csv_bytes = get_fixture_bytes("test_fields.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_fields.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_fields.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+___________________ test_idempotency_same_file_same_records ___________________
+
+    def test_idempotency_same_file_same_records():
+>       csv_bytes = get_fixture_bytes("test1.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test1.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test1.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+============================== warnings summary ===============================
+tests/stress/test_audit.py: 8 warnings
+tests/stress/test_boundaries.py: 6 warnings
+tests/stress/test_consistency.py: 10 warnings
+tests/stress/test_scale.py: 200 warnings
+tests/test_context_aware_engine.py: 6 warnings
+tests/test_state_transitions.py: 16 warnings
+  C:\Users\faaz\AppData\Roaming\Python\Python314\site-packages\pydantic\main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_empty_lines_and_duplicates
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_row_level_mixed_units
+FAILED tests/test_universal_ingestion.py::test_explicit_mapping_config - File...
+FAILED tests/test_universal_ingestion.py::test_heuristic_auto_detection - Fil...
+FAILED tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros
+FAILED tests/test_universal_ingestion.py::test_multiplier_application - FileN...
+FAILED tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data
+FAILED tests/test_universal_ingestion.py::test_extended_canonical_fields_integration
+FAILED tests/test_universal_ingestion.py::test_handles_all_date_formats - Ass...
+FAILED tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct
+FAILED tests/test_universal_ingestion.py::test_result_object_has_all_fields
+FAILED tests/test_universal_ingestion.py::test_idempotency_same_file_same_records
+================= 12 failed, 55 passed, 246 warnings in 3.51s =================

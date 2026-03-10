@@ -1,0 +1,223 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Workfllow\backend
+plugins: anyio-4.12.1
+collecting ... collected 66 items
+
+tests/stress/test_audit.py::TestAudit::test_immutable_history PASSED     [  1%]
+tests/stress/test_audit.py::TestAudit::test_invalid_transition_approve_then_reject PASSED [  3%]
+tests/stress/test_audit.py::TestAudit::test_reject_without_reason PASSED [  4%]
+tests/stress/test_boundaries.py::TestBoundaries::test_frequency_boundaries PASSED [  6%]
+tests/stress/test_boundaries.py::TestBoundaries::test_spend_boundaries PASSED [  7%]
+tests/stress/test_consistency.py::TestLogicalConsistency::test_idempotency PASSED [  9%]
+tests/stress/test_consistency.py::TestLogicalConsistency::test_restart_persistence PASSED [ 10%]
+tests/stress/test_robustness.py::TestDataRobustness::test_ambiguous_columns FAILED [ 12%]
+tests/stress/test_robustness.py::TestDataRobustness::test_empty_lines_and_duplicates FAILED [ 13%]
+tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns FAILED [ 15%]
+tests/stress/test_robustness.py::TestDataRobustness::test_missing_optional_columns FAILED [ 16%]
+tests/stress/test_robustness.py::TestDataRobustness::test_missing_required_columns FAILED [ 18%]
+tests/stress/test_robustness.py::TestDataRobustness::test_negative_values FAILED [ 19%]
+tests/stress/test_robustness.py::TestDataRobustness::test_row_level_mixed_units FAILED [ 21%]
+tests/stress/test_robustness.py::TestDataRobustness::test_unit_k FAILED  [ 22%]
+tests/stress/test_robustness.py::TestDataRobustness::test_unit_millions PASSED [ 24%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_category_threshold_and_savings_rate PASSED [ 25%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_default_fallback_and_concentration PASSED [ 27%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_high_risk_scoring_actual PASSED [ 28%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_10pct_shock PASSED [ 30%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_20pct_shock PASSED [ 31%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_determinism PASSED [ 33%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_zero_shock PASSED [ 34%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_basic_exposure PASSED [ 36%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_determinism PASSED [ 37%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_full_concentration PASSED [ 39%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_zero_share PASSED [ 40%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_basic_shock PASSED [ 42%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_mitigation_reduce_usage_scales_correctly PASSED [ 43%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_mitigation_renegotiate_uses_policy_savings_rate PASSED [ 45%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_portfolio_shock_aggregates_correctly PASSED [ 46%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_scenarios_return_all_four_presets PASSED [ 48%]
+tests/test_state_transitions.py::TestValidTransitions::test_deferred_to_approved PASSED [ 50%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_approved PASSED [ 51%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_deferred PASSED [ 53%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_rejected PASSED [ 54%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_clear PASSED [ 56%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_get_all PASSED [ 57%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_not_found_returns_none PASSED [ 59%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_save_and_retrieve PASSED [ 60%]
+tests/test_state_transitions.py::TestDeterministicDecisionIds::test_different_input_different_id PASSED [ 62%]
+tests/test_state_transitions.py::TestDeterministicDecisionIds::test_same_input_same_id PASSED [ 63%]
+tests/test_trend_engine.py::TestRollingAverage::test_basic_3m PASSED     [ 65%]
+tests/test_trend_engine.py::TestRollingAverage::test_longer_series PASSED [ 66%]
+tests/test_trend_engine.py::TestRollingAverage::test_not_enough_data PASSED [ 68%]
+tests/test_trend_engine.py::TestGrowthPct::test_basic_growth PASSED      [ 69%]
+tests/test_trend_engine.py::TestGrowthPct::test_decline PASSED           [ 71%]
+tests/test_trend_engine.py::TestGrowthPct::test_earlier_zero_spend PASSED [ 72%]
+tests/test_trend_engine.py::TestGrowthPct::test_no_growth PASSED         [ 74%]
+tests/test_trend_engine.py::TestGrowthPct::test_not_enough_data PASSED   [ 75%]
+tests/test_trend_engine.py::TestEmergingRiskThreshold::test_threshold_value PASSED [ 77%]
+tests/test_universal_ingestion.py::test_explicit_mapping_config PASSED   [ 78%]
+tests/test_universal_ingestion.py::test_heuristic_auto_detection PASSED  [ 80%]
+tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros PASSED [ 81%]
+tests/test_universal_ingestion.py::test_multiplier_application PASSED    [ 83%]
+tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data PASSED [ 84%]
+tests/test_universal_ingestion.py::test_extended_canonical_fields_integration PASSED [ 86%]
+tests/test_universal_ingestion.py::test_finds_header_at_row5 PASSED      [ 87%]
+tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates PASSED [ 89%]
+tests/test_universal_ingestion.py::test_cleans_all_amount_formats PASSED [ 90%]
+tests/test_universal_ingestion.py::test_handles_all_date_formats PASSED  [ 92%]
+tests/test_universal_ingestion.py::test_normalises_vendor_names PASSED   [ 93%]
+tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns PASSED [ 95%]
+tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct PASSED [ 96%]
+tests/test_universal_ingestion.py::test_result_object_has_all_fields PASSED [ 98%]
+tests/test_universal_ingestion.py::test_idempotency_same_file_same_records PASSED [100%]
+
+================================== FAILURES ===================================
+__________________ TestDataRobustness.test_ambiguous_columns __________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_ambiguous_columns>
+
+    def test_ambiguous_columns(self):
+        """Test 102b: Ambiguous Columns (Amount vs Total Cost)"""
+        # Both 'Amount' and 'Total Cost' have weight 1.0 in heuristics.
+        # System should ideally pick one deterministically or Fail.
+        # Current logic: picks the highest score. If equal?
+        # Let's see behavior.
+        csv_content = b"Date,Vendor,Amount,Total Cost\n2023-01-01,V1,100,200"
+        # It currently picks one.
+        result = IngestionService.process_file(csv_content, "ambiguous.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:97: TypeError
+_____________ TestDataRobustness.test_empty_lines_and_duplicates ______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_empty_lines_and_duplicates>
+
+    def test_empty_lines_and_duplicates(self):
+        """Test 104: Empty Rows & Duplicates"""
+        # Pandas read_csv often skips blank lines by default.
+        # Duplicate rows should be ingested as distinct records.
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,100\n\n\n2023-01-01,V1,100"
+        result = IngestionService.process_file(csv_content, "duplicates.csv")
+        # Should digest 2 records
+>       self.assertEqual(result["processed_canonical"], 2)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:75: TypeError
+____________________ TestDataRobustness.test_extra_columns ____________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_extra_columns>
+
+    def test_extra_columns(self):
+        """Test 102: Extra Irrelevant Columns"""
+        csv_content = b"Date,Vendor,Amount,Junk1,Junk2\n2023-01-01,TestVendor,100,foo,bar"
+        result = IngestionService.process_file(csv_content, "extra_cols.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:30: TypeError
+______________ TestDataRobustness.test_missing_optional_columns _______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_missing_optional_columns>
+
+    def test_missing_optional_columns(self):
+        """Test 101b: Missing Category (Should Pass)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,TestVendor,100"
+        result = IngestionService.process_file(csv_content, "missing_category.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:23: TypeError
+______________ TestDataRobustness.test_missing_required_columns _______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_missing_required_columns>
+
+    def test_missing_required_columns(self):
+        """Test 101: Missing Entity Column"""
+        csv_content = b"Date,Amount\n2023-01-01,100"
+        with self.assertRaises(ValueError) as cm:
+            IngestionService.process_file(csv_content, "missing_entity.csv")
+>       self.assertIn("Could not confidently map required fields", str(cm.exception))
+E       AssertionError: 'Could not confidently map required fields' not found in 'Ambiguous Dataset Structure. Confidence score (1.00) below threshold (0.80). System refused to guess.'
+
+tests\stress\test_robustness.py:17: AssertionError
+___________________ TestDataRobustness.test_negative_values ___________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_negative_values>
+
+    def test_negative_values(self):
+        """Test 105: Negative Values (Refunds)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,-50.00"
+        result = IngestionService.process_file(csv_content, "negative.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:81: TypeError
+________________ TestDataRobustness.test_row_level_mixed_units ________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_row_level_mixed_units>
+
+    def test_row_level_mixed_units(self):
+        """Test 103c: Row-level Units (10k, 5000)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,10k\n2023-01-02,V1,5000"
+        # The '10k' will fail float() conversion.
+        # IngestionService catches ValueError/TypeError and ignores the row?
+        # Or keeps original?
+        # Code:
+        # try: val = float(val) * multiplier ... except: pass
+        # But this is only if a multiplier exists. Here NONE exists.
+        # Later: CanonicalFinancialRecord(**record_data).
+        # This Pydantic model expects float for amount.
+        # So '10k' (string) passed to float field -> Validation Error.
+        # IngestionService catches Exception -> "Skipping invalid row".
+        # So '10k' row is skipped. '5000' row is processed.
+        result = IngestionService.process_file(csv_content, "row_mixed.csv")
+        # Should have 1 success (5000), 1 fail (10k)
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:115: TypeError
+_______________________ TestDataRobustness.test_unit_k ________________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_unit_k>
+
+    def test_unit_k(self):
+        """Test 103: Cost (k) Header"""
+        csv_content = b"Date,Vendor,Cost (k)\n2023-01-01,TestVendor,5"
+        # Should be 5 * 1000 = 5000
+        # process_file returns stats, doesn't return data.
+        # But it writes to data/transactions.json.
+        # We can check the return stats for success first.
+        result = IngestionService.process_file(csv_content, "units_k.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:40: TypeError
+============================== warnings summary ===============================
+tests/stress/test_audit.py: 8 warnings
+tests/stress/test_boundaries.py: 6 warnings
+tests/stress/test_consistency.py: 10 warnings
+tests/test_context_aware_engine.py: 6 warnings
+tests/test_state_transitions.py: 16 warnings
+  C:\Users\faaz\AppData\Roaming\Python\Python314\site-packages\pydantic\main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_ambiguous_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_empty_lines_and_duplicates
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_missing_optional_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_missing_required_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_negative_values
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_row_level_mixed_units
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_unit_k - Typ...
+================== 8 failed, 58 passed, 46 warnings in 2.50s ==================

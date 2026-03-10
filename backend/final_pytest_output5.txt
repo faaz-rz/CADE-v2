@@ -1,0 +1,907 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Workfllow\backend
+plugins: anyio-4.12.1
+collecting ... collected 67 items
+
+tests/stress/test_audit.py::TestAudit::test_immutable_history PASSED     [  1%]
+tests/stress/test_audit.py::TestAudit::test_invalid_transition_approve_then_reject PASSED [  2%]
+tests/stress/test_audit.py::TestAudit::test_reject_without_reason PASSED [  4%]
+tests/stress/test_boundaries.py::TestBoundaries::test_frequency_boundaries PASSED [  5%]
+tests/stress/test_boundaries.py::TestBoundaries::test_spend_boundaries PASSED [  7%]
+tests/stress/test_consistency.py::TestLogicalConsistency::test_idempotency PASSED [  8%]
+tests/stress/test_consistency.py::TestLogicalConsistency::test_restart_persistence PASSED [ 10%]
+tests/stress/test_robustness.py::TestDataRobustness::test_ambiguous_columns FAILED [ 11%]
+tests/stress/test_robustness.py::TestDataRobustness::test_empty_lines_and_duplicates FAILED [ 13%]
+tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns FAILED [ 14%]
+tests/stress/test_robustness.py::TestDataRobustness::test_missing_optional_columns FAILED [ 16%]
+tests/stress/test_robustness.py::TestDataRobustness::test_missing_required_columns FAILED [ 17%]
+tests/stress/test_robustness.py::TestDataRobustness::test_negative_values FAILED [ 19%]
+tests/stress/test_robustness.py::TestDataRobustness::test_row_level_mixed_units FAILED [ 20%]
+tests/stress/test_robustness.py::TestDataRobustness::test_unit_k FAILED  [ 22%]
+tests/stress/test_robustness.py::TestDataRobustness::test_unit_millions FAILED [ 23%]
+tests/stress/test_scale.py::TestScale::test_scale_10k_transactions FAILED [ 25%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_category_threshold_and_savings_rate PASSED [ 26%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_default_fallback_and_concentration PASSED [ 28%]
+tests/test_context_aware_engine.py::TestContextAwareEngine::test_high_risk_scoring_actual PASSED [ 29%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_10pct_shock PASSED [ 31%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_20pct_shock PASSED [ 32%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_determinism PASSED [ 34%]
+tests/test_exposure_engine.py::TestCalculateShockImpact::test_zero_shock PASSED [ 35%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_basic_exposure PASSED [ 37%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_determinism PASSED [ 38%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_full_concentration PASSED [ 40%]
+tests/test_exposure_engine.py::TestCalculateExposure::test_zero_share PASSED [ 41%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_basic_shock PASSED [ 43%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_determinism PASSED [ 44%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_risk_escalation PASSED [ 46%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_vendor_not_found PASSED [ 47%]
+tests/test_price_shock.py::TestPriceShockSimulator::test_zero_shock PASSED [ 49%]
+tests/test_state_transitions.py::TestValidTransitions::test_deferred_to_approved PASSED [ 50%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_approved PASSED [ 52%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_deferred PASSED [ 53%]
+tests/test_state_transitions.py::TestValidTransitions::test_pending_to_rejected PASSED [ 55%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_clear PASSED [ 56%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_get_all PASSED [ 58%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_not_found_returns_none PASSED [ 59%]
+tests/test_state_transitions.py::TestDecisionStoreBasics::test_save_and_retrieve PASSED [ 61%]
+tests/test_state_transitions.py::TestDeterministicDecisionIds::test_different_input_different_id PASSED [ 62%]
+tests/test_state_transitions.py::TestDeterministicDecisionIds::test_same_input_same_id PASSED [ 64%]
+tests/test_trend_engine.py::TestRollingAverage::test_basic_3m PASSED     [ 65%]
+tests/test_trend_engine.py::TestRollingAverage::test_longer_series PASSED [ 67%]
+tests/test_trend_engine.py::TestRollingAverage::test_not_enough_data PASSED [ 68%]
+tests/test_trend_engine.py::TestGrowthPct::test_basic_growth PASSED      [ 70%]
+tests/test_trend_engine.py::TestGrowthPct::test_decline PASSED           [ 71%]
+tests/test_trend_engine.py::TestGrowthPct::test_earlier_zero_spend PASSED [ 73%]
+tests/test_trend_engine.py::TestGrowthPct::test_no_growth PASSED         [ 74%]
+tests/test_trend_engine.py::TestGrowthPct::test_not_enough_data PASSED   [ 76%]
+tests/test_trend_engine.py::TestEmergingRiskThreshold::test_threshold_value PASSED [ 77%]
+tests/test_universal_ingestion.py::test_explicit_mapping_config FAILED   [ 79%]
+tests/test_universal_ingestion.py::test_heuristic_auto_detection FAILED  [ 80%]
+tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros FAILED [ 82%]
+tests/test_universal_ingestion.py::test_multiplier_application FAILED    [ 83%]
+tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data FAILED [ 85%]
+tests/test_universal_ingestion.py::test_extended_canonical_fields_integration FAILED [ 86%]
+tests/test_universal_ingestion.py::test_finds_header_at_row5 FAILED      [ 88%]
+tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates FAILED [ 89%]
+tests/test_universal_ingestion.py::test_cleans_all_amount_formats PASSED [ 91%]
+tests/test_universal_ingestion.py::test_handles_all_date_formats FAILED  [ 92%]
+tests/test_universal_ingestion.py::test_normalises_vendor_names PASSED   [ 94%]
+tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns FAILED [ 95%]
+tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct FAILED [ 97%]
+tests/test_universal_ingestion.py::test_result_object_has_all_fields FAILED [ 98%]
+tests/test_universal_ingestion.py::test_idempotency_same_file_same_records FAILED [100%]
+
+================================== FAILURES ===================================
+__________________ TestDataRobustness.test_ambiguous_columns __________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_ambiguous_columns>
+
+    def test_ambiguous_columns(self):
+        """Test 102b: Ambiguous Columns (Amount vs Total Cost)"""
+        # Both 'Amount' and 'Total Cost' have weight 1.0 in heuristics.
+        # System should ideally pick one deterministically or Fail.
+        # Current logic: picks the highest score. If equal?
+        # Let's see behavior.
+        csv_content = b"Date,Vendor,Amount,Total Cost\n2023-01-01,V1,100,200"
+        # It currently picks one.
+        result = IngestionService.ingest_file(csv_content, "ambiguous.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:97: TypeError
+_____________ TestDataRobustness.test_empty_lines_and_duplicates ______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_empty_lines_and_duplicates>
+
+    def test_empty_lines_and_duplicates(self):
+        """Test 104: Empty Rows & Duplicates"""
+        # Pandas read_csv often skips blank lines by default.
+        # Duplicate rows should be ingested as distinct records.
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,100\n\n\n2023-01-01,V1,100"
+        result = IngestionService.ingest_file(csv_content, "duplicates.csv")
+        # Should digest 2 records
+>       self.assertEqual(result["processed_canonical"], 2)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:75: TypeError
+____________________ TestDataRobustness.test_extra_columns ____________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_extra_columns>
+
+    def test_extra_columns(self):
+        """Test 102: Extra Irrelevant Columns"""
+        csv_content = b"Date,Vendor,Amount,Junk1,Junk2\n2023-01-01,TestVendor,100,foo,bar"
+>       result = IngestionService.ingest_file(csv_content, "extra_cols.csv")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\stress\test_robustness.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\services\ingestion.py:185: in ingest_file
+    recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+df_raw =             0           1       2      3      4
+0        Date      Vendor  Amount  Junk1  Junk2
+1  2023-01-01  TestVendor     100    foo    bar
+sheet_name = 'default', filename = 'extra_cols.csv', mapping_config = None
+
+    @staticmethod
+    def _ingest_sheet(df_raw: pd.DataFrame, sheet_name: str, filename: str, mapping_config: dict = None) -> tuple[List[CanonicalFinancialRecord], List[RejectionReason], Dict[str, str], str, float, List[str]]:
+        # 3. find_header_row()
+        header_idx = find_header_row(df_raw)
+    
+        if header_idx >= 0:
+            df = df_raw.iloc[header_idx:].copy()
+            new_cols = []
+            for c in df.iloc[0]:
+                new_cols.append(str(c).strip() if pd.notna(c) else f"Unnamed_{len(new_cols)}")
+            df.columns = new_cols
+            df = df.iloc[1:].reset_index(drop=True)
+        else:
+            # Fallback if somehow negative (though find_header_row returns 0 min)
+            df = df_raw.copy()
+            df.columns = [str(c).strip() if pd.notna(c) else f"Unnamed_{i}" for i, c in enumerate(df.columns)]
+    
+        columns = df.columns.tolist()
+    
+        # 4. map_columns() -> YAML -> fuzzy -> LLM fallback
+        try:
+            loop = asyncio.get_running_loop()
+            import concurrent.futures
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                mapping, method, conf = pool.submit(asyncio.run, map_columns(columns, df.head(10), explicit_config=mapping_config)).result()
+        except RuntimeError:
+            mapping, method, conf = asyncio.run(map_columns(columns, df.head(10), explicit_config=mapping_config))
+    
+        # 5. check confidence >= 0.80, raise IngestError if below
+        if not mapping or conf < 0.8:
+>           raise IngestError(f"Ambiguous Dataset Structure. Confidence score ({conf:.2f}) below threshold (0.80). System refused to guess.")
+E           app.services.ingestion.IngestError: Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.
+
+app\services\ingestion.py:65: IngestError
+______________ TestDataRobustness.test_missing_optional_columns _______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_missing_optional_columns>
+
+    def test_missing_optional_columns(self):
+        """Test 101b: Missing Category (Should Pass)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,TestVendor,100"
+        result = IngestionService.ingest_file(csv_content, "missing_category.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:23: TypeError
+______________ TestDataRobustness.test_missing_required_columns _______________
+
+self = <test_robustness.TestDataRobustness testMethod=test_missing_required_columns>
+
+    def test_missing_required_columns(self):
+        """Test 101: Missing Entity Column"""
+        csv_content = b"Date,Amount\n2023-01-01,100"
+        with self.assertRaises(ValueError) as cm:
+            IngestionService.ingest_file(csv_content, "missing_entity.csv")
+>       self.assertIn("Could not confidently map required fields", str(cm.exception))
+E       AssertionError: 'Could not confidently map required fields' not found in 'Ambiguous Dataset Structure. Confidence score (0.00) below threshold (0.80). System refused to guess.'
+
+tests\stress\test_robustness.py:17: AssertionError
+___________________ TestDataRobustness.test_negative_values ___________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_negative_values>
+
+    def test_negative_values(self):
+        """Test 105: Negative Values (Refunds)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,-50.00"
+        result = IngestionService.ingest_file(csv_content, "negative.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:81: TypeError
+________________ TestDataRobustness.test_row_level_mixed_units ________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_row_level_mixed_units>
+
+    def test_row_level_mixed_units(self):
+        """Test 103c: Row-level Units (10k, 5000)"""
+        csv_content = b"Date,Vendor,Amount\n2023-01-01,V1,10k\n2023-01-02,V1,5000"
+        # The '10k' will fail float() conversion.
+        # IngestionService catches ValueError/TypeError and ignores the row?
+        # Or keeps original?
+        # Code:
+        # try: val = float(val) * multiplier ... except: pass
+        # But this is only if a multiplier exists. Here NONE exists.
+        # Later: CanonicalFinancialRecord(**record_data).
+        # This Pydantic model expects float for amount.
+        # So '10k' (string) passed to float field -> Validation Error.
+        # IngestionService catches Exception -> "Skipping invalid row".
+        # So '10k' row is skipped. '5000' row is processed.
+        result = IngestionService.ingest_file(csv_content, "row_mixed.csv")
+        # Should have 1 success (5000), 1 fail (10k)
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:115: TypeError
+_______________________ TestDataRobustness.test_unit_k ________________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_unit_k>
+
+    def test_unit_k(self):
+        """Test 103: Cost (k) Header"""
+        csv_content = b"Date,Vendor,Cost (k)\n2023-01-01,TestVendor,5"
+        # Should be 5 * 1000 = 5000
+        # process_file returns stats, doesn't return data.
+        # But it writes to data/transactions.json.
+        # We can check the return stats for success first.
+        result = IngestionService.ingest_file(csv_content, "units_k.csv")
+>       self.assertEqual(result["processed_canonical"], 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_robustness.py:40: TypeError
+____________________ TestDataRobustness.test_unit_millions ____________________
+
+self = <test_robustness.TestDataRobustness testMethod=test_unit_millions>
+
+    def test_unit_millions(self):
+        """Test 103b: Cost (M) Header"""
+        csv_content = b"Date,Vendor,Total Cost (M)\n2023-01-01,TestVendor,1.5"
+        IngestionService.ingest_file(csv_content, "units_m.csv")
+    
+        import json
+        with open("data/transactions.json", "r") as f:
+            data = json.load(f)
+>           self.assertEqual(data[0]["amount"], 1500000.0)
+E           AssertionError: 1.5 != 1500000.0
+
+tests\stress\test_robustness.py:66: AssertionError
+____________________ TestScale.test_scale_10k_transactions ____________________
+
+self = <test_scale.TestScale testMethod=test_scale_10k_transactions>
+
+    def test_scale_10k_transactions(self):
+        """Test 113: 10,000 Transactions Performance"""
+    
+        # Generate 10k lines
+        print("Generating 10,000 records...")
+        header = "Date,Vendor,Amount,Category"
+        lines = [header]
+    
+        vendors = [f"Vendor_{i}" for i in range(100)] # 100 Vendors
+    
+        for i in range(10000):
+            v = random.choice(vendors)
+            amount = random.uniform(10.0, 5000.0)
+            date = "2023-01-01"
+            lines.append(f"{date},{v},{amount:.2f},General")
+    
+        csv_content = "\n".join(lines).encode('utf-8')
+    
+        print(f"Ingesting {len(lines)} lines...")
+        start_time = time.time()
+    
+        # Ingestion
+        try:
+            result = IngestionService.ingest_file(csv_content, "scale_10k.csv")
+            ingest_time = time.time() - start_time
+            print(f"Ingestion Time: {ingest_time:.4f}s")
+>           self.assertEqual(result["processed_canonical"], 10000)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: 'IngestResult' object is not subscriptable
+
+tests\stress\test_scale.py:42: TypeError
+
+During handling of the above exception, another exception occurred:
+
+self = <test_scale.TestScale testMethod=test_scale_10k_transactions>
+
+    def test_scale_10k_transactions(self):
+        """Test 113: 10,000 Transactions Performance"""
+    
+        # Generate 10k lines
+        print("Generating 10,000 records...")
+        header = "Date,Vendor,Amount,Category"
+        lines = [header]
+    
+        vendors = [f"Vendor_{i}" for i in range(100)] # 100 Vendors
+    
+        for i in range(10000):
+            v = random.choice(vendors)
+            amount = random.uniform(10.0, 5000.0)
+            date = "2023-01-01"
+            lines.append(f"{date},{v},{amount:.2f},General")
+    
+        csv_content = "\n".join(lines).encode('utf-8')
+    
+        print(f"Ingesting {len(lines)} lines...")
+        start_time = time.time()
+    
+        # Ingestion
+        try:
+            result = IngestionService.ingest_file(csv_content, "scale_10k.csv")
+            ingest_time = time.time() - start_time
+            print(f"Ingestion Time: {ingest_time:.4f}s")
+            self.assertEqual(result["processed_canonical"], 10000)
+    
+            # Analysis
+            start_analysis = time.time()
+            decisions = DecisionEngine.analyze_uploaded_data()
+            analysis_time = time.time() - start_analysis
+            print(f"Decision Generation Time: {analysis_time:.4f}s")
+            print(f"Decisions Generated: {len(decisions)}")
+    
+            # Assert Performance (Arbitrary, but reasonable)
+            self.assertLess(ingest_time, 5.0, "Ingestion too slow (>5s)")
+            self.assertLess(analysis_time, 2.0, "Analysis too slow (>2s)")
+    
+        except Exception as e:
+>           self.fail(f"Scale test failed with error: {e}")
+E           AssertionError: Scale test failed with error: 'IngestResult' object is not subscriptable
+
+tests\stress\test_scale.py:56: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Generating 10,000 records...
+Ingesting 10001 lines...
+Ingestion Time: 1.2627s
+________________________ test_explicit_mapping_config _________________________
+
+    def test_explicit_mapping_config():
+>       csv_bytes = get_fixture_bytes("test.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+________________________ test_heuristic_auto_detection ________________________
+
+    def test_heuristic_auto_detection():
+>       csv_bytes = get_fixture_bytes("test_fuzzy.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_fuzzy.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_fuzzy.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+___________________ test_amount_cleaner_and_skipping_zeros ____________________
+
+    def test_amount_cleaner_and_skipping_zeros():
+>       csv_bytes = get_fixture_bytes("test_cleaner.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_cleaner.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_cleaner.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+_________________________ test_multiplier_application _________________________
+
+    def test_multiplier_application():
+>       csv_bytes = get_fixture_bytes("test_multiplier.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_multiplier.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_multiplier.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+__________________ test_heuristic_refusal_on_ambiguous_data ___________________
+
+    def test_heuristic_refusal_on_ambiguous_data():
+>       csv_bytes = get_fixture_bytes("test_bad.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_bad.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_bad.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+_________________ test_extended_canonical_fields_integration __________________
+
+    def test_extended_canonical_fields_integration():
+>       csv_bytes = get_fixture_bytes("test_extended.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_extended.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_extended.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+__________________________ test_finds_header_at_row5 __________________________
+
+    def test_finds_header_at_row5():
+        csv_bytes = get_fixture_bytes("headers_row5.xlsx")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.ingest_file(csv_bytes, "headers_row5.xlsx")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+file_content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00\x10\xaeh\\F\xc7MH\x97\x00\x00\x00\xcd\x00\x00\x00\x10\x00\x00\x00docProps/app.xml...x00\x80\x017\x10\x00\x00[Content_Types].xmlPK\x05\x06\x00\x00\x00\x00\t\x00\t\x00>\x02\x00\x00\x83\x11\x00\x00\x00\x00'
+filename = 'headers_row5.xlsx', mapping_config = None
+
+    @staticmethod
+    def ingest_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+    
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+    
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+    
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+    
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+                    raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+            else:
+                enc = file_meta.get("encoding", "utf-8")
+                df_raw = pd.read_csv(temp_path, encoding=enc, header=None)
+                recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                all_records.extend(recs)
+                all_rejections.extend(rejs)
+                all_warnings.extend(warns)
+                final_mapping = col_map
+                final_method = method
+                final_conf = conf
+                sheets_processed.append("default")
+    
+            # 7. deduplicate by (vendor_name, amount, transaction_date)
+            dedup_records = []
+            seen = set()
+            for r in all_records:
+                key = (r.entity, r.amount, r.date)
+                if key not in seen:
+                    seen.add(key)
+                    dedup_records.append(r)
+    
+            duplicates_removed = len(all_records) - len(dedup_records)
+            if duplicates_removed > 0:
+                all_warnings.append(f"Removed {duplicates_removed} duplicate row(s) across sheets.")
+    
+            # 8. persist to database (existing logic unchanged)
+            data_dir = "data"
+            os.makedirs(data_dir, exist_ok=True)
+            output_data = [r.model_dump(mode='json') for r in dedup_records]
+    
+            with open(os.path.join(data_dir, "transactions.json"), "w") as f:
+                json.dump(output_data, f, indent=2)
+    
+            # 9. return IngestResult
+            res = IngestResult(
+                status="success",
+                rows_total=file_meta.get("estimated_row_count", 0) if file_meta else 0,
+                rows_accepted=len(dedup_records),
+                rows_rejected=len(all_rejections),
+                sheets_processed=sheets_processed,
+                mapping_method=final_method,
+                confidence_score=final_conf,
+                column_mapping=final_mapping,
+                rejections_summary=all_rejections[:10],
+                decisions_generated=len(dedup_records),
+                warnings=all_warnings,
+                records=dedup_records
+            )
+            return res
+    
+        finally:
+>           os.remove(temp_path)
+E           PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\faaz\\AppData\\Local\\Temp\\tmpqcdyggot_headers_row5.xlsx'
+
+app\services\ingestion.py:233: PermissionError
+__________________ test_ingests_multi_sheet_and_deduplicates __________________
+
+    def test_ingests_multi_sheet_and_deduplicates():
+        csv_bytes = get_fixture_bytes("multi_sheet.xlsx")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.ingest_file(csv_bytes, "multi_sheet.xlsx")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+file_content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00\x10\xaeh\\F\xc7MH\x97\x00\x00\x00\xcd\x00\x00\x00\x10\x00\x00\x00docProps/app.xml...x80\x01%\x13\x00\x00[Content_Types].xmlPK\x05\x06\x00\x00\x00\x00\x0b\x00\x0b\x00\xca\x02\x00\x00y\x14\x00\x00\x00\x00'
+filename = 'multi_sheet.xlsx', mapping_config = None
+
+    @staticmethod
+    def ingest_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+    
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+    
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+    
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+    
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+                    raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+            else:
+                enc = file_meta.get("encoding", "utf-8")
+                df_raw = pd.read_csv(temp_path, encoding=enc, header=None)
+                recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                all_records.extend(recs)
+                all_rejections.extend(rejs)
+                all_warnings.extend(warns)
+                final_mapping = col_map
+                final_method = method
+                final_conf = conf
+                sheets_processed.append("default")
+    
+            # 7. deduplicate by (vendor_name, amount, transaction_date)
+            dedup_records = []
+            seen = set()
+            for r in all_records:
+                key = (r.entity, r.amount, r.date)
+                if key not in seen:
+                    seen.add(key)
+                    dedup_records.append(r)
+    
+            duplicates_removed = len(all_records) - len(dedup_records)
+            if duplicates_removed > 0:
+                all_warnings.append(f"Removed {duplicates_removed} duplicate row(s) across sheets.")
+    
+            # 8. persist to database (existing logic unchanged)
+            data_dir = "data"
+            os.makedirs(data_dir, exist_ok=True)
+            output_data = [r.model_dump(mode='json') for r in dedup_records]
+    
+            with open(os.path.join(data_dir, "transactions.json"), "w") as f:
+                json.dump(output_data, f, indent=2)
+    
+            # 9. return IngestResult
+            res = IngestResult(
+                status="success",
+                rows_total=file_meta.get("estimated_row_count", 0) if file_meta else 0,
+                rows_accepted=len(dedup_records),
+                rows_rejected=len(all_rejections),
+                sheets_processed=sheets_processed,
+                mapping_method=final_method,
+                confidence_score=final_conf,
+                column_mapping=final_mapping,
+                rejections_summary=all_rejections[:10],
+                decisions_generated=len(dedup_records),
+                warnings=all_warnings,
+                records=dedup_records
+            )
+            return res
+    
+        finally:
+>           os.remove(temp_path)
+E           PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\faaz\\AppData\\Local\\Temp\\tmp9cnrpg7g_multi_sheet.xlsx'
+
+app\services\ingestion.py:233: PermissionError
+________________________ test_handles_all_date_formats ________________________
+
+    def test_handles_all_date_formats():
+        csv_bytes = get_fixture_bytes("date_chaos.csv")
+        with patch("json.dump"), patch("os.makedirs"):
+            res = IngestionService.ingest_file(csv_bytes, "date_chaos.csv")
+>           assert res.rows_accepted == 4
+E           AssertionError: assert 5 == 4
+E            +  where 5 = IngestResult(status='success', rows_total=6, rows_accepted=5, rows_rejected=0, sheets_processed=['default'], mapping_method='fuzzy', confidence_score=1.0, column_mapping={'entity': 'Entity', 'amount': 'Amount', 'date': 'When'}, rejections_summary=[], decisions_generated=5, warnings=['No currency column found ù defaulted to USD'], records=[CanonicalFinancialRecord(date=datetime.date(2025, 1, 15), amount=100.0, category='Uncategorized', entity='A', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2026, 1, 25), amount=100.0, category='Uncategorized', entity='B', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2023, 1, 15), amount=100.0, category='Uncategorized', entity='C', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2025, 1, 9), amount=100.0, category='Uncategorized', entity='D', description=None, source_file='date_chaos.csv'), CanonicalFinancialRecord(date=datetime.date(2025, 1, 15), amount=100.0, category='Uncategorized', entity='E', description=None, source_file='date_chaos.csv')]).rows_accepted
+
+tests\test_universal_ingestion.py:80: AssertionError
+___________________ test_llm_fallback_maps_unusual_columns ____________________
+
+mock_llm = <AsyncMock name='map_columns_with_llm' id='1667703375248'>
+
+    @patch("app.core.llm_column_mapper.map_columns_with_llm", new_callable=AsyncMock)
+    def test_llm_fallback_maps_unusual_columns(mock_llm):
+        mock_llm.return_value = {
+            "Who We Paid": "entity",
+            "How Much": "amount",
+            "When": "date",
+            "Which Team": "category"
+        }
+        csv_bytes = get_fixture_bytes("no_standard_headers.xlsx")
+        with patch("json.dump"), patch("os.makedirs"):
+>           res = IngestionService.ingest_file(csv_bytes, "no_standard_headers.xlsx")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+file_content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00\x10\xaeh\\F\xc7MH\x97\x00\x00\x00\xcd\x00\x00\x00\x10\x00\x00\x00docProps/app.xml...\x80\x01\x99\x0f\x00\x00[Content_Types].xmlPK\x05\x06\x00\x00\x00\x00\t\x00\t\x00>\x02\x00\x00\xe5\x10\x00\x00\x00\x00'
+filename = 'no_standard_headers.xlsx', mapping_config = None
+
+    @staticmethod
+    def ingest_file(file_content: bytes, filename: str, mapping_config: dict = None) -> IngestResult:
+        """LAYER 5 \u2014 MULTI-SHEET HANDLER & MAIN INGESTION REWRITE"""
+        import tempfile
+        import os
+    
+        fd, temp_path = tempfile.mkstemp(suffix=f"_{filename}")
+        with os.fdopen(fd, 'wb') as f:
+            f.write(file_content)
+    
+        try:
+            # 1. detect_file_type()
+            file_meta = detect_file_type(temp_path)
+    
+            all_records = []
+            all_rejections = []
+            all_warnings = []
+            final_mapping = {}
+            final_method = "none"
+            final_conf = 0.0
+            sheets_processed = []
+    
+            # 2. if multi-sheet Excel -> ingest_multi_sheet() natively embedded here
+            if file_meta["format"] in ['xlsx', 'xls', 'ods']:
+                sheets_to_process = file_meta["recommended_sheets"] or file_meta["sheet_names"][:1]
+                xls = pd.ExcelFile(temp_path)
+                try:
+                    for sheet in sheets_to_process:
+                        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None)
+                        try:
+                            recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, sheet, filename, mapping_config=mapping_config)
+                            all_records.extend(recs)
+                            all_rejections.extend(rejs)
+                            all_warnings.extend(warns)
+                            final_mapping = col_map
+                            final_method = method
+                            final_conf = conf
+                            sheets_processed.append(sheet)
+                        except IngestError as e:
+                            all_warnings.append(f"Skipped sheet '{sheet}': {str(e)}")
+                finally:
+                    xls.close()
+                if not sheets_processed:
+                    raise IngestError("All recommended sheets failed to parse or fell below confidence threshholds.")
+            else:
+                enc = file_meta.get("encoding", "utf-8")
+                df_raw = pd.read_csv(temp_path, encoding=enc, header=None)
+                recs, rejs, col_map, method, conf, warns = IngestionService._ingest_sheet(df_raw, "default", filename, mapping_config=mapping_config)
+                all_records.extend(recs)
+                all_rejections.extend(rejs)
+                all_warnings.extend(warns)
+                final_mapping = col_map
+                final_method = method
+                final_conf = conf
+                sheets_processed.append("default")
+    
+            # 7. deduplicate by (vendor_name, amount, transaction_date)
+            dedup_records = []
+            seen = set()
+            for r in all_records:
+                key = (r.entity, r.amount, r.date)
+                if key not in seen:
+                    seen.add(key)
+                    dedup_records.append(r)
+    
+            duplicates_removed = len(all_records) - len(dedup_records)
+            if duplicates_removed > 0:
+                all_warnings.append(f"Removed {duplicates_removed} duplicate row(s) across sheets.")
+    
+            # 8. persist to database (existing logic unchanged)
+            data_dir = "data"
+            os.makedirs(data_dir, exist_ok=True)
+            output_data = [r.model_dump(mode='json') for r in dedup_records]
+    
+            with open(os.path.join(data_dir, "transactions.json"), "w") as f:
+                json.dump(output_data, f, indent=2)
+    
+            # 9. return IngestResult
+            res = IngestResult(
+                status="success",
+                rows_total=file_meta.get("estimated_row_count", 0) if file_meta else 0,
+                rows_accepted=len(dedup_records),
+                rows_rejected=len(all_rejections),
+                sheets_processed=sheets_processed,
+                mapping_method=final_method,
+                confidence_score=final_conf,
+                column_mapping=final_mapping,
+                rejections_summary=all_rejections[:10],
+                decisions_generated=len(dedup_records),
+                warnings=all_warnings,
+                records=dedup_records
+            )
+            return res
+    
+        finally:
+>           os.remove(temp_path)
+E           PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\faaz\\AppData\\Local\\Temp\\tmp174xm1ls_no_standard_headers.xlsx'
+
+app\services\ingestion.py:233: PermissionError
+__________________ test_confidence_gate_rejects_below_80pct ___________________
+
+    def test_confidence_gate_rejects_below_80pct():
+>       csv_bytes = get_fixture_bytes("gate.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'gate.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\gate.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+______________________ test_result_object_has_all_fields ______________________
+
+    def test_result_object_has_all_fields():
+>       csv_bytes = get_fixture_bytes("test_fields.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test_fields.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test_fields.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+___________________ test_idempotency_same_file_same_records ___________________
+
+    def test_idempotency_same_file_same_records():
+>       csv_bytes = get_fixture_bytes("test1.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_universal_ingestion.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'test1.csv'
+
+    def get_fixture_bytes(filename: str) -> bytes:
+        filepath = os.path.join(os.path.dirname(__file__), "fixtures", filename)
+>       with open(filepath, "rb") as f:
+             ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Workfllow\\backend\\tests\\fixtures\\test1.csv'
+
+tests\test_universal_ingestion.py:9: FileNotFoundError
+============================== warnings summary ===============================
+tests/stress/test_audit.py: 8 warnings
+tests/stress/test_boundaries.py: 6 warnings
+tests/stress/test_consistency.py: 10 warnings
+tests/test_context_aware_engine.py: 6 warnings
+tests/test_state_transitions.py: 16 warnings
+  C:\Users\faaz\AppData\Roaming\Python\Python314\site-packages\pydantic\main.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_ambiguous_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_empty_lines_and_duplicates
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_extra_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_missing_optional_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_missing_required_columns
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_negative_values
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_row_level_mixed_units
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_unit_k - Typ...
+FAILED tests/stress/test_robustness.py::TestDataRobustness::test_unit_millions
+FAILED tests/stress/test_scale.py::TestScale::test_scale_10k_transactions - A...
+FAILED tests/test_universal_ingestion.py::test_explicit_mapping_config - File...
+FAILED tests/test_universal_ingestion.py::test_heuristic_auto_detection - Fil...
+FAILED tests/test_universal_ingestion.py::test_amount_cleaner_and_skipping_zeros
+FAILED tests/test_universal_ingestion.py::test_multiplier_application - FileN...
+FAILED tests/test_universal_ingestion.py::test_heuristic_refusal_on_ambiguous_data
+FAILED tests/test_universal_ingestion.py::test_extended_canonical_fields_integration
+FAILED tests/test_universal_ingestion.py::test_finds_header_at_row5 - Permiss...
+FAILED tests/test_universal_ingestion.py::test_ingests_multi_sheet_and_deduplicates
+FAILED tests/test_universal_ingestion.py::test_handles_all_date_formats - Ass...
+FAILED tests/test_universal_ingestion.py::test_llm_fallback_maps_unusual_columns
+FAILED tests/test_universal_ingestion.py::test_confidence_gate_rejects_below_80pct
+FAILED tests/test_universal_ingestion.py::test_result_object_has_all_fields
+FAILED tests/test_universal_ingestion.py::test_idempotency_same_file_same_records
+================= 23 failed, 44 passed, 46 warnings in 3.73s ==================

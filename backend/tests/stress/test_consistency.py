@@ -21,7 +21,7 @@ class TestLogicalConsistency(unittest.TestCase):
         for i in range(5):
             print(f"Run {i+1}...")
             # 1. Ingest
-            IngestionService.process_file(csv_content, "consistency.csv")
+            IngestionService.ingest_file(csv_content, "consistency.csv")
             
             # 2. Analyze (This also populates the store)
             # Make sure to clear store first? 

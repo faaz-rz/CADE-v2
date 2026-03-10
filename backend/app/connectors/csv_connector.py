@@ -26,5 +26,5 @@ class CsvConnector(BaseConnector):
         Stub: raises NotImplementedError until wired to ingestion pipeline.
         """
         raise NotImplementedError(
-            "CsvConnector.fetch_records() — use IngestionService.process_file() for now"
+            "CsvConnector.fetch_records() — use IngestionService.ingest_file() for now"
         )

@@ -27,7 +27,7 @@ Staples,100.00,2023-01-01,Office
         # `default_mapping.yaml` maps "Supplier", "TotalCost".
         # So it should be detected.
         
-        result = IngestionService.process_file(csv_content, filename)
+        result = IngestionService.ingest_file(csv_content, filename)
         print("Ingestion Result:", result)
         
         # Verify Output
