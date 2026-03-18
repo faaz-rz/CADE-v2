@@ -1,10 +1,49 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api';
-const BASE_URL = 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : 'http://localhost:8000/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export const api = axios.create({
     baseURL: API_URL,
+});
+
+// ── Auth Token Management ──
+let _getAccessToken: (() => Promise<string>) | null = null;
+
+/**
+ * Called once from App.tsx to register the Auth0 token getter.
+ * The interceptor will call this before every request.
+ */
+export const setAuthTokenGetter = (getter: () => Promise<string>) => {
+    _getAccessToken = getter;
+};
+
+// Attach Bearer token to every request via interceptor
+api.interceptors.request.use(async (config) => {
+    if (_getAccessToken) {
+        try {
+            const token = await _getAccessToken();
+            config.headers.Authorization = `Bearer ${token}`;
+        } catch (e) {
+            // Token fetch failed — request goes without auth
+            console.warn('Failed to get access token', e);
+        }
+    }
+    return config;
+});
+
+// Also create an authenticated axios instance for non-api calls (simulate, export)
+const authenticatedAxios = axios.create();
+authenticatedAxios.interceptors.request.use(async (config) => {
+    if (_getAccessToken) {
+        try {
+            const token = await _getAccessToken();
+            config.headers.Authorization = `Bearer ${token}`;
+        } catch (e) {
+            console.warn('Failed to get access token', e);
+        }
+    }
+    return config;
 });
 
 export interface Decision {
@@ -160,21 +199,21 @@ export const ExposureService = {
 
 export const SimulationService = {
     runPriceShock: async (vendorId: string, shockPercentage: number, ebitdaMargin: number = 0.25) => {
-        const response = await axios.post<PriceShockResponse>(
+        const response = await authenticatedAxios.post<PriceShockResponse>(
             `${BASE_URL}/simulate/price_shock`,
             { vendor_id: vendorId, shock_percentage: shockPercentage, ebitda_margin: ebitdaMargin }
         );
         return response.data;
     },
     runPortfolioShock: async (request: PortfolioShockRequest) => {
-        const response = await axios.post<PortfolioShockResponse>(
+        const response = await authenticatedAxios.post<PortfolioShockResponse>(
             `${BASE_URL}/simulate/portfolio_shock`,
             request
         );
         return response.data;
     },
     getScenarios: async () => {
-        const response = await axios.get<ScenarioDefinition[]>(
+        const response = await authenticatedAxios.get<ScenarioDefinition[]>(
             `${BASE_URL}/simulate/scenarios`
         );
         return response.data;
@@ -183,7 +222,7 @@ export const SimulationService = {
 
 export const ExportService = {
     downloadExecutiveReport: async () => {
-        const response = await axios.get(`${BASE_URL}/export/executive_report`, {
+        const response = await authenticatedAxios.get(`${BASE_URL}/export/executive_report`, {
             responseType: 'blob',
         });
         const url = window.URL.createObjectURL(new Blob([response.data]));

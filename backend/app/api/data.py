@@ -1,11 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from app.services.decision_store import DecisionStore
+from app.core.auth import verify_token, require_role
 from pathlib import Path
 
 router = APIRouter()
 
 @router.delete("/api/data/clear")
-async def clear_all_data():
+async def clear_all_data(payload: dict = Depends(require_role("ADMIN"))):
     DecisionStore.clear()
     transactions = Path("data/transactions.json")
     if transactions.exists():
@@ -21,7 +22,7 @@ async def clear_all_data():
     }
 
 @router.get("/api/data/status")
-async def data_status():
+async def data_status(payload: dict = Depends(verify_token)):
     decisions = DecisionStore.get_all_decisions()
     transactions = Path("data/transactions.json")
     count = 0

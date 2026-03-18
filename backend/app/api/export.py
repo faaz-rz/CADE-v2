@@ -1,11 +1,12 @@
 import logging
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Depends
 from fastapi.responses import StreamingResponse, JSONResponse
 
 from app.exports.excel_exporter import generate_executive_report
 from app.services.decision_store import DecisionStore
 from app.services.exposure_engine import calculate_all_exposures, EBITDA_MARGIN
 from app.services.ai_narrator import generate_board_narrative
+from app.core.auth import require_role
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +16,7 @@ router = APIRouter()
 @router.get("/executive_report")
 async def export_executive_report(
     include_ai: bool = Query(True, description="Include AI-generated narrative"),
+    payload: dict = Depends(require_role("ANALYST", "ADMIN")),
 ):
     """
     Generate and download the Executive Board Report as an Excel file.

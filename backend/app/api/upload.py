@@ -1,12 +1,16 @@
 import traceback
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from app.services.ingestion import IngestionService
+from app.core.auth import require_role
 
 router = APIRouter()
 
 @router.post("")
-async def upload_file(file: UploadFile = File(...)):
+async def upload_file(
+    file: UploadFile = File(...),
+    payload: dict = Depends(require_role("ANALYST", "ADMIN")),
+):
     if not file.filename:
         raise HTTPException(status_code=400, detail="No filename provided")
         

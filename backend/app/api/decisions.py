@@ -1,14 +1,15 @@
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Depends
 from typing import List, Optional
 from pydantic import BaseModel
 from app.models.decision import Decision, DecisionStatus, DecisionEvent, DecisionEventType
 from app.services.decision_engine import DecisionEngine
 from app.services.decision_store import DecisionStore
+from app.core.auth import verify_token
 
 router = APIRouter()
 
 @router.get("", response_model=List[Decision])
-def get_decisions():
+def get_decisions(payload: dict = Depends(verify_token)):
     """
     Returns the current list of decisions from the System of Record.
     """
@@ -25,7 +26,7 @@ def get_decisions():
     return decisions
 
 @router.get("/{decision_id}", response_model=Decision)
-def get_decision(decision_id: str):
+def get_decision(decision_id: str, payload: dict = Depends(verify_token)):
     decision = DecisionStore.get_decision(decision_id)
     if not decision:
         raise HTTPException(status_code=404, detail="Decision not found")
@@ -39,7 +40,7 @@ class ReviewNote(BaseModel):
     note: Optional[str] = None
 
 @router.post("/{decision_id}/approve", response_model=Decision)
-def approve_decision(decision_id: str, review: ReviewNote):
+def approve_decision(decision_id: str, review: ReviewNote, payload: dict = Depends(verify_token)):
     decision = DecisionStore.get_decision(decision_id)
     if not decision:
         raise HTTPException(status_code=404, detail="Decision not found")
@@ -66,7 +67,7 @@ def approve_decision(decision_id: str, review: ReviewNote):
     return decision
 
 @router.post("/{decision_id}/reject", response_model=Decision)
-def reject_decision(decision_id: str, review: ReviewNote):
+def reject_decision(decision_id: str, review: ReviewNote, payload: dict = Depends(verify_token)):
     decision = DecisionStore.get_decision(decision_id)
     if not decision:
         raise HTTPException(status_code=404, detail="Decision not found")
@@ -94,7 +95,7 @@ def reject_decision(decision_id: str, review: ReviewNote):
     return decision
 
 @router.post("/{decision_id}/defer", response_model=Decision)
-def defer_decision(decision_id: str, review: ReviewNote):
+def defer_decision(decision_id: str, review: ReviewNote, payload: dict = Depends(verify_token)):
     decision = DecisionStore.get_decision(decision_id)
     if not decision:
         raise HTTPException(status_code=404, detail="Decision not found")
