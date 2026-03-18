@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FinancialExposure, ExposureService, ExportService } from '../services/api';
-import { Shield, Download, AlertTriangle, TrendingUp, BarChart3 } from 'lucide-react';
+import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const ExposureDashboard: React.FC = () => {
     const [exposures, setExposures] = useState<FinancialExposure[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [exportLoading, setExportLoading] = useState(false);
+    const [exportError, setExportError] = useState<string | null>(null);
 
     useEffect(() => {
         const loadExposures = async () => {
@@ -23,6 +25,20 @@ export const ExposureDashboard: React.FC = () => {
         };
         loadExposures();
     }, []);
+
+    const handleExport = async () => {
+        setExportLoading(true);
+        setExportError(null);
+        try {
+            await ExportService.downloadExecutiveReport();
+        } catch (e) {
+            console.error('Export failed', e);
+            setExportError('Export failed — please try again');
+            setTimeout(() => setExportError(null), 5000);
+        } finally {
+            setExportLoading(false);
+        }
+    };
 
     const fmt = (val: number) =>
         new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
@@ -43,6 +59,21 @@ export const ExposureDashboard: React.FC = () => {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">
+            {/* Export Error Banner */}
+            {exportError && (
+                <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded-md flex justify-between items-center shadow-sm">
+                    <div className="flex items-center">
+                        <AlertTriangle className="h-5 w-5 text-red-400 mr-3" />
+                        <span className="text-sm font-medium text-red-800">{exportError}</span>
+                    </div>
+                    <button
+                        onClick={() => setExportError(null)}
+                        className="text-red-500 hover:text-red-600 focus:outline-none"
+                    >
+                        <X className="h-4 w-4" />
+                    </button>
+                </div>
+            )}
             {/* Header */}
             <header className="mb-8 flex justify-between items-center">
                 <div>
@@ -54,11 +85,20 @@ export const ExposureDashboard: React.FC = () => {
                 </div>
                 <div className="flex gap-3">
                     <button
-                        onClick={() => ExportService.downloadExecutiveReport()}
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors text-sm font-medium shadow-sm"
+                        onClick={handleExport}
+                        disabled={exportLoading}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium shadow-sm ${
+                            exportLoading
+                                ? 'bg-emerald-400 text-white cursor-not-allowed'
+                                : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                        }`}
                     >
-                        <Download className="w-4 h-4" />
-                        Export Report
+                        {exportLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                            <Download className="w-4 h-4" />
+                        )}
+                        {exportLoading ? 'Generating...' : 'Export Board Report'}
                     </button>
                     <Link
                         to="/"
@@ -68,6 +108,7 @@ export const ExposureDashboard: React.FC = () => {
                     </Link>
                 </div>
             </header>
+
 
             {/* Error State */}
             {error && (

@@ -4,7 +4,7 @@ import { DecisionCard } from '../components/DecisionCard';
 import { DecisionDetail } from '../components/DecisionDetail';
 import { PortfolioSummary } from '../components/PortfolioSummary';
 import { UploadDataButton } from '../components/UploadDataButton';
-import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X } from 'lucide-react';
+import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sampleData } from '../data/sampleData';
 
@@ -15,6 +15,8 @@ export const DecisionsPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'pending' | 'history'>('pending');
     const [showDemoBanner, setShowDemoBanner] = useState(false);
+    const [exportLoading, setExportLoading] = useState(false);
+    const [exportError, setExportError] = useState<string | null>(null);
 
     const selectedDecision = decisions.find(d => d.id === selectedId) || null;
 
@@ -47,6 +49,20 @@ export const DecisionsPage: React.FC = () => {
         }
     };
 
+    const handleExport = async () => {
+        setExportLoading(true);
+        setExportError(null);
+        try {
+            await ExportService.downloadExecutiveReport();
+        } catch (e) {
+            console.error('Export failed', e);
+            setExportError('Export failed — please try again');
+            setTimeout(() => setExportError(null), 5000);
+        } finally {
+            setExportLoading(false);
+        }
+    };
+
     useEffect(() => {
         const storedVendor = localStorage.getItem('selectedVendor');
         if (storedVendor && /^Vendor_\d+/.test(storedVendor)) {
@@ -57,6 +73,21 @@ export const DecisionsPage: React.FC = () => {
 
     return (
         <div className="max-w-5xl mx-auto px-4 py-8">
+            {/* Export Error Banner */}
+            {exportError && (
+                <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded-md flex justify-between items-center shadow-sm">
+                    <div className="flex items-center">
+                        <AlertTriangle className="h-5 w-5 text-red-400 mr-3" />
+                        <span className="text-sm font-medium text-red-800">{exportError}</span>
+                    </div>
+                    <button
+                        onClick={() => setExportError(null)}
+                        className="text-red-500 hover:text-red-600 focus:outline-none"
+                    >
+                        <X className="h-4 w-4" />
+                    </button>
+                </div>
+            )}
             {showDemoBanner && (
                 <div className="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md flex justify-between items-start shadow-sm">
                     <div className="flex items-start">
@@ -90,11 +121,20 @@ export const DecisionsPage: React.FC = () => {
                         Exposure
                     </Link>
                     <button
-                        onClick={() => ExportService.downloadExecutiveReport()}
-                        className="flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg hover:bg-emerald-100 transition-colors text-sm font-medium"
+                        onClick={handleExport}
+                        disabled={exportLoading}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-sm font-medium ${
+                            exportLoading
+                                ? 'bg-emerald-100 text-emerald-400 border border-emerald-200 cursor-not-allowed'
+                                : 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
+                        }`}
                     >
-                        <Download className="w-4 h-4" />
-                        Export
+                        {exportLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                            <Download className="w-4 h-4" />
+                        )}
+                        {exportLoading ? 'Generating...' : 'Export Board Report'}
                     </button>
                     <UploadDataButton onUploadComplete={async () => {
                         setDecisions([]);

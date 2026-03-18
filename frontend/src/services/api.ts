@@ -182,8 +182,17 @@ export const SimulationService = {
 };
 
 export const ExportService = {
-    downloadExecutiveReport: () => {
-        // Direct browser download
-        window.open(`${BASE_URL}/export/executive_report`, '_blank');
+    downloadExecutiveReport: async () => {
+        const response = await axios.get(`${BASE_URL}/export/executive_report`, {
+            responseType: 'blob',
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'executive_report.xlsx');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
     },
 };
