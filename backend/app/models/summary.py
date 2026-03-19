@@ -6,7 +6,6 @@ class DecisionSummary(BaseModel):
     Executive Summary of the current decision portfolio.
     """
     total_savings: float
-    total_savings: float
     total_decisions: int
     pending_count: int
     pending_high_impact: int
