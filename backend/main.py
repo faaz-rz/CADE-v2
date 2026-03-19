@@ -24,7 +24,8 @@ app = FastAPI(
 # CORS Configuration (Allow Frontend)
 origins = [
     "http://localhost:3000",
-    "http://localhost:5173", # Vite default
+    "http://localhost:5173",  # Vite default
+    "https://cade-chi.vercel.app",  # Production (Vercel)
 ]
 
 app.add_middleware(
