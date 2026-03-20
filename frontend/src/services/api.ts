@@ -235,3 +235,33 @@ export const ExportService = {
         window.URL.revokeObjectURL(url);
     },
 };
+
+export interface TrendAlert {
+    vendor: string;
+    alert_type: 'RAPID_GROWTH' | 'EMERGING_RISK' | 'DECLINING_SPEND';
+    severity: 'HIGH' | 'MEDIUM' | 'LOW';
+    title: string;
+    message: string;
+    growth_rate: number;
+    avg_spend_3m?: number;
+    avg_spend_6m?: number;
+}
+
+export interface TrendAlertsResponse {
+    alerts: TrendAlert[];
+    total: number;
+    high: number;
+    medium: number;
+    low: number;
+}
+
+export const TrendService = {
+    getAlerts: async () => {
+        const response = await api.get<TrendAlertsResponse>('/trends/alerts');
+        return response.data;
+    },
+    getVendorTrends: async () => {
+        const response = await api.get<{ vendors: VendorTrend[]; total: number }>('/trends/vendors');
+        return response.data;
+    },
+};

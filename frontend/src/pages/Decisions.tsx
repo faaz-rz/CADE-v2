@@ -3,6 +3,7 @@ import { Decision, DecisionService, DecisionSummary, ExportService } from '../se
 import { DecisionCard } from '../components/DecisionCard';
 import { DecisionDetail } from '../components/DecisionDetail';
 import { PortfolioSummary } from '../components/PortfolioSummary';
+import { TrendAlerts } from '../components/TrendAlerts';
 import { UploadDataButton } from '../components/UploadDataButton';
 import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -150,6 +151,9 @@ export const DecisionsPage: React.FC = () => {
                     </button>
                 </div>
             </header>
+
+            {/* Trend Alerts — above dashboard if any exist */}
+            <TrendAlerts />
 
             {/* Portfolio Summary Dashboard */}
             <PortfolioSummary summary={summary} isLoading={loading} />

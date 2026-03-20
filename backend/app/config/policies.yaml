@@ -14,11 +14,32 @@ categories:
     operational_critical: false
 
   Payroll:
-    spend_threshold: 0
-    frequency_threshold: 0
-    savings_rate: 0.05
+    spend_threshold: 50000
+    frequency_threshold: 10
+    savings_rate: 0.03
     regulatory_sensitive: true
     operational_critical: true
+
+  Logistics:
+    spend_threshold: 5000
+    frequency_threshold: 3
+    savings_rate: 0.08
+    regulatory_sensitive: false
+    operational_critical: false
+
+  Professional Services:
+    spend_threshold: 10000
+    frequency_threshold: 2
+    savings_rate: 0.10
+    regulatory_sensitive: false
+    operational_critical: false
+
+  Marketing:
+    spend_threshold: 3000
+    frequency_threshold: 2
+    savings_rate: 0.15
+    regulatory_sensitive: false
+    operational_critical: false
 
 default:
   spend_threshold: 100

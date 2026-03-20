@@ -10,7 +10,7 @@ if _env_path.exists():
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import decisions, approvals, upload, summary, exposure, simulation, export
+from app.api import decisions, approvals, upload, summary, exposure, simulation, export, trends
 from app.db.database import init_db
 from app.services.decision_store import DecisionStore
 
@@ -44,6 +44,7 @@ app.include_router(approvals.router, prefix="/api/decisions", tags=["Approvals"]
 app.include_router(upload.router, prefix="/api/upload", tags=["Upload"])
 app.include_router(summary.router, prefix="/api/summary", tags=["Summary"])
 app.include_router(exposure.router, prefix="/api/exposure", tags=["Exposure"])
+app.include_router(trends.router, prefix="/api/trends", tags=["Trends"])
 app.include_router(simulation.router, prefix="/simulate", tags=["Simulation"])
 app.include_router(export.router, prefix="/export", tags=["Export"])
 app.include_router(data_router, tags=["Data"])

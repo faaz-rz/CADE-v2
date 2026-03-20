@@ -19,7 +19,7 @@ AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN", "")
 AUTH0_AUDIENCE = os.environ.get("AUTH0_API_AUDIENCE", "")
 ROLE_CLAIM = "https://capitalrisk.app/role"
 
-security = HTTPBearer()
+security = HTTPBearer(auto_error=False)
 
 
 @lru_cache()
@@ -36,7 +36,21 @@ async def verify_token(
     Validate the Bearer token from Auth0.
     Returns the decoded JWT payload on success.
     Raises 401 on any validation failure.
+
+    In non-production environments, authentication is skipped
+    and a dev admin payload is returned.
     """
+    # Skip auth in development
+    if os.environ.get("ENVIRONMENT") != "production":
+        return {"sub": "dev-user", "https://capitalrisk.app/role": "ADMIN"}
+
+    # Real auth for production
+    if credentials is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Missing authorization header",
+        )
+
     token = credentials.credentials
     try:
         jwks_client = _get_jwks_client()
