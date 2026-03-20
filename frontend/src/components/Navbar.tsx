@@ -7,8 +7,9 @@ export const Navbar = () => {
     return (
         <nav className="bg-white shadow-sm px-6 py-4 flex items-center justify-between border-b border-gray-200">
             <div className="flex items-center space-x-6">
-                <Link to="/" className="text-xl font-semibold text-gray-900">
-                    Capital Risk platform
+                <Link to="/" className="flex flex-col">
+                    <span className="text-xl font-semibold text-gray-900">CADE</span>
+                    <span className="text-xs text-gray-400 -mt-0.5">Capital Allocation Decision Engine</span>
                 </Link>
                 {isAuthenticated && (
                     <div className="hidden md:flex space-x-4">

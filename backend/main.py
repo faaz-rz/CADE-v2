@@ -15,8 +15,8 @@ from app.db.database import init_db
 from app.services.decision_store import DecisionStore
 
 app = FastAPI(
-    title="Capital Risk & Exposure Platform",
-    description="Capital allocation decision engine with financial exposure analysis, price shock simulation, and executive reporting.",
+    title="CADE",
+    description="Capital Allocation Decision Engine — intelligent vendor analysis, financial exposure, price shock simulation, and executive reporting.",
     version="2.0.0",
     redirect_slashes=False
 )
@@ -51,7 +51,7 @@ app.include_router(data_router, tags=["Data"])
 
 @app.get("/")
 def health_check():
-    return {"status": "running", "system": "Capital Risk & Exposure Platform v2"}
+    return {"status": "running", "system": "CADE v2"}
 
 
 @app.on_event("startup")

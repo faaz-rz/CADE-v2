@@ -190,7 +190,7 @@ def _build_board_executive_summary(
     today_str = datetime.utcnow().strftime("%B %d, %Y")
 
     # ── Title Block ──
-    ws["A1"] = "CAPITAL RISK & EXPOSURE PLATFORM"
+    ws["A1"] = "CADE — CAPITAL ALLOCATION DECISION ENGINE"
     ws["A1"].font = Font(name="Calibri", bold=True, size=14, color=NAVY)
 
     ws["A2"] = f"Board Report — {today_str}"
