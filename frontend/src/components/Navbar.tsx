@@ -16,6 +16,7 @@ export const Navbar = () => {
                         <Link to="/" className="text-gray-600 hover:text-gray-900">Decisions</Link>
                         <Link to="/upload" className="text-gray-600 hover:text-gray-900">Upload</Link>
                         <Link to="/exposure" className="text-gray-600 hover:text-gray-900">Exposure</Link>
+                        <Link to="/contracts" className="text-gray-600 hover:text-gray-900">Renewals</Link>
                     </div>
                 )}
             </div>

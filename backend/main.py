@@ -10,7 +10,7 @@ if _env_path.exists():
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import decisions, approvals, upload, summary, exposure, simulation, export, trends
+from app.api import decisions, approvals, upload, summary, exposure, simulation, export, trends, demo, contracts
 from app.db.database import init_db
 from app.services.decision_store import DecisionStore
 
@@ -48,6 +48,8 @@ app.include_router(trends.router, prefix="/api/trends", tags=["Trends"])
 app.include_router(simulation.router, prefix="/simulate", tags=["Simulation"])
 app.include_router(export.router, prefix="/export", tags=["Export"])
 app.include_router(data_router, tags=["Data"])
+app.include_router(demo.router, prefix="/api/demo", tags=["Demo"])
+app.include_router(contracts.router, prefix="/api/contracts", tags=["Contracts"])
 
 @app.get("/")
 def health_check():

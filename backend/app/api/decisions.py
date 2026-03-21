@@ -25,6 +25,48 @@ def get_decisions(payload: dict = Depends(verify_token)):
         
     return decisions
 
+@router.get("/savings")
+def get_savings_summary(payload: dict = Depends(verify_token)):
+    """
+    Returns a savings breakdown across all decisions:
+    approved, pending, and rejected/deferred.
+    """
+    decisions = DecisionStore.get_all_decisions()
+
+    approved_savings = 0.0
+    pending_savings = 0.0
+    rejected_savings = 0.0
+    approved_count = 0
+    pending_count = 0
+    rejected_count = 0
+
+    for d in decisions:
+        if d.status == DecisionStatus.APPROVED:
+            approved_savings += d.annual_impact
+            approved_count += 1
+        elif d.status == DecisionStatus.PENDING:
+            pending_savings += d.annual_impact
+            pending_count += 1
+        elif d.status in (DecisionStatus.REJECTED, DecisionStatus.DEFERRED):
+            rejected_savings += d.annual_impact
+            rejected_count += 1
+
+    total_identified = approved_savings + pending_savings + rejected_savings
+    # ROI assumes $1,500/month subscription cost ($18,000/year)
+    roi_multiple = round(approved_savings / 1500, 1) if approved_savings > 0 else 0.0
+
+    return {
+        "approved_savings": approved_savings,
+        "pending_savings": pending_savings,
+        "rejected_savings": rejected_savings,
+        "total_identified": total_identified,
+        "decisions_approved_count": approved_count,
+        "decisions_pending_count": pending_count,
+        "decisions_rejected_count": rejected_count,
+        "roi_multiple": roi_multiple,
+        "currency": "USD",
+    }
+
 @router.get("/{decision_id}", response_model=Decision)
 def get_decision(decision_id: str, payload: dict = Depends(verify_token)):
     decision = DecisionStore.get_decision(decision_id)

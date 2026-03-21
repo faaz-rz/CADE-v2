@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { DecisionsPage } from './pages/Decisions';
 import { UploadPage } from './pages/Upload';
 import { ExposureDashboard } from './pages/ExposureDashboard';
+import { ContractsPage } from './pages/Contracts';
 import { Navbar } from './components/Navbar';
 import { setAuthTokenGetter } from './services/api';
 
@@ -82,6 +83,7 @@ function App() {
                     <Route path="/" element={<DecisionsPage />} />
                     <Route path="/upload" element={<UploadPage />} />
                     <Route path="/exposure" element={<ExposureDashboard />} />
+                    <Route path="/contracts" element={<ContractsPage />} />
                 </Routes>
             </div>
         </BrowserRouter>

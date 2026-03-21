@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Decision, DecisionService, DecisionSummary, ExportService } from '../services/api';
+import { Decision, DecisionService, DecisionSummary, ExportService, DemoService } from '../services/api';
 import { DecisionCard } from '../components/DecisionCard';
 import { DecisionDetail } from '../components/DecisionDetail';
 import { PortfolioSummary } from '../components/PortfolioSummary';
+import { SavingsTracker } from '../components/SavingsTracker';
 import { TrendAlerts } from '../components/TrendAlerts';
 import { UploadDataButton } from '../components/UploadDataButton';
-import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2 } from 'lucide-react';
+import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2, Info, Upload } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sampleData } from '../data/sampleData';
 
@@ -15,9 +16,11 @@ export const DecisionsPage: React.FC = () => {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'pending' | 'history'>('pending');
-    const [showDemoBanner, setShowDemoBanner] = useState(false);
+    const [isDemoMode, setIsDemoMode] = useState(false);
     const [exportLoading, setExportLoading] = useState(false);
     const [exportError, setExportError] = useState<string | null>(null);
+    const [demoBannerDismissed, setDemoBannerDismissed] = useState(false);
+    const [savingsRefreshKey, setSavingsRefreshKey] = useState(0);
 
     const selectedDecision = decisions.find(d => d.id === selectedId) || null;
 
@@ -30,19 +33,39 @@ export const DecisionsPage: React.FC = () => {
 
     const loadData = async () => {
         setLoading(true);
+        setSavingsRefreshKey(k => k + 1);
         try {
             const [data, summaryData] = await Promise.all([
                 DecisionService.getDecisions(),
                 DecisionService.getSummary()
             ]);
+
             if (data.length === 0) {
-                setDecisions(sampleData);
-                setShowDemoBanner(true);
+                // No data — auto-load demo
+                try {
+                    await DemoService.loadDemo();
+                    // Refetch after demo load
+                    const [demoData, demoSummary] = await Promise.all([
+                        DecisionService.getDecisions(),
+                        DecisionService.getSummary()
+                    ]);
+                    setDecisions(demoData.length > 0 ? demoData : sampleData);
+                    setSummary(demoSummary);
+                    setIsDemoMode(true);
+                    setDemoBannerDismissed(false);
+                } catch {
+                    // Demo load failed — fall back to client-side sample data
+                    setDecisions(sampleData);
+                    setIsDemoMode(true);
+                    setDemoBannerDismissed(false);
+                }
             } else {
                 setDecisions(data);
-                setShowDemoBanner(false);
+                setIsDemoMode(false);
             }
-            setSummary(summaryData);
+            if (data.length > 0) {
+                setSummary(summaryData);
+            }
         } catch (e) {
             console.error('Failed to load data', e);
         } finally {
@@ -89,25 +112,35 @@ export const DecisionsPage: React.FC = () => {
                     </button>
                 </div>
             )}
-            {showDemoBanner && (
-                <div className="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-md flex justify-between items-start shadow-sm">
+
+            {/* Demo Mode Banner */}
+            {isDemoMode && !demoBannerDismissed && (
+                <div className="mb-6 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-md flex justify-between items-start shadow-sm">
                     <div className="flex items-start">
-                        <AlertTriangle className="h-5 w-5 text-yellow-400 mt-0.5 mr-3" />
+                        <Info className="h-5 w-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" />
                         <div>
-                            <h3 className="text-sm font-medium text-yellow-800">Viewing Sample Data</h3>
-                            <p className="mt-1 text-sm text-yellow-700">
-                                You are currently viewing simulated portfolio scenarios. Upload your own structured CSV data to securely generate your live intelligent vendor decisions.
+                            <h3 className="text-sm font-medium text-blue-800">You are viewing demo data</h3>
+                            <p className="mt-1 text-sm text-blue-700">
+                                Upload your own file to analyze real vendor spend.
                             </p>
+                            <Link
+                                to="/upload"
+                                className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-md hover:bg-blue-700 transition-colors"
+                            >
+                                <Upload className="w-3.5 h-3.5" />
+                                Upload Now
+                            </Link>
                         </div>
                     </div>
                     <button
-                        onClick={() => setShowDemoBanner(false)}
-                        className="text-yellow-500 hover:text-yellow-600 focus:outline-none"
+                        onClick={() => setDemoBannerDismissed(true)}
+                        className="text-blue-400 hover:text-blue-600 focus:outline-none"
                     >
                         <X className="h-5 w-5" />
                     </button>
                 </div>
             )}
+
             <header className="mb-8 flex justify-between items-center">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Decision Inbox</h1>
@@ -140,7 +173,10 @@ export const DecisionsPage: React.FC = () => {
                     <UploadDataButton onUploadComplete={async () => {
                         setDecisions([]);
                         setSelectedId(null);
+                        setIsDemoMode(false);
+                        setDemoBannerDismissed(false);
                         await loadData();
+                        setSavingsRefreshKey(k => k + 1);
                     }} />
                     <button
                         onClick={loadData}
@@ -151,6 +187,9 @@ export const DecisionsPage: React.FC = () => {
                     </button>
                 </div>
             </header>
+
+            {/* Savings Tracker — below demo banner, above KPI cards */}
+            <SavingsTracker refreshKey={savingsRefreshKey} />
 
             {/* Trend Alerts — above dashboard if any exist */}
             <TrendAlerts />

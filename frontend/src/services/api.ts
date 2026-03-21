@@ -265,3 +265,58 @@ export const TrendService = {
         return response.data;
     },
 };
+
+export interface SavingsSummary {
+    approved_savings: number;
+    pending_savings: number;
+    rejected_savings: number;
+    total_identified: number;
+    decisions_approved_count: number;
+    decisions_pending_count: number;
+    decisions_rejected_count: number;
+    roi_multiple: number;
+    currency: string;
+}
+
+export const SavingsService = {
+    getSavings: async () => {
+        const response = await api.get<SavingsSummary>('/decisions/savings');
+        return response.data;
+    },
+};
+
+export interface ContractRenewal {
+    vendor_name: string;
+    category: string;
+    annual_spend: number;
+    renewal_date: string;
+    days_until_renewal: number;
+    recommended_action: string;
+    potential_savings: number;
+}
+
+export interface RenewalsResponse {
+    urgent: ContractRenewal[];
+    upcoming: ContractRenewal[];
+    planned: ContractRenewal[];
+    total_renewals_90_days: number;
+    total_savings_opportunity: number;
+}
+
+export const ContractService = {
+    getRenewals: async () => {
+        const response = await api.get<RenewalsResponse>('/contracts/renewals');
+        return response.data;
+    },
+};
+
+export const DemoService = {
+    loadDemo: async () => {
+        const response = await api.post<{ status: string; decisions_generated: number }>('/demo');
+        return response.data;
+    },
+    clearDemo: async () => {
+        const response = await api.delete<{ status: string }>('/demo');
+        return response.data;
+    },
+};
