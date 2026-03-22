@@ -68,7 +68,8 @@ class TestContextAwareEngine(unittest.TestCase):
             )
         }
         
-        decisions = DecisionEngine.analyze_uploaded_data()
+        import asyncio
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
         self.assertEqual(len(decisions), 1)
         d = decisions[0]
         
@@ -88,7 +89,8 @@ class TestContextAwareEngine(unittest.TestCase):
             )
         }
         
-        decisions = DecisionEngine.analyze_uploaded_data()
+        import asyncio
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
         self.assertEqual(len(decisions), 1)
         d = decisions[0]
         
@@ -120,7 +122,8 @@ class TestContextAwareEngine(unittest.TestCase):
             )
         }
         
-        decisions = DecisionEngine.analyze_uploaded_data()
+        import asyncio
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
         self.assertEqual(len(decisions), 1)
         d = decisions[0]
         

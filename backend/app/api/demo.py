@@ -79,7 +79,7 @@ async def load_demo_data(payload: dict = Depends(verify_token)):
         json.dump(output_data, f, indent=2)
 
     # 3. Run the real DecisionEngine (reads transactions.json → generates decisions)
-    decisions = DecisionEngine.analyze_uploaded_data()
+    decisions = await DecisionEngine.analyze_uploaded_data()
 
     return {"status": "loaded", "decisions_generated": len(decisions)}
 

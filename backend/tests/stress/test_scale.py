@@ -41,9 +41,10 @@ class TestScale(unittest.TestCase):
             print(f"Ingestion Time: {ingest_time:.4f}s")
             self.assertGreaterEqual(result.rows_accepted, 9500)
             
+            import asyncio
             # Analysis
             start_analysis = time.time()
-            decisions = DecisionEngine.analyze_uploaded_data()
+            decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
             analysis_time = time.time() - start_analysis
             print(f"Decision Generation Time: {analysis_time:.4f}s")
             print(f"Decisions Generated: {len(decisions)}")

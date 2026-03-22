@@ -116,6 +116,20 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                     {/* Exposure Panel */}
                     <ExposurePanel vendorId={decision.entity} />
 
+                    {/* AI Narrative Panel */}
+                    {decision.ai_narrative && (
+                        <div className="bg-indigo-50 border-l-[3px] border-indigo-300 p-5 mb-8">
+                            <div className="flex items-center gap-2 mb-3">
+                                <span>✨</span>
+                                <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">AI Risk Assessment</span>
+                                <span className="text-[10px] text-gray-400 bg-gray-100/50 px-1.5 py-0.5 rounded ml-auto">Powered by Llama 3.1</span>
+                            </div>
+                            <p className="text-[14.5px] text-gray-700 leading-relaxed">
+                                {decision.ai_narrative}
+                            </p>
+                        </div>
+                    )}
+
                     {/* Explanation */}
                     <section>
                         <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2 flex items-center gap-2">

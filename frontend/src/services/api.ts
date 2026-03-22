@@ -65,6 +65,7 @@ export interface Decision {
     };
     confidence: number;
     status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'DEFERRED';
+    ai_narrative?: string | null;
     context?: {
         analysis_period: string;
         rule_id: string;

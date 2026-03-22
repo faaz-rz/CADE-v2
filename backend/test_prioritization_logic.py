@@ -29,8 +29,9 @@ def run_test():
     SpendingAnalyzer.get_vendor_stats = lambda: mock_stats
 
     try:
+        import asyncio
         # Run Engine
-        decisions = DecisionEngine.analyze_uploaded_data()
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
 
         # 1. Assert Count (Should be 3)
         print(f"Decisions Generated: {len(decisions)}")

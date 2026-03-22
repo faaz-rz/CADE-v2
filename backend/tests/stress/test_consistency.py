@@ -31,7 +31,8 @@ class TestLogicalConsistency(unittest.TestCase):
             # EDIT: Yes, I added `DecisionStore.clear()` in `analyze_uploaded_data` in step 970!
             # So it should be fine.
             
-            decisions = DecisionEngine.analyze_uploaded_data()
+            import asyncio
+            decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
             
             # 3. Serialize for comparison
             current_snapshot = [d.model_dump(mode='json') for d in decisions]

@@ -1,6 +1,6 @@
 # Capital Risk & Exposure Platform v2
 
-> AI-driven capital allocation decision engine with financial exposure analysis, price shock simulation, and executive reporting.
+> AI-driven capital allocation decision engine with financial exposure analysis, price shock simulation, executive reporting, and LLM-powered board narratives.
 
 ---
 
@@ -38,9 +38,12 @@ The system ingests CSV/XLSX spend data, applies rule-based analysis to identify 
 | **Price Shock Simulation** | "What-if" analysis with EBITDA impact projection |
 | **Executive Export** | 3-sheet Excel report with formatted financial data |
 | **Persistent Storage** | SQLite database with in-memory cache for performance |
-| **Trend Analysis** | Rolling averages and spend growth tracking |
+| **Trend Analysis & Alerts** | Rolling averages, spend growth tracking, and anomaly detection |
 | **Audit Trail** | Immutable event log for every decision lifecycle change |
 | **Connector Architecture** | Pluggable data source interface (CSV, ERP, ServiceNow) |
+| **AI Board Report** | Groq-powered LLM (llama-3.1-70b) executing 4-sentence CFO briefings |
+| **Contract Renewals** | Simulated renewal dashboard predicting and grouping vendor windows |
+| **Enterprise Security** | Auth0 RBAC and protected routing across the application |
 
 ---
 
@@ -78,6 +81,7 @@ The system ingests CSV/XLSX spend data, applies rule-based analysis to identify 
 │  │  RiskEngine      · TrendEngine                  │       │
 │  │  PolicyEngine    · SpendingAnalyzer             │       │
 │  │  AuditService    · IngestionService             │       │
+│  │  AINarrator                                     │       │
 │  └─────────────────────┬───────────────────────────┘       │
 │                        │                                   │
 │  ┌─────────────────────▼───────────────────────────┐       │
@@ -108,6 +112,8 @@ The system ingests CSV/XLSX spend data, applies rule-based analysis to identify 
 | **openpyxl** | Excel report generation |
 | **Pandas** | CSV/XLSX data ingestion |
 | **PyYAML** | Policy configuration files |
+| **Groq / LLMs** | Llama-3.1 narrative generation for board reports |
+| **Auth0** | JWT verification and RBAC protection |
 
 ### Frontend
 
@@ -120,6 +126,7 @@ The system ingests CSV/XLSX spend data, applies rule-based analysis to identify 
 | **Axios** | HTTP client |
 | **Lucide React** | Icon library |
 | **React Router 6** | Client-side routing |
+| **Auth0 React** | User authentication and permission gates |
 
 ---
 
@@ -136,10 +143,13 @@ Workfllow/
 │   │   │   ├── decisions.py             #   GET/POST /api/decisions
 │   │   │   ├── approvals.py             #   POST /api/decisions/{id}/approve|reject
 │   │   │   ├── upload.py                #   POST /api/upload
-│   │   │   ├── summary.py              #   GET /api/summary
+│   │   │   ├── summary.py               #   GET /api/summary
 │   │   │   ├── exposure.py              #   GET /api/exposure/vendors
 │   │   │   ├── simulation.py            #   POST /simulate/price_shock
-│   │   │   └── export.py               #   GET /export/executive_report
+│   │   │   ├── export.py                #   GET /export/executive_report
+│   │   │   ├── contracts.py             #   GET /api/renewals
+│   │   │   ├── trends.py                #   GET /api/trends/alerts
+│   │   │   └── demo.py                  #   Demo data generation
 │   │   │
 │   │   ├── models/                      # Pydantic data models
 │   │   │   ├── decision.py              #   Decision, DecisionEvent, enums
@@ -147,7 +157,7 @@ Workfllow/
 │   │   │   ├── trend.py                 #   VendorTrend, MonthlySpend
 │   │   │   ├── canonical.py             #   CanonicalFinancialRecord
 │   │   │   ├── data.py                  #   FinancialRecord (raw)
-│   │   │   └── summary.py              #   DecisionSummary
+│   │   │   └── summary.py               #   DecisionSummary
 │   │   │
 │   │   ├── services/                    # Business logic layer
 │   │   │   ├── decision_engine.py       #   Rule-based decision generation
@@ -158,7 +168,8 @@ Workfllow/
 │   │   │   ├── policy_engine.py         #   YAML-driven policy configuration
 │   │   │   ├── analytics.py             #   Vendor stats aggregation
 │   │   │   ├── audit.py                 #   Audit logging
-│   │   │   └── ingestion.py             #   Universal file ingestion
+│   │   │   ├── ingestion.py             #   Universal file ingestion
+│   │   │   └── ai_narrator.py           #   Groq-powered Board summaries
 │   │   │
 │   │   ├── simulation/                  # What-if simulation modules
 │   │   │   └── price_shock.py           #   Price shock simulator
@@ -179,6 +190,7 @@ Workfllow/
 │   │   ├── core/                        # Core business rules
 │   │   │   ├── heuristics.py            #   Column-mapping heuristics
 │   │   │   ├── decision_templates.py    #   Deterministic decision templates
+│   │   │   ├── auth.py                  #   Auth0 verification
 │   │   │   └── mappings.py              #   Schema mapping config
 │   │   │
 │   │   └── config/
@@ -216,7 +228,8 @@ Workfllow/
         ├── pages/
         │   ├── Decisions.tsx             # Decision inbox page
         │   ├── Upload.tsx                # Data upload page
-        │   └── ExposureDashboard.tsx     # Exposure analysis page
+        │   ├── ExposureDashboard.tsx     # Exposure analysis page
+        │   └── Contracts.tsx             # Contract renewals calendar
         ├── components/
         │   ├── DecisionCard.tsx          # Decision list item
         │   ├── DecisionDetail.tsx        # Detail modal + exposure + shock
@@ -224,7 +237,12 @@ Workfllow/
         │   ├── RiskBadge.tsx             # Risk level badge
         │   ├── UploadDataButton.tsx      # File upload trigger
         │   ├── ExposurePanel.tsx         # Vendor exposure data panel
-        │   └── PriceShockPanel.tsx       # Interactive shock simulator
+        │   ├── PriceShockPanel.tsx       # Interactive shock simulator
+        │   ├── ContractCalendar.tsx      # Contract renewal buckets and UI
+        │   ├── ProtectedRoute.tsx        # Auth0 permission gating
+        │   ├── SavingsTracker.tsx        # Track savings historically
+        │   ├── TrendAlerts.tsx           # Monthly vendor spend anomaly UI
+        │   └── IngestionResultCard.tsx   # Visual upload success indicator
         └── services/
             └── api.ts                    # API client + TypeScript interfaces
 ```
@@ -276,6 +294,7 @@ The frontend starts at `http://localhost:5173`.
 5. **Analyze exposure** → Click "Exposure" to view the Exposure Dashboard
 6. **Simulate shocks** → Click any decision → use the Price Shock Simulator slider
 7. **Export report** → Click "Export" to download the Excel executive report
+8. **View Renewals** → Click "Contracts" to see predictive vendor renewal groups
 
 ---
 
@@ -304,11 +323,24 @@ The frontend starts at `http://localhost:5173`.
 
 **Body:** `multipart/form-data` with `file` field.
 
-### Summary
+### Summary & Trend Alerts
 
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/api/summary` | Executive dashboard summary KPIs |
+| `GET` | `/api/trends/alerts` | Get real-time spend anomalies and alerts |
+
+### Board Reports & Summaries
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/summary/board-narrative` | Groq-generated 4-sentence CFO summary |
+
+### Contract Renewals
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/contracts/renewals` | 90-day simulated renewal buckets and savings |
 
 ### Exposure
 
@@ -420,6 +452,10 @@ Simplified time-series analysis:
 - Calculates **percentage growth** (recent period vs. earlier period)
 - Flags **emerging risk** if 3-month growth exceeds `EMERGING_RISK_THRESHOLD_PCT` (default: 20%)
 
+### AI Narrator (`services/ai_narrator.py`)
+
+Groq-powered LLM service utilizing `llama-3.1-70b-versatile` to synthesize total spend, high-risk vendors, decision counts, and EBITDA exposure into a concise 4-sentence executive narrative. Designed to be copy-pasted directly into CFO Board Reports. Gracefully falls back to template string generation if API keys are missing or API fails.
+
 ### Decision Store (`services/decision_store.py`)
 
 Dual-mode storage:
@@ -449,6 +485,7 @@ Rejects ambiguous datasets rather than guessing.
 | `/` | Decision Inbox | Pending + history decisions, executive summary KPIs |
 | `/upload` | Upload | CSV/XLSX file upload |
 | `/exposure` | Exposure Dashboard | Vendor concentration heatmap, exposure table, KPIs |
+| `/contracts`| Contract Renewals | Simulated vendor renewals bucketed by date |
 
 ### Decision Detail Modal
 
@@ -463,6 +500,7 @@ Opened by clicking any decision card. Contains:
 ### Navigation
 
 - **Exposure** button → `/exposure` dashboard
+- **Contracts** button → `/contracts` renewal tracker
 - **Export** button → Downloads `.xlsx` executive report
 - **Upload** button → In-page file upload dialog
 
@@ -536,6 +574,7 @@ default:
 | Variable | Default | Description |
 |---|---|---|
 | `DATABASE_URL` | `sqlite:///./data/capital_engine.db` | Database connection string |
+| `GROQ_API_KEY` | None | Triggers LLM board reports in ai_narrator.py |
 
 ### Configurable Constants
 
@@ -608,16 +647,18 @@ Clear separation of concerns: `models/` (data), `services/` (logic), `api/` (pre
 - ✅ Trend Engine (rolling avg + growth)
 - ✅ Connector Architecture Foundation
 - ✅ Frontend Exposure Dashboard
+- ✅ AI Board Narrator (Groq)
+- ✅ Contract Renewal Calendar
+- ✅ Auth0 Role-based Authentication
+- ✅ Trend Anomalies & Savings Trackers
 
 ### Future (v3.0)
 
 - ⬜ PostgreSQL migration for production scale
 - ⬜ Alembic migration scripts
 - ⬜ Real ServiceNow/ERP connector implementations
-- ⬜ Multi-user authentication + RBAC
 - ⬜ Webhook notifications for decision state changes
 - ⬜ Budget constraint optimization engine
-- ⬜ Historical trend charts (line graphs)
 - ⬜ Bulk decision approval workflow
 
 ---

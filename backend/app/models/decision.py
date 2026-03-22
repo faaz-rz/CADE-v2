@@ -109,3 +109,6 @@ class Decision(BaseModel):
     
     # Audit Entension
     events: List[DecisionEvent] = []
+    
+    # AI Narrative
+    ai_narrative: Optional[str] = None

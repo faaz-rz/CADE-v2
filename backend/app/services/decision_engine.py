@@ -6,7 +6,7 @@ from app.services.risk_engine import RiskEngine
 
 class DecisionEngine:
     @staticmethod
-    def analyze_uploaded_data() -> List[Decision]:
+    async def analyze_uploaded_data() -> List[Decision]:
         """
         Generates decisions based on actual uploaded transaction data.
         Uses 7 prioritized rules — each vendor gets at most ONE decision.
@@ -361,6 +361,28 @@ class DecisionEngine:
         from app.services.decision_store import DecisionStore
         for d in decisions:
             DecisionStore.save_decision(d)
+            
+        # Add AI Narratives
+        try:
+            from app.services.ai_narrator import generate_decision_narrative
+            for d in decisions:
+                stats = vendor_stats.get(d.entity)
+                if stats:
+                    narrative = await generate_decision_narrative(
+                        vendor_name=d.entity,
+                        annual_spend=stats.total_spend,
+                        risk_level=d.risk_level.value,
+                        decision_type=d.decision_type.value,
+                        rule_id=d.context.rule_id,
+                        vendor_share=getattr(stats, 'vendor_share_of_category', 0.0),
+                        category=getattr(stats, 'category', 'Uncategorized'),
+                        estimated_savings=d.annual_impact,
+                        worst_case_risk=d.risk_range.get("worst_case", 0),
+                    )
+                    d.ai_narrative = narrative
+        except Exception:
+            for d in decisions:
+                d.ai_narrative = None
             
         return decisions
 

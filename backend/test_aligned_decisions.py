@@ -38,7 +38,8 @@ def test_aligned_decisions():
     
     # 3. Generate Decisions
     print("Generating decisions...")
-    decisions = DecisionEngine.analyze_uploaded_data()
+    import asyncio
+    decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
     
     print(f"Generated {len(decisions)} decisions.")
     

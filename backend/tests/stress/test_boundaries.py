@@ -38,7 +38,8 @@ class TestBoundaries(unittest.TestCase):
                       b"2023-01-01,VendorTenK,10000"
         
         IngestionService.ingest_file(csv_content, "boundary_spend.csv")
-        decisions = DecisionEngine.analyze_uploaded_data()
+        import asyncio
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
         
         # Check what threshold is applied
         # Find decision for VendorBoundaryExact
@@ -82,7 +83,8 @@ class TestBoundaries(unittest.TestCase):
         csv_content = "\n".join(lines).encode('utf-8')
         
         IngestionService.ingest_file(csv_content, "boundary_freq.csv")
-        decisions = DecisionEngine.analyze_uploaded_data()
+        import asyncio
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
         
         d4 = next((d for d in decisions if d.entity == "V4"), None)
         d5 = next((d for d in decisions if d.entity == "V5"), None)

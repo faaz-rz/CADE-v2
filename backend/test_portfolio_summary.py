@@ -32,8 +32,9 @@ def run_test():
     SpendingAnalyzer.get_vendor_stats = lambda: mock_stats
 
     try:
+        import asyncio
         # 1. Run Analysis
-        decisions = DecisionEngine.analyze_uploaded_data()
+        decisions = asyncio.run(DecisionEngine.analyze_uploaded_data())
         
         # 2. Get Summary
         summary = DecisionEngine.get_summary_stats(decisions)

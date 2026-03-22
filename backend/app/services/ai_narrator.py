@@ -11,6 +11,80 @@ from groq import Groq
 
 logger = logging.getLogger(__name__)
 
+async def generate_decision_narrative(
+    vendor_name: str,
+    annual_spend: float,
+    risk_level: str,
+    decision_type: str,
+    rule_id: str,
+    vendor_share: float,
+    category: str,
+    estimated_savings: float,
+    worst_case_risk: float,
+) -> str:
+    """
+    Generate a 3-sentence risk assessment using Groq LLM.
+    Returns fallback narrative if API key is missing or call fails.
+    """
+    api_key = os.environ.get("GROQ_API_KEY", "")
+    if not api_key:
+        return _fallback_decision_narrative(
+            vendor_name, annual_spend, risk_level, estimated_savings
+        )
+
+    try:
+        client = Groq(api_key=api_key)
+        prompt = f"""You are a senior CFO advisor writing a 
+concise risk assessment for a capital allocation decision.
+
+Write exactly 3 sentences. Be specific. Use dollar figures.
+Sound like a senior finance professional, not a software tool.
+No bullet points. No headers. Plain paragraph only.
+
+Decision data:
+- Vendor: {vendor_name}
+- Annual spend: ${annual_spend:,.0f}
+- Risk level: {risk_level}
+- Rule triggered: {rule_id}
+- Vendor share of category: {vendor_share:.0%}
+- Category: {category}
+- Estimated savings if acted on: ${estimated_savings:,.0f}
+- Worst case exposure: ${worst_case_risk:,.0f}
+
+Write the 3-sentence advisor assessment now:"""
+
+        response = client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            temperature=0.3,
+            max_tokens=200,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        narrative = response.choices[0].message.content.strip()
+        logger.info(f"AI narrative generated for {vendor_name}")
+        return narrative
+
+    except Exception as e:
+        logger.warning(f"Groq failed for {vendor_name}: {e}")
+        return _fallback_decision_narrative(
+            vendor_name, annual_spend, risk_level, estimated_savings
+        )
+
+def _fallback_decision_narrative(
+    vendor_name: str,
+    annual_spend: float,
+    risk_level: str,
+    estimated_savings: float,
+) -> str:
+    return (
+        f"{vendor_name} has been flagged as {risk_level} risk "
+        f"with ${annual_spend:,.0f} in annual spend. "
+        f"Immediate review of this vendor relationship is "
+        f"recommended to protect EBITDA. "
+        f"Implementing the recommended action could yield "
+        f"estimated savings of ${estimated_savings:,.0f}."
+    )
+
+
 
 async def generate_board_narrative(
     total_spend: float,

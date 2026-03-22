@@ -31,7 +31,7 @@ async def upload_file(
         result = IngestionService.ingest_file(content, file.filename)
         
         from app.services.decision_engine import DecisionEngine
-        decisions = DecisionEngine.analyze_uploaded_data()
+        decisions = await DecisionEngine.analyze_uploaded_data()
         result.decisions_generated = len(decisions)
         
         out = result.model_dump(exclude={"records"})
