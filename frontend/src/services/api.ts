@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : 'http://localhost:8000/api';
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export const api = axios.create({
     baseURL: API_URL,
@@ -26,20 +25,6 @@ api.interceptors.request.use(async (config) => {
             config.headers.Authorization = `Bearer ${token}`;
         } catch (e) {
             // Token fetch failed — request goes without auth
-            console.warn('Failed to get access token', e);
-        }
-    }
-    return config;
-});
-
-// Also create an authenticated axios instance for non-api calls (simulate, export)
-const authenticatedAxios = axios.create();
-authenticatedAxios.interceptors.request.use(async (config) => {
-    if (_getAccessToken) {
-        try {
-            const token = await _getAccessToken();
-            config.headers.Authorization = `Bearer ${token}`;
-        } catch (e) {
             console.warn('Failed to get access token', e);
         }
     }
