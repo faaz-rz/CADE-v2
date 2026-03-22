@@ -5,7 +5,7 @@ from app.services.decision_engine import DecisionEngine
 router = APIRouter()
 
 @router.get("", response_model=DecisionSummary)
-def get_decision_summary():
+async def get_decision_summary():
     """
     Returns the Executive Dashboard Summary.
     Calculates real-time stats from the current decision set.
@@ -16,7 +16,7 @@ def get_decision_summary():
     
     if not decisions:
          # Only analyze if store is truly empty (first load after restart)
-         decisions = DecisionEngine.analyze_uploaded_data()
+         decisions = await DecisionEngine.analyze_uploaded_data()
          
     summary = DecisionEngine.get_summary_stats(decisions)
     return summary

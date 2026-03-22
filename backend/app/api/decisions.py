@@ -9,7 +9,7 @@ from app.core.auth import verify_token
 router = APIRouter()
 
 @router.get("", response_model=List[Decision])
-def get_decisions(payload: dict = Depends(verify_token)):
+async def get_decisions(payload: dict = Depends(verify_token)):
     """
     Returns the current list of decisions from the System of Record.
     """
@@ -17,7 +17,7 @@ def get_decisions(payload: dict = Depends(verify_token)):
     # For user ease, if empty, we trigger analysis (auto-load).
     decisions = DecisionStore.get_all_decisions()
     if not decisions:
-        decisions = DecisionEngine.analyze_uploaded_data()
+        decisions = await DecisionEngine.analyze_uploaded_data()
         
     # Enrich with events
     for d in decisions:
