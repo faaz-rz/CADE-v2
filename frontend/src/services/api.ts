@@ -200,22 +200,22 @@ export const ExposureService = {
 
 export const SimulationService = {
     runPriceShock: async (vendorId: string, shockPercentage: number, ebitdaMargin: number = 0.25) => {
-        const response = await authenticatedAxios.post<PriceShockResponse>(
-            `${BASE_URL}/simulate/price_shock`,
+        const response = await api.post<PriceShockResponse>(
+            `/simulate/price_shock`,
             { vendor_id: vendorId, shock_percentage: shockPercentage, ebitda_margin: ebitdaMargin }
         );
         return response.data;
     },
     runPortfolioShock: async (request: PortfolioShockRequest) => {
-        const response = await authenticatedAxios.post<PortfolioShockResponse>(
-            `${BASE_URL}/simulate/portfolio_shock`,
+        const response = await api.post<PortfolioShockResponse>(
+            `/simulate/portfolio_shock`,
             request
         );
         return response.data;
     },
     getScenarios: async () => {
-        const response = await authenticatedAxios.get<ScenarioDefinition[]>(
-            `${BASE_URL}/simulate/scenarios`
+        const response = await api.get<ScenarioDefinition[]>(
+            `/simulate/scenarios`
         );
         return response.data;
     }
@@ -223,7 +223,7 @@ export const SimulationService = {
 
 export const ExportService = {
     downloadExecutiveReport: async () => {
-        const response = await authenticatedAxios.get(`${BASE_URL}/export/executive_report`, {
+        const response = await api.get(`/export/executive_report`, {
             responseType: 'blob',
         });
         const url = window.URL.createObjectURL(new Blob([response.data]));
