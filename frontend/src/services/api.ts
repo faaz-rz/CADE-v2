@@ -74,6 +74,7 @@ export interface DecisionSummary {
     pending_high_impact: number;
     impact_breakdown: Record<string, number>;
     risk_breakdown: Record<string, number>;
+    is_demo: boolean;
 }
 
 export interface FinancialExposure {

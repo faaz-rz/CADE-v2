@@ -387,7 +387,7 @@ class DecisionEngine:
         return decisions
 
     @staticmethod
-    def get_summary_stats(decisions: List[Decision]):
+    def get_summary_stats(decisions: List[Decision], is_demo: bool = False):
         """
         Aggregates stats for the Executive Portfolio View.
         """
@@ -416,5 +416,6 @@ class DecisionEngine:
             pending_count=pending_count,
             pending_high_impact=pending_high_impact,
             impact_breakdown=impact_counts,
-            risk_breakdown=risk_counts
+            risk_breakdown=risk_counts,
+            is_demo=is_demo
         )

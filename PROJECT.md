@@ -53,6 +53,7 @@ The system ingests CSV/XLSX spend data, applies rule-based analysis to identify 
 ┌─────────────────────────────────────────────────────────────┐
 │                        FRONTEND                             │
 │   React + TypeScript + Vite + TailwindCSS                   │
+│   Vercel Reverse Proxy (vercel.json)                        │
 │                                                             │
 │   ┌──────────┐  ┌──────────────┐  ┌──────────────────────┐  │
 │   │ Decision │  │  Exposure    │  │  Decision Detail     │  │
@@ -200,6 +201,7 @@ Workfllow/
 │   │   ├── default_mapping.yaml
 │   │   └── mapping_sales.yaml
 │   │
+│   ├── generate_demo.py                 # Script to create 5000-row demo datasets
 │   ├── data/                            # Runtime data (auto-created)
 │   │   ├── transactions.json            #   Ingested canonical records
 │   │   └── capital_engine.db            #   SQLite database
@@ -221,6 +223,7 @@ Workfllow/
     ├── package.json
     ├── vite.config.ts
     ├── tailwind.config.js
+    ├── vercel.json                   # Reverse proxy config for DNS firewall bypass
     └── src/
         ├── App.tsx                       # Root routes
         ├── main.tsx                      # Entry point
@@ -414,7 +417,9 @@ The heart of the system. Analyzes vendor stats against policy thresholds and gen
 1. **HIGH_SPEND** — Vendor total spend exceeds category `spend_threshold`
 2. **HIGH_FREQUENCY** — Transaction count exceeds `frequency_threshold`
 
-One decision per vendor (spend takes priority over frequency). Decisions are sorted by `annual_impact` descending. Decision IDs are **deterministic** via `uuid5` — same vendor + same rule → same ID across restarts.
+One decision per vendor (spend takes priority over frequency). Decisions are sorted by `annual_impact` descending. Decision IDs are **deterministic** via `uuid5`.
+
+*Note: The engine utilizes an asynchronous architecture (`async analyze_uploaded_data`) to prevent blocking the Event Loop while concurrently querying the Groq AI API for 100+ vendor narratives.*
 
 ### Exposure Engine (`services/exposure_engine.py`)
 
@@ -575,6 +580,13 @@ default:
 |---|---|---|
 | `DATABASE_URL` | `sqlite:///./data/capital_engine.db` | Database connection string |
 | `GROQ_API_KEY` | None | Triggers LLM board reports in ai_narrator.py |
+| `VITE_API_URL` | `http://localhost:8000` | Target URL for the API. In Vercel, mapped to `/` to leverage proxy. |
+
+### Network & Proxy Architecture
+
+The frontend utilizes a **Vercel Reverse Proxy** pattern (`vercel.json`) to securely route traffic to the backend API hosted on Railway. Because strict corporate managed networks and some mobile carriers aggressively block direct DNS resolution to `.up.railway.app` free-tier domains, the frontend avoids calling the API directly from the browser. 
+
+Instead, the browser requests `/api/...` contextually from Vercel. Vercel's trusted edge network transparently resolves the Railway domain and securely tunnels the request, achieving a 100% bypass of restrictive local DNS blocklists without code alterations.
 
 ### Configurable Constants
 

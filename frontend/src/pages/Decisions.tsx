@@ -51,7 +51,7 @@ export const DecisionsPage: React.FC = () => {
                     ]);
                     setDecisions(demoData.length > 0 ? demoData : sampleData);
                     setSummary(demoSummary);
-                    setIsDemoMode(true);
+                    setIsDemoMode(demoSummary.is_demo || true); // fallback to true if undefined
                     setDemoBannerDismissed(false);
                 } catch {
                     // Demo load failed — fall back to client-side sample data
@@ -61,7 +61,7 @@ export const DecisionsPage: React.FC = () => {
                 }
             } else {
                 setDecisions(data);
-                setIsDemoMode(false);
+                setIsDemoMode(summaryData.is_demo || false);
             }
             if (data.length > 0) {
                 setSummary(summaryData);
@@ -143,7 +143,15 @@ export const DecisionsPage: React.FC = () => {
 
             <header className="mb-8 flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Decision Inbox</h1>
+                    <div className="flex items-center gap-3">
+                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Decision Inbox</h1>
+                        {isDemoMode && (
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wide border border-blue-200">
+                                <Info className="w-3.5 h-3.5" />
+                                Demo Data
+                            </span>
+                        )}
+                    </div>
                     <p className="text-gray-500 mt-1">AI-Recommended Capital Allocation Actions</p>
                 </div>
                 <div className="flex gap-3">

@@ -18,5 +18,6 @@ async def get_decision_summary():
          # Only analyze if store is truly empty (first load after restart)
          decisions = await DecisionEngine.analyze_uploaded_data()
          
-    summary = DecisionEngine.get_summary_stats(decisions)
+    is_demo = DecisionStore.is_demo_mode()
+    summary = DecisionEngine.get_summary_stats(decisions, is_demo=is_demo)
     return summary

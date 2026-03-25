@@ -56,6 +56,25 @@ class DecisionStore:
         return [e for e in cls._events if e.decision_id == decision_id]
 
     @classmethod
+    def is_demo_mode(cls) -> bool:
+        """Returns True if the current dataset is demo data (from demo_data.csv)."""
+        import os
+        import json
+        tx_file = os.path.join("data", "transactions.json")
+        if not os.path.exists(tx_file):
+            return False
+            
+        try:
+            with open(tx_file, "r") as f:
+                data = json.load(f)
+                if data and len(data) > 0:
+                    return data[0].get("source_file") == "demo_data.csv"
+        except Exception:
+            pass
+            
+        return False
+
+    @classmethod
     def clear(cls):
         """Resets the in-memory store (useful for testing/re-upload) and DB."""
         cls._decisions.clear()
