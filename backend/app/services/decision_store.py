@@ -68,7 +68,8 @@ class DecisionStore:
             with open(tx_file, "r") as f:
                 data = json.load(f)
                 if data and len(data) > 0:
-                    return data[0].get("source_file") == "demo_data.csv"
+                    source_file = data[0].get("source_file", "").lower()
+                    return "demo" in source_file
         except Exception:
             pass
             
