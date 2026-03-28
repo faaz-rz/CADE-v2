@@ -74,11 +74,14 @@ export const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ summary, isL
                     <span className="text-sm text-gray-500 mb-1">Actions Required</span>
                 </div>
                 <div className="flex gap-2 mt-3 text-xs">
-                    <span className="px-2 py-1 bg-gray-100 rounded text-gray-600">
-                        {summary.risk_breakdown['LOW'] || 0} Low Risk
+                    <span className="px-2 py-1 bg-red-50 rounded text-red-700 font-medium">
+                        {summary.risk_breakdown['HIGH'] || 0} High Risk
                     </span>
-                    <span className="px-2 py-1 bg-yellow-50 rounded text-yellow-700">
-                        {summary.impact_breakdown['MEDIUM'] || 0} Med Impact
+                    <span className="px-2 py-1 bg-yellow-50 rounded text-yellow-700 font-medium">
+                        {summary.risk_breakdown['MEDIUM'] || 0} Med Risk
+                    </span>
+                    <span className="px-2 py-1 bg-gray-100 rounded text-gray-600 font-medium">
+                        {summary.risk_breakdown['LOW'] || 0} Low Risk
                     </span>
                 </div>
             </div>

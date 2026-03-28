@@ -98,8 +98,12 @@ class DecisionEngine:
             category = getattr(stats, 'category', 'Uncategorized')
 
             # Helper to build a decision and mark vendor as decided
-            def _make_decision(template_key, decision_type, action_kwargs=None, explanation_kwargs=None, rule_thresholds=None):
+            def _make_decision(template_key, decision_type, action_kwargs=None, explanation_kwargs=None, rule_thresholds=None, override_risk_level=None, override_risk_score=None):
                 template = TEMPLATES[template_key]
+
+                current_risk_level = override_risk_level if override_risk_level else risk_level
+                current_risk_score = override_risk_score if override_risk_score else risk_score
+
                 applied_thresholds = {
                     "spend_threshold": spend_threshold,
                     "frequency_threshold": frequency_threshold
@@ -133,8 +137,8 @@ class DecisionEngine:
                     cost_of_inaction=annual_impact,
                     annual_impact=annual_impact,
                     impact_label=impact_label,
-                    risk_level=risk_level,
-                    risk_score=risk_score,
+                    risk_level=current_risk_level,
+                    risk_score=current_risk_score,
                     risk_range=risk_range,
                     confidence=confidence,
                     status=DecisionStatus.PENDING
@@ -169,6 +173,13 @@ class DecisionEngine:
                     budget_quarter = monthly_rate * 3
                     overspend = projected_quarter - budget_quarter
 
+                    if growth_pct > 50.0:
+                        risk_override = RiskLevel.HIGH
+                        score_override = max(risk_score, 9)
+                    else:
+                        risk_override = RiskLevel.MEDIUM
+                        score_override = max(risk_score, 6)
+
                     _make_decision(
                         template_key="RAPID_GROWTH",
                         decision_type=DecisionType.COST_REDUCE,
@@ -178,6 +189,8 @@ class DecisionEngine:
                             "overspend": overspend,
                         },
                         rule_thresholds={"growth_threshold_pct": 20.0},
+                        override_risk_level=risk_override,
+                        override_risk_score=score_override,
                     )
                     continue
 
@@ -354,8 +367,12 @@ class DecisionEngine:
                 decisions.append(decision)
                 decided_vendors.add(vendor)
 
-        # SORTING: High Impact First
-        decisions.sort(key=lambda d: d.annual_impact, reverse=True)
+        # SORTING: High Risk First, then High Impact
+        risk_priority = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}
+        decisions.sort(
+            key=lambda d: (risk_priority.get(d.risk_level.value, 0), d.annual_impact),
+            reverse=True
+        )
         
         # PERSISTENCE: Save to Store
         from app.services.decision_store import DecisionStore

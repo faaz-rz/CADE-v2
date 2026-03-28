@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FinancialExposure, ExposureService, ExportService } from '../services/api';
 import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { usePermission } from '../hooks/usePermission';
 
 export const ExposureDashboard: React.FC = () => {
     const [exposures, setExposures] = useState<FinancialExposure[]>([]);
@@ -9,6 +10,7 @@ export const ExposureDashboard: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [exportLoading, setExportLoading] = useState(false);
     const [exportError, setExportError] = useState<string | null>(null);
+    const isAdmin = usePermission('ADMIN');
 
     useEffect(() => {
         const loadExposures = async () => {
@@ -200,8 +202,9 @@ export const ExposureDashboard: React.FC = () => {
                     </div>
 
                     {/* Detailed Exposure Table */}
-                    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                        <div className="p-6 pb-3">
+                    {!isAdmin && (
+                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                            <div className="p-6 pb-3">
                             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                                 <Shield className="w-5 h-5 text-gray-400" />
                                 Vendor Exposure Detail
@@ -240,6 +243,7 @@ export const ExposureDashboard: React.FC = () => {
                             </table>
                         </div>
                     </div>
+                    )}
                 </>
             )}
         </div>

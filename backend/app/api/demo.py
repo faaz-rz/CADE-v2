@@ -26,6 +26,13 @@ DEMO_VENDORS = [
     {"entity": "SLACK",                  "amount": 48000,  "category": "SaaS",                  "currency": "USD"},
     {"entity": "ZENDESK",                "amount": 36000,  "category": "SaaS",                  "currency": "USD"},
     {"entity": "DOCUSIGN",               "amount": 24000,  "category": "SaaS",                  "currency": "USD"},
+    {"entity": "GUSTO",                  "amount": 120000, "category": "Payroll",               "currency": "USD"},
+    {"entity": "ADP",                    "amount": 85000,  "category": "Payroll",               "currency": "USD"},
+    {"entity": "MCKINSEY",               "amount": 40000,  "category": "Professional Services", "currency": "USD"},
+    {"entity": "DELOITTE",               "amount": 35000,  "category": "Professional Services", "currency": "USD"},
+    {"entity": "LINKEDIN ADS",           "amount": 25000,  "category": "Marketing",             "currency": "USD"},
+    {"entity": "FEDEX",                  "amount": 15000,  "category": "Logistics",             "currency": "USD"},
+    {"entity": "STAPLES",                "amount": 5000,   "category": "Office Supplies",       "currency": "USD"},
 ]
 
 # Number of monthly transactions to create per vendor (spreads the total evenly)

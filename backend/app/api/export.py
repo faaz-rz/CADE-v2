@@ -83,3 +83,58 @@ async def export_executive_report(
             "Content-Disposition": "attachment; filename=executive_report.xlsx"
         },
     )
+
+
+@router.get("/executive_report_pdf")
+async def export_executive_report_pdf(
+    include_ai: bool = Query(True, description="Include AI-generated narrative"),
+    payload: dict = Depends(require_role("ANALYST", "ADMIN")),
+):
+    """
+    Generate and download the Executive Board Report as a PDF file.
+    """
+    from app.exports.pdf_exporter import generate_executive_pdf
+    # ── Gather data ──
+    decisions = DecisionStore.get_all_decisions()
+    if not decisions:
+        return JSONResponse(status_code=422, content={"error": "No data found."})
+
+    exposures = calculate_all_exposures()
+    total_spend = sum(e.annual_spend for e in exposures)
+    high_risk = [d for d in decisions if d.risk_level.value == "HIGH"]
+    medium_risk = [d for d in decisions if d.risk_level.value == "MEDIUM"]
+    top_vendor = max(exposures, key=lambda e: e.annual_spend) if exposures else None
+    
+    estimated_savings = sum(d.annual_impact for d in decisions)
+    ebitda_at_risk = total_spend * 0.10 * EBITDA_MARGIN
+
+    narrative = None
+    if include_ai:
+        try:
+            narrative = await generate_board_narrative(
+                total_spend=total_spend,
+                high_risk_count=len(high_risk),
+                top_vendor_name=top_vendor.vendor_id if top_vendor else "N/A",
+                top_vendor_spend=top_vendor.annual_spend if top_vendor else 0.0,
+                decision_count=len(decisions),
+                estimated_savings=estimated_savings,
+                ebitda_at_risk=ebitda_at_risk,
+            )
+        except Exception as e:
+            logger.warning(f"AI narrative generation failed: {e}")
+
+    # ── Generate PDF ──
+    try:
+        buffer = generate_executive_pdf(
+            decisions=decisions, exposures=exposures, narrative=narrative, total_spend=total_spend, 
+            high_risk_count=len(high_risk), medium_risk_count=len(medium_risk), decision_count=len(decisions), 
+            estimated_savings=estimated_savings, ebitda_at_risk=ebitda_at_risk, vendor_count=len(exposures)
+        )
+        return StreamingResponse(
+            buffer,
+            media_type="application/pdf",
+            headers={"Content-Disposition": "attachment; filename=executive_report.pdf"},
+        )
+    except Exception as e:
+        logger.error(f"Failed to generate PDF: {e}")
+        return JSONResponse(status_code=500, content={"error": "Failed to generate PDF document"})

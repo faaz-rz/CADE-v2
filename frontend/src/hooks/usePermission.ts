@@ -15,9 +15,13 @@ export const usePermission = (minRole: string): boolean => {
     };
 
     const namespace = 'https://capitalrisk.app/role';
-    const userRole = user[namespace] || 'VIEWER';
+    const rawUserRole = user[namespace] || 'VIEWER';
+    
+    // Support local role override for demos
+    const overrideRole = localStorage.getItem('demo_role_override');
+    const effectiveRole = overrideRole ? overrideRole : rawUserRole;
 
-    const userRoleLevel = roleHierarchy[userRole as string] ?? 0;
+    const userRoleLevel = roleHierarchy[effectiveRole as string] ?? 0;
     const requiredLevel = roleHierarchy[minRole] ?? 99; // Default to unreachable if unknown
 
     return userRoleLevel >= requiredLevel;

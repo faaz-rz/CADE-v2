@@ -53,14 +53,34 @@ Decision data:
 
 Write the 3-sentence advisor assessment now:"""
 
+        import hashlib
+        import sqlite3
+        
+        prompt_hash = hashlib.md5(prompt.encode()).hexdigest()
+        cache_db_path = os.path.join("data", "ai_cache.db")
+        os.makedirs("data", exist_ok=True)
+        
+        with sqlite3.connect(cache_db_path) as conn:
+            conn.execute("CREATE TABLE IF NOT EXISTS cache (hash TEXT PRIMARY KEY, response TEXT)")
+            cursor = conn.cursor()
+            cursor.execute("SELECT response FROM cache WHERE hash = ?", (prompt_hash,))
+            row = cursor.fetchone()
+            if row:
+                logger.info(f"AI narrative CACHE HIT for {vendor_name}")
+                return row[0]
+
         response = client.chat.completions.create(
             model="llama-3.1-70b-versatile",
-            temperature=0.3,
+            temperature=0.0,
             max_tokens=200,
             messages=[{"role": "user", "content": prompt}]
         )
         narrative = response.choices[0].message.content.strip()
-        logger.info(f"AI narrative generated for {vendor_name}")
+        
+        with sqlite3.connect(cache_db_path) as conn:
+            conn.execute("INSERT OR REPLACE INTO cache (hash, response) VALUES (?, ?)", (prompt_hash, narrative))
+            
+        logger.info(f"AI narrative generated (and cached) for {vendor_name}")
         return narrative
 
     except Exception as e:
@@ -126,13 +146,35 @@ at ${top_vendor_spend:,.0f} per year
 
 Write the 4-sentence executive summary:"""
 
+        import hashlib
+        import sqlite3
+        
+        prompt_hash = hashlib.md5(prompt.encode()).hexdigest()
+        cache_db_path = os.path.join("data", "ai_cache.db")
+        os.makedirs("data", exist_ok=True)
+        
+        with sqlite3.connect(cache_db_path) as conn:
+            conn.execute("CREATE TABLE IF NOT EXISTS cache (hash TEXT PRIMARY KEY, response TEXT)")
+            cursor = conn.cursor()
+            cursor.execute("SELECT response FROM cache WHERE hash = ?", (prompt_hash,))
+            row = cursor.fetchone()
+            if row:
+                logger.info("AI board narrative CACHE HIT")
+                return row[0]
+
         response = client.chat.completions.create(
             model="llama-3.1-70b-versatile",
-            temperature=0.3,
+            temperature=0.0,
             max_tokens=350,
             messages=[{"role": "user", "content": prompt}],
         )
-        return response.choices[0].message.content.strip()
+        narrative = response.choices[0].message.content.strip()
+        
+        with sqlite3.connect(cache_db_path) as conn:
+            conn.execute("INSERT OR REPLACE INTO cache (hash, response) VALUES (?, ?)", (prompt_hash, narrative))
+            
+        logger.info("AI board narrative generated (and cached)")
+        return narrative
 
     except Exception as e:
         logger.warning(f"Groq API failed: {e} — using fallback")

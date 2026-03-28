@@ -21,13 +21,18 @@ export const DecisionsPage: React.FC = () => {
     const [exportError, setExportError] = useState<string | null>(null);
     const [demoBannerDismissed, setDemoBannerDismissed] = useState(false);
     const [savingsRefreshKey, setSavingsRefreshKey] = useState(0);
+    const [riskFilter, setRiskFilter] = useState<'ALL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
 
     const selectedDecision = decisions.find(d => d.id === selectedId) || null;
 
     const pendingDecisions = decisions.filter(d => d.status === 'PENDING');
     const historyDecisions = decisions.filter(d => d.status !== 'PENDING');
 
-    const displayedDecisions = viewMode === 'pending' ? pendingDecisions : historyDecisions;
+    let displayedDecisions = viewMode === 'pending' ? pendingDecisions : historyDecisions;
+    if (riskFilter !== 'ALL') {
+        displayedDecisions = displayedDecisions.filter(d => d.risk_level === riskFilter);
+    }
+    
     const pendingCount = pendingDecisions.length;
     const historyCount = historyDecisions.length;
 
@@ -81,6 +86,20 @@ export const DecisionsPage: React.FC = () => {
         } catch (e) {
             console.error('Export failed', e);
             setExportError('Export failed — please try again');
+            setTimeout(() => setExportError(null), 5000);
+        } finally {
+            setExportLoading(false);
+        }
+    };
+
+    const handleExportPdf = async () => {
+        setExportLoading(true);
+        setExportError(null);
+        try {
+            await ExportService.downloadExecutiveReportPdf();
+        } catch (e) {
+            console.error('PDF Export failed', e);
+            setExportError('PDF Export failed — please try again');
             setTimeout(() => setExportError(null), 5000);
         } finally {
             setExportLoading(false);
@@ -163,20 +182,38 @@ export const DecisionsPage: React.FC = () => {
                         Exposure
                     </Link>
                     <button
-                        onClick={handleExport}
+                        onClick={handleExportPdf}
                         disabled={exportLoading}
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-sm font-medium ${
                             exportLoading
-                                ? 'bg-emerald-100 text-emerald-400 border border-emerald-200 cursor-not-allowed'
-                                : 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
+                                ? 'bg-red-50 text-red-400 border border-red-200 cursor-not-allowed'
+                                : 'bg-red-50 text-red-700 border border-red-200 hover:bg-red-100'
                         }`}
+                        title="Export Board Report (PDF)"
                     >
                         {exportLoading ? (
                             <Loader2 className="w-4 h-4 animate-spin" />
                         ) : (
                             <Download className="w-4 h-4" />
                         )}
-                        {exportLoading ? 'Generating...' : 'Export Board Report'}
+                        Export PDF
+                    </button>
+                    <button
+                        onClick={handleExport}
+                        disabled={exportLoading}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-sm font-medium ${
+                            exportLoading
+                                ? 'bg-emerald-50 text-emerald-400 border border-emerald-200 cursor-not-allowed'
+                                : 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
+                        }`}
+                        title="Export Board Report (Excel)"
+                    >
+                        {exportLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                            <Download className="w-4 h-4" />
+                        )}
+                        Export Excel
                     </button>
                     <UploadDataButton onUploadComplete={async () => {
                         setDecisions([]);
@@ -205,24 +242,50 @@ export const DecisionsPage: React.FC = () => {
             {/* Portfolio Summary Dashboard */}
             <PortfolioSummary summary={summary} isLoading={loading} />
 
-            <h2 className="text-lg font-semibold text-gray-800">
-                {viewMode === 'pending' ? `Pending Decisions (${pendingCount})` : `Decision History (${historyCount})`}
-            </h2>
-            <div className="flex bg-gray-100 p-1 rounded-lg">
-                <button
-                    onClick={() => setViewMode('pending')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${viewMode === 'pending' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
-                        }`}
-                >
-                    Pending
-                </button>
-                <button
-                    onClick={() => setViewMode('history')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${viewMode === 'history' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
-                        }`}
-                >
-                    History
-                </button>
+            <div className="flex items-center justify-between mt-8 mb-4">
+                <h2 className="text-lg font-semibold text-gray-800">
+                    {viewMode === 'pending' ? `Pending Decisions (${pendingCount})` : `Decision History (${historyCount})`}
+                </h2>
+                
+                <div className="flex items-center gap-4">
+                    {/* Risk Filter */}
+                    <div className="flex bg-gray-100 p-1 rounded-lg">
+                        {['ALL', 'HIGH', 'MEDIUM', 'LOW'].map((level) => (
+                            <button
+                                key={level}
+                                onClick={() => setRiskFilter(level as any)}
+                                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+                                    riskFilter === level 
+                                        ? level === 'HIGH' ? 'bg-red-100 text-red-700 font-bold shadow-sm' 
+                                            : level === 'MEDIUM' ? 'bg-orange-100 text-orange-700 font-bold shadow-sm'
+                                            : level === 'LOW' ? 'bg-emerald-100 text-emerald-700 font-bold shadow-sm'
+                                            : 'bg-white text-gray-800 font-bold shadow-sm' 
+                                        : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                            >
+                                {level}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* View Mode */}
+                    <div className="flex bg-gray-100 p-1 rounded-lg">
+                        <button
+                            onClick={() => setViewMode('pending')}
+                            className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${viewMode === 'pending' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            Pending
+                        </button>
+                        <button
+                            onClick={() => setViewMode('history')}
+                            className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${viewMode === 'history' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                                }`}
+                        >
+                            History
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {loading ? (

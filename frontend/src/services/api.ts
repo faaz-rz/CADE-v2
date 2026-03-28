@@ -221,6 +221,20 @@ export const ExportService = {
         link.remove();
         window.URL.revokeObjectURL(url);
     },
+    
+    downloadExecutiveReportPdf: async () => {
+        const response = await api.get(`/export/executive_report_pdf`, {
+            responseType: 'blob',
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'executive_report.pdf');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    },
 };
 
 export interface TrendAlert {

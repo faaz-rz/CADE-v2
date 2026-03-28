@@ -4,6 +4,7 @@ import { X, Calendar, Hash, FileText, User } from 'lucide-react';
 import { ExposurePanel } from './ExposurePanel';
 import { PriceShockPanel } from './PriceShockPanel';
 import { formatCurrency } from '../utils/formatters';
+import { usePermission } from '../hooks/usePermission';
 
 interface DecisionDetailProps {
     decision: Decision;
@@ -11,6 +12,8 @@ interface DecisionDetailProps {
 }
 
 export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClose }) => {
+    const isAdmin = usePermission('ADMIN');
+
     if (!decision) return null;
 
     const formatDate = (dateStr: string) => {
@@ -79,7 +82,7 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                 <div className="overflow-y-auto p-6 space-y-8">
 
                     {/* Context Section */}
-                    {decision.context && (
+                    {decision.context && !isAdmin && (
                         <section>
                             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center gap-2">
                                 <Hash className="w-4 h-4 text-gray-400" /> Decision Context
@@ -141,7 +144,7 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                     </section>
 
                     {/* Audit Log */}
-                    {decision.events && decision.events.length > 0 && (
+                    {decision.events && decision.events.length > 0 && !isAdmin && (
                         <section>
                             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
                                 <Calendar className="w-4 h-4 text-gray-400" /> Audit Trail

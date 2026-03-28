@@ -37,7 +37,7 @@ const GrowthBadge: React.FC<{ rate: number }> = ({ rate }) => {
 
 export const TrendAlerts: React.FC = () => {
     const [data, setData] = useState<TrendAlertsResponse | null>(null);
-    const [expanded, setExpanded] = useState(true);
+    const [expanded, setExpanded] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
