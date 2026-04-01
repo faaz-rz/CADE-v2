@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Decision } from '../services/api';
-import { X, Calendar, Hash, FileText, User } from 'lucide-react';
+import { X, Calendar, Hash, FileText, User, ChevronDown, ChevronUp } from 'lucide-react';
 import { ExposurePanel } from './ExposurePanel';
 import { PriceShockPanel } from './PriceShockPanel';
+import { SpendTrendChart } from './charts/SpendTrendChart';
 import { formatCurrency } from '../utils/formatters';
 import { usePermission } from '../hooks/usePermission';
 
@@ -13,6 +14,7 @@ interface DecisionDetailProps {
 
 export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClose }) => {
     const isAdmin = usePermission('ADMIN');
+    const [trendOpen, setTrendOpen] = useState(false);
 
     if (!decision) return null;
 
@@ -118,6 +120,22 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
 
                     {/* Exposure Panel */}
                     <ExposurePanel vendorId={decision.entity} />
+
+                    {/* Spend Trend Chart — Collapsible */}
+                    <section>
+                        <button
+                            onClick={() => setTrendOpen(!trendOpen)}
+                            className="flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-gray-900 transition-colors w-full text-left py-2"
+                        >
+                            {trendOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            View Spend Trend {trendOpen ? '▲' : '▼'}
+                        </button>
+                        {trendOpen && (
+                            <div className="mt-2">
+                                <SpendTrendChart vendorId={decision.entity} vendorName={decision.entity} />
+                            </div>
+                        )}
+                    </section>
 
                     {/* AI Narrative Panel */}
                     {decision.ai_narrative && (

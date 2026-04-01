@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FinancialExposure, ExposureService, ExportService } from '../services/api';
-import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X } from 'lucide-react';
+import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X, PieChart as PieChartIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { usePermission } from '../hooks/usePermission';
+import { RiskDistributionChart } from '../components/charts/RiskDistributionChart';
+import { SpendCategoryChart } from '../components/charts/SpendCategoryChart';
+import { MonteCarloPanel } from '../components/MonteCarloPanel';
 
 export const ExposureDashboard: React.FC = () => {
     const [exposures, setExposures] = useState<FinancialExposure[]>([]);
@@ -51,7 +54,6 @@ export const ExposureDashboard: React.FC = () => {
     const totalSpend = exposures.reduce((s, e) => s + e.annual_spend, 0);
     const totalEbitdaDelta10 = exposures.reduce((s, e) => s + e.estimated_ebitda_delta_10pct, 0);
 
-    // Concentration heatmap: color-code by vendor_share_pct
     const getHeatColor = (share: number): string => {
         if (share >= 0.6) return 'bg-red-500 text-white';
         if (share >= 0.4) return 'bg-orange-400 text-white';
@@ -111,7 +113,6 @@ export const ExposureDashboard: React.FC = () => {
                 </div>
             </header>
 
-
             {/* Error State */}
             {error && (
                 <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center mb-6">
@@ -170,6 +171,34 @@ export const ExposureDashboard: React.FC = () => {
                         </div>
                     </div>
 
+                    {/* Portfolio Analytics Section */}
+                    <div className="mb-8">
+                        <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <PieChartIcon className="w-5 h-5 text-gray-400" />
+                            Portfolio Analytics
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <h3 className="text-sm font-semibold text-gray-600 mb-2">Risk Distribution</h3>
+                                <RiskDistributionChart />
+                            </div>
+                            <div>
+                                <h3 className="text-sm font-semibold text-gray-600 mb-2">Spend by Category</h3>
+                                <SpendCategoryChart />
+                            </div>
+                            <div>
+                                <h3 className="text-sm font-semibold text-gray-600 mb-2">Trend Overview</h3>
+                                <div className="flex items-center justify-center h-[250px] bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
+                                    <div className="text-center px-6">
+                                        <BarChart3 className="w-8 h-8 text-gray-300 mx-auto mb-2" />
+                                        <p className="text-sm text-gray-400 font-medium">Trend data available after 2+ uploads</p>
+                                        <p className="text-xs text-gray-300 mt-1">Historical comparison coming soon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Vendor Concentration Heatmap */}
                     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-8">
                         <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -203,47 +232,57 @@ export const ExposureDashboard: React.FC = () => {
 
                     {/* Detailed Exposure Table */}
                     {!isAdmin && (
-                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-8">
                             <div className="p-6 pb-3">
-                            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                                <Shield className="w-5 h-5 text-gray-400" />
-                                Vendor Exposure Detail
-                            </h2>
-                        </div>
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm">
-                                <thead>
-                                    <tr className="bg-gray-50 border-y border-gray-200">
-                                        <th className="text-left px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Vendor</th>
-                                        <th className="text-left px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Category</th>
-                                        <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Spend</th>
-                                        <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Share</th>
-                                        <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Exposure</th>
-                                        <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">10% Shock</th>
-                                        <th className="text-right px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">20% Shock</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-100">
-                                    {exposures.map(exp => (
-                                        <tr key={exp.vendor_id} className="hover:bg-gray-50 transition-colors">
-                                            <td className="px-6 py-3 font-medium text-gray-900">{exp.vendor_id}</td>
-                                            <td className="px-4 py-3 text-gray-600">{exp.category}</td>
-                                            <td className="px-4 py-3 text-right font-mono text-gray-900">{fmt(exp.annual_spend)}</td>
-                                            <td className="px-4 py-3 text-right">
-                                                <span className={`inline-block px-2 py-0.5 rounded text-xs font-bold ${getHeatColor(exp.vendor_share_pct)}`}>
-                                                    {pct(exp.vendor_share_pct)}
-                                                </span>
-                                            </td>
-                                            <td className="px-4 py-3 text-right font-mono text-red-600">{fmt(exp.worst_case_exposure)}</td>
-                                            <td className="px-4 py-3 text-right font-mono text-orange-600">{fmt(exp.price_shock_impact_10pct)}</td>
-                                            <td className="px-6 py-3 text-right font-mono text-red-600">{fmt(exp.price_shock_impact_20pct)}</td>
+                                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                                    <Shield className="w-5 h-5 text-gray-400" />
+                                    Vendor Exposure Detail
+                                </h2>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="bg-gray-50 border-y border-gray-200">
+                                            <th className="text-left px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Vendor</th>
+                                            <th className="text-left px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Category</th>
+                                            <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Spend</th>
+                                            <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Share</th>
+                                            <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">Exposure</th>
+                                            <th className="text-right px-4 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">10% Shock</th>
+                                            <th className="text-right px-6 py-3 font-semibold text-gray-600 uppercase tracking-wider text-xs">20% Shock</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        {exposures.map(exp => (
+                                            <tr key={exp.vendor_id} className="hover:bg-gray-50 transition-colors">
+                                                <td className="px-6 py-3 font-medium text-gray-900">{exp.vendor_id}</td>
+                                                <td className="px-4 py-3 text-gray-600">{exp.category}</td>
+                                                <td className="px-4 py-3 text-right font-mono text-gray-900">{fmt(exp.annual_spend)}</td>
+                                                <td className="px-4 py-3 text-right">
+                                                    <span className={`inline-block px-2 py-0.5 rounded text-xs font-bold ${getHeatColor(exp.vendor_share_pct)}`}>
+                                                        {pct(exp.vendor_share_pct)}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-3 text-right font-mono text-red-600">{fmt(exp.worst_case_exposure)}</td>
+                                                <td className="px-4 py-3 text-right font-mono text-orange-600">{fmt(exp.price_shock_impact_10pct)}</td>
+                                                <td className="px-6 py-3 text-right font-mono text-red-600">{fmt(exp.price_shock_impact_20pct)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
                     )}
+
+                    {/* Portfolio Probability Analysis — Monte Carlo */}
+                    <div className="mb-8">
+                        <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                            <Shield className="w-5 h-5 text-purple-500" />
+                            Portfolio Probability Analysis
+                        </h2>
+                        <p className="text-sm text-gray-500 mb-4">Monte Carlo simulation across all vendors</p>
+                        <MonteCarloPanel />
+                    </div>
                 </>
             )}
         </div>

@@ -8,6 +8,16 @@ pyyaml
 sqlalchemy
 alembic
 groq
+fastapi
+uvicorn
+pandas
+python-multipart
+openpyxl
+pydantic
+pyyaml
+sqlalchemy
+alembic
+groq
 PyJWT>=2.8.0
 cryptography>=41.0.0
 python-dotenv
@@ -16,3 +26,4 @@ chardet
 python-dateutil
 psycopg2-binary
 reportlab
+numpy

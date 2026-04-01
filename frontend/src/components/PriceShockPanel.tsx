@@ -6,9 +6,10 @@ import {
     ScenarioDefinition
 } from '../services/api';
 import {
-    Zap, Target, TrendingDown, Layers, Briefcase, Activity, ShieldAlert, CheckCircle, RefreshCw
+    Zap, Target, TrendingDown, Layers, Briefcase, Activity, ShieldAlert, CheckCircle, RefreshCw, Dice5
 } from 'lucide-react';
 import { formatCurrency, formatPct } from '../utils/formatters';
+import { MonteCarloPanel } from './MonteCarloPanel';
 
 interface PriceShockPanelProps {
     vendorId: string; // Maintain strict compatibility for DecisionDetail.tsx
@@ -17,7 +18,7 @@ interface PriceShockPanelProps {
 const PRESET_SHOCKS = [5, 10, 15, 20, 25];
 
 export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) => {
-    const [activeTab, setActiveTab] = useState<'single' | 'portfolio' | 'scenarios'>('single');
+    const [activeTab, setActiveTab] = useState<'single' | 'portfolio' | 'scenarios' | 'probability'>('single');
 
     // Core Single Vendor State
     const [shockPct, setShockPct] = useState(10);
@@ -158,6 +159,12 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
                     className={`flex-1 py-3 text-sm font-medium border-b-2 flex items-center justify-center gap-2 transition-colors ${activeTab === 'scenarios' ? 'border-emerald-600 text-emerald-700 bg-white' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-700'}`}
                 >
                     <Briefcase className="w-4 h-4" /> Scenarios
+                </button>
+                <button
+                    onClick={() => setActiveTab('probability')}
+                    className={`flex-1 py-3 text-sm font-medium border-b-2 flex items-center justify-center gap-2 transition-colors ${activeTab === 'probability' ? 'border-rose-600 text-rose-700 bg-white' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-700'}`}
+                >
+                    <Dice5 className="w-4 h-4" /> Probability
                 </button>
             </div>
 
@@ -385,6 +392,13 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
                                 ))}
                             </div>
                         )}
+                    </div>
+                )}
+
+                {/* TAB 4: PROBABILITY ANALYSIS (MONTE CARLO) */}
+                {activeTab === 'probability' && (
+                    <div className="space-y-4">
+                        <MonteCarloPanel vendorId={vendorId} vendorName={vendorId} />
                     </div>
                 )}
             </div>
