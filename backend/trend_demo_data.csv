@@ -1,0 +1,835 @@
+date,amount,category,entity,currency,gl_code,cost_center,source_file
+2021-01-01,15372.54,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-01-01,12011.96,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-01-01,19611.28,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-01-01,4177.04,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-01-01,5955.09,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-01-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-01-01,22239.15,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-01-01,1489.17,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-01-01,2537.16,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-01-01,8130.0,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-02-01,19744.16,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-02-01,8299.17,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-02-01,4184.98,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-02-01,1456.98,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-02-01,21423.48,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-02-01,12118.68,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-02-01,2458.37,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-02-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-02-01,6123.53,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-02-01,15194.23,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-03-01,18088.92,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-03-01,28397.99,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-03-01,4141.63,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-03-01,6067.16,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-03-01,8149.05,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-03-01,16111.39,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-03-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-03-01,2392.17,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-03-01,12171.0,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-03-01,1458.99,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-04-01,16787.11,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-04-01,4242.41,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-04-01,6162.28,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-04-01,2353.85,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-04-01,1497.54,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-04-01,17130.31,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-04-01,21348.17,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-04-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-04-01,12556.74,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-04-01,8407.84,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-05-01,16046.39,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-05-01,4199.51,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-05-01,26082.29,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-05-01,8385.04,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-05-01,6125.04,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-05-01,1459.24,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-05-01,12601.06,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-05-01,2321.95,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-05-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-05-01,20406.93,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-06-01,4413.87,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-06-01,8299.6,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-06-01,1446.54,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-06-01,18487.3,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-06-01,12988.63,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-06-01,25227.86,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-06-01,6278.27,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-06-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-06-01,2235.41,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-06-01,16367.33,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-07-01,2180.13,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-07-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-07-01,6290.78,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-07-01,1507.98,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-07-01,4465.64,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-07-01,17155.49,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-07-01,18226.27,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-07-01,21742.0,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-07-01,8553.54,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-07-01,13000.68,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-08-01,6197.71,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-08-01,18706.85,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-08-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-08-01,4639.23,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-08-01,13524.56,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-08-01,8840.92,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-08-01,35719.72,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-08-01,2178.81,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-08-01,17891.44,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-08-01,1480.88,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-09-01,28169.6,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-09-01,13412.03,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-09-01,17162.34,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-09-01,2085.29,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-09-01,17836.9,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-09-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-09-01,6304.91,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-09-01,4570.33,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-09-01,8656.65,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-09-01,1612.8,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-10-01,2101.39,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-10-01,9023.28,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-10-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-10-01,23374.28,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-10-01,14874.29,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-10-01,1301.18,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-10-01,18412.7,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-10-01,4854.85,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-10-01,6315.96,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-10-01,13676.49,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-11-01,6393.16,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-11-01,14039.78,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-11-01,8373.96,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2021-11-01,1973.13,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-11-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-11-01,28292.26,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-11-01,23219.61,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-11-01,1581.86,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-11-01,5100.19,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-11-01,33711.95,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-12-01,25979.27,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2021-12-01,13961.4,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2021-12-01,6277.21,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2021-12-01,4957.27,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2021-12-01,28198.39,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2021-12-01,2043.03,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2021-12-01,23681.2,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2021-12-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2021-12-01,1593.46,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2021-12-01,9072.06,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-01-01,1980.33,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-01-01,29262.17,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-01-01,1344.5,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-01-01,9030.29,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-01-01,5134.1,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-01-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-01-01,6413.77,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-01-01,22959.89,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-01-01,19253.78,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-01-01,3518.96,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-01-01,14380.05,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-02-01,5281.56,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-02-01,21037.4,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-02-01,6469.68,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-02-01,14752.98,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-02-01,20154.74,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-02-01,17547.83,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-02-01,9050.3,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-02-01,1474.3,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-02-01,1932.4,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-02-01,2173.51,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-02-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-03-01,5214.39,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-03-01,2878.35,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-03-01,6320.77,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-03-01,18085.19,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-03-01,9212.67,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-03-01,1921.13,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-03-01,24426.32,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-03-01,1472.14,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-03-01,4630.25,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-03-01,14543.47,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-03-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-03-01,18277.43,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-04-01,1907.93,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-04-01,1394.44,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-04-01,8918.55,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-04-01,4557.98,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-04-01,27524.94,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-04-01,5419.67,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-04-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-04-01,19620.45,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-04-01,23046.25,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-04-01,6389.59,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-04-01,15030.49,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-04-01,3505.19,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-05-01,1846.2,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-05-01,15267.4,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-05-01,6365.91,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-05-01,9339.42,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-05-01,21077.82,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-05-01,5493.22,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-05-01,1441.66,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-05-01,29328.78,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-05-01,5637.2,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-05-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-05-01,3294.26,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-05-01,19548.99,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-06-01,17925.51,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-06-01,5267.76,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-06-01,15577.08,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-06-01,1416.71,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-06-01,6513.32,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-06-01,9542.1,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-06-01,1708.02,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-06-01,5617.38,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-06-01,5068.88,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-06-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-06-01,3632.72,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-06-01,21333.64,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-06-01,18998.52,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-07-01,1631.42,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-07-01,19619.32,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-07-01,1693.36,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-07-01,5039.37,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-07-01,3322.53,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-07-01,9852.02,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-07-01,4480.32,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-07-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-07-01,15494.03,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-07-01,5580.5,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-07-01,23327.49,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-07-01,6610.67,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-07-01,20451.03,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-08-01,4846.35,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-08-01,5831.53,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-08-01,1681.8,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-08-01,22625.27,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-08-01,18248.76,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-08-01,1570.18,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-08-01,3727.96,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-08-01,5674.7,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-08-01,6695.49,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-08-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-08-01,20309.07,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-08-01,9564.69,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-08-01,15713.15,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-09-01,5230.47,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-09-01,3729.32,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-09-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-09-01,21733.35,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-09-01,23922.62,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-09-01,5217.9,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-09-01,17234.4,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-09-01,6032.59,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-09-01,1669.89,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-09-01,1595.37,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-09-01,6634.29,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-09-01,16246.62,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-09-01,9603.68,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-10-01,21852.36,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-10-01,16453.41,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-10-01,5235.44,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-10-01,22478.34,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-10-01,33827.27,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-10-01,1652.57,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-10-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-10-01,6771.03,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-10-01,5609.65,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-10-01,4462.85,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-10-01,1554.13,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-10-01,9760.2,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-10-01,6326.6,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-11-01,16692.47,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-11-01,1579.66,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-11-01,6361.88,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-11-01,30964.48,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-11-01,5297.87,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-11-01,1415.32,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-11-01,10140.03,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2022-11-01,30248.39,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-11-01,6603.42,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-11-01,35132.38,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-11-01,4154.84,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-11-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-11-01,7113.89,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-12-01,24304.25,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2022-12-01,16959.08,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2022-12-01,6715.04,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2022-12-01,1460.66,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2022-12-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2022-12-01,1576.74,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2022-12-01,5691.73,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2022-12-01,28559.02,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2022-12-01,22363.72,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2022-12-01,5104.31,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2022-12-01,4320.94,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2022-12-01,6614.69,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2022-12-01,10123.43,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-01-01,6759.2,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-01-01,6285.64,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-01-01,4579.86,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-01-01,1516.19,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-01-01,29589.31,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-01-01,17037.38,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-01-01,1536.7,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-01-01,5186.82,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-01-01,10050.25,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-01-01,4065.88,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-01-01,21125.94,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-01-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-01-01,23469.85,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-02-01,17451.78,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-02-01,1490.21,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-02-01,10364.77,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-02-01,6734.16,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-02-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-02-01,5560.47,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-02-01,5585.35,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-02-01,6822.88,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-02-01,24745.58,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-02-01,18698.71,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-02-01,1408.34,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-02-01,35610.78,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-02-01,4147.82,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-03-01,4302.23,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-03-01,23656.7,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-03-01,17724.31,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-03-01,10382.17,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-03-01,6730.49,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-03-01,1553.47,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-03-01,5457.78,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-03-01,30162.33,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-03-01,1436.89,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-03-01,6828.52,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-03-01,5461.94,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-03-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-03-01,19025.75,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-04-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-04-01,10668.42,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-04-01,1422.17,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-04-01,26084.25,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-04-01,18815.21,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-04-01,17403.15,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-04-01,1481.98,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-04-01,17809.46,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-04-01,6722.98,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-04-01,4895.14,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-04-01,5636.03,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-04-01,7276.08,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-04-01,4984.32,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-05-01,4570.92,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-05-01,22578.83,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-05-01,6795.22,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-05-01,1471.89,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-05-01,5088.0,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-05-01,1381.55,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-05-01,10421.91,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-05-01,5583.08,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-05-01,18546.36,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-05-01,18272.02,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-05-01,25331.07,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-05-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-05-01,6893.09,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-06-01,1364.38,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-06-01,5639.15,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-06-01,3051.38,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-06-01,6924.43,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-06-01,31334.56,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-06-01,6843.28,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-06-01,10606.07,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-06-01,5958.25,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-06-01,18567.33,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-06-01,20097.04,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-06-01,5130.97,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-06-01,26249.17,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-06-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-06-01,1553.32,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-07-01,1392.45,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-07-01,10698.23,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-07-01,18338.1,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-07-01,6379.26,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-07-01,5850.64,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-07-01,2836.07,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-07-01,7115.16,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-07-01,7015.07,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-07-01,4556.32,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-07-01,21461.65,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-07-01,1533.32,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-07-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-07-01,18533.51,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-07-01,26352.99,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-08-01,5658.39,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-08-01,5410.32,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-08-01,7028.92,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-08-01,1472.93,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-08-01,5810.43,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-08-01,19163.31,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-08-01,6919.46,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-08-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-08-01,30280.52,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-08-01,20540.91,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-08-01,27219.1,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-08-01,10571.85,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-08-01,1311.06,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-08-01,3353.32,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-09-01,1586.95,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-09-01,28249.03,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-09-01,19899.52,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-09-01,6972.11,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-09-01,11064.67,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-09-01,1378.66,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-09-01,19135.55,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-09-01,5206.35,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-09-01,4848.36,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-09-01,7419.27,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-09-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-09-01,28873.17,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-09-01,3579.93,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-09-01,5821.58,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-10-01,19768.13,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-10-01,20365.35,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-10-01,3388.68,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-10-01,1418.92,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-10-01,1296.18,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-10-01,4836.74,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-10-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-10-01,11167.52,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-10-01,19522.1,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-10-01,7513.82,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-10-01,7037.1,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-10-01,27308.6,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-10-01,6385.34,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-10-01,5781.59,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-11-01,23640.33,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2023-11-01,7878.09,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-11-01,20138.61,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-11-01,32113.09,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-11-01,11221.76,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-11-01,1546.2,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-11-01,5038.71,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-11-01,5466.82,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-11-01,7571.31,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-11-01,1262.49,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-11-01,7033.52,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-11-01,5844.34,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-11-01,39805.61,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-11-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-12-01,7304.78,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2023-12-01,36617.33,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2023-12-01,11431.76,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2023-12-01,7139.88,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2023-12-01,1544.48,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2023-12-01,11279.65,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2023-12-01,5925.27,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2023-12-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2023-12-01,1211.52,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2023-12-01,20040.74,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2023-12-01,4472.69,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2023-12-01,5250.71,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2023-12-01,8081.58,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2023-12-01,24500.39,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-01-01,30917.85,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-01-01,5360.66,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-01-01,6080.8,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-01-01,21510.78,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-01-01,19878.06,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-01-01,1224.95,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-01-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-01-01,8618.81,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-01-01,3835.32,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-01-01,5610.13,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-01-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2024-01-01,11122.14,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-01-01,1476.78,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-01-01,20707.26,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-01-01,7248.66,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-02-01,8560.04,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-02-01,11463.35,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-02-01,23737.16,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-02-01,28152.18,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-02-01,7144.85,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-02-01,6013.33,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-02-01,21001.83,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-02-01,1170.24,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-02-01,4559.23,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-02-01,5979.11,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-02-01,20903.25,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-02-01,1524.46,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-02-01,4871.21,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-02-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-03-01,6196.87,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-03-01,18044.89,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-03-01,29720.38,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-03-01,11596.19,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-03-01,4862.78,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-03-01,1406.17,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-03-01,18761.08,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-03-01,8342.27,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-03-01,6394.1,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-03-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-03-01,1163.03,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-03-01,5015.75,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-03-01,7288.62,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-03-01,21303.28,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-04-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-04-01,32790.79,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-04-01,5511.46,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-04-01,8425.6,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-04-01,21853.32,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-04-01,6678.6,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-04-01,5310.09,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-04-01,1195.21,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-04-01,20198.66,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-04-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2024-04-01,7249.68,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-04-01,1569.3,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-04-01,11603.76,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-04-01,6056.55,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-04-01,33162.06,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-05-01,21714.8,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-05-01,1112.11,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-05-01,8244.59,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-05-01,7266.69,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-05-01,17849.29,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-05-01,8962.5,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-05-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-05-01,4767.3,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-05-01,6250.58,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-05-01,21502.77,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-05-01,34343.52,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-05-01,11872.49,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-05-01,1486.13,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-05-01,5563.58,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-06-01,4793.79,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-06-01,21928.21,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-06-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-06-01,7347.05,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-06-01,16661.19,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-06-01,6264.92,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-06-01,1460.8,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-06-01,7353.51,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-06-01,1117.07,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-06-01,8651.99,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-06-01,22799.78,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-06-01,34072.47,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-06-01,12127.23,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-06-01,5243.12,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-07-01,6690.51,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-07-01,9693.85,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-07-01,34259.41,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-07-01,1578.68,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-07-01,7090.33,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-07-01,12608.67,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-07-01,5232.53,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-07-01,22226.68,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-07-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-07-01,21086.72,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-07-01,1055.08,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-07-01,25653.7,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-07-01,7321.61,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-07-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2024-07-01,4902.39,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-08-01,18674.75,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-08-01,34618.68,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-08-01,6514.47,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-08-01,6184.53,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-08-01,32206.37,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-08-01,7394.02,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-08-01,12314.67,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-08-01,5072.75,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-08-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-08-01,22576.86,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-08-01,9704.4,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-08-01,8246.73,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-08-01,1047.99,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-08-01,1447.17,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-09-01,33200.49,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-09-01,6743.52,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-09-01,5675.46,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-09-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-09-01,6493.13,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-09-01,1394.37,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-09-01,23086.18,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-09-01,7382.85,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-09-01,9425.65,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-09-01,1064.15,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-09-01,21141.2,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-09-01,5446.37,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-09-01,17820.69,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-09-01,12458.38,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-10-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-10-01,8181.98,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-10-01,35251.66,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-10-01,18473.48,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-10-01,1383.25,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-10-01,7657.27,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-10-01,6312.03,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-10-01,9250.25,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-10-01,23530.56,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-10-01,6818.45,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-10-01,30815.82,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-10-01,4386.33,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-10-01,994.57,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-10-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2024-10-01,12499.85,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-11-01,10350.43,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-11-01,23868.17,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-11-01,8540.08,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-11-01,32566.51,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-11-01,11694.0,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-11-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-11-01,6725.98,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-11-01,47372.13,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2024-11-01,7549.93,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-11-01,12158.46,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-11-01,1022.83,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-11-01,8953.85,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-11-01,21307.31,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-11-01,1545.45,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-12-01,12763.34,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2024-12-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2024-12-01,5519.13,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2024-12-01,9814.48,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2024-12-01,981.0,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2024-12-01,6943.79,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2024-12-01,26120.19,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2024-12-01,24359.19,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2024-12-01,6919.11,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2024-12-01,10110.51,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2024-12-01,1403.97,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2024-12-01,21768.39,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2024-12-01,7531.94,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2024-12-01,52072.89,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-01-01,12913.35,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-01-01,20096.17,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-01-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2025-01-01,27310.52,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-01-01,937.3,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-01-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-01-01,39472.78,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-01-01,1631.61,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-01-01,8269.53,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-01-01,4089.36,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-01-01,24524.93,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-01-01,7639.25,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-01-01,9888.21,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-01-01,6823.44,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-01-01,10732.56,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-02-01,13668.55,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-02-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-02-01,20519.45,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-02-01,1343.86,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-02-01,5868.58,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-02-01,7094.45,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-02-01,8567.39,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-02-01,940.75,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-02-01,7652.44,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-02-01,25251.34,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-02-01,9319.46,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-02-01,10050.36,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-02-01,25995.3,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-02-01,36092.93,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-03-01,8793.43,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-03-01,41028.05,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-03-01,6835.7,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-03-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-03-01,1627.23,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-03-01,5593.75,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-03-01,25196.05,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-03-01,13106.44,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-03-01,21998.92,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-03-01,18191.37,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-03-01,7682.34,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-03-01,928.13,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-03-01,10572.76,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-03-01,8764.66,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-04-01,13368.77,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-04-01,7785.37,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-04-01,40388.39,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-04-01,7309.39,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-04-01,10983.41,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-04-01,10222.53,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-04-01,1515.83,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-04-01,26339.35,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-04-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2025-04-01,903.31,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-04-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-04-01,5468.09,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-04-01,8554.44,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-04-01,25349.01,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-04-01,21277.18,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-05-01,846.91,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-05-01,7571.51,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-05-01,1492.75,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-05-01,40583.22,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-05-01,9774.06,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-05-01,13412.19,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-05-01,16676.96,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-05-01,11217.1,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-05-01,26189.32,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-05-01,5471.26,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-05-01,12452.66,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-05-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-05-01,23073.43,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-05-01,7835.45,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-06-01,11271.07,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-06-01,26190.44,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-06-01,10299.68,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-06-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-06-01,7773.96,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-06-01,844.42,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-06-01,13238.88,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-06-01,19867.84,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-06-01,1459.13,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-06-01,25567.59,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-06-01,4990.81,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-06-01,7075.97,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-06-01,9077.11,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-06-01,44155.39,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-07-01,7809.27,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-07-01,1529.94,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-07-01,7128.81,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-07-01,9966.6,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-07-01,14004.22,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-07-01,10691.33,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-07-01,17577.97,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-07-01,45954.75,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-07-01,11871.6,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-07-01,26525.99,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-07-01,28310.65,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-07-01,4327.06,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-07-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-07-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2025-07-01,835.59,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-08-01,32930.08,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-08-01,14036.15,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-08-01,5056.85,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-08-01,10252.83,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-08-01,1497.18,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-08-01,10104.09,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-08-01,821.73,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-08-01,7872.06,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-08-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-08-01,46651.6,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-08-01,7615.82,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-08-01,27346.63,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-08-01,18696.33,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-08-01,11506.2,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-09-01,816.5,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-09-01,4492.13,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-09-01,7750.63,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-09-01,14187.44,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-09-01,12072.87,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-09-01,27561.83,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-09-01,18810.92,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-09-01,11273.73,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-09-01,7719.88,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-09-01,43559.62,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-09-01,20094.8,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-09-01,1582.75,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-09-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-09-01,9891.1,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-10-01,28238.1,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-10-01,12475.19,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-10-01,7327.55,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-10-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2025-10-01,18279.17,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-10-01,7852.1,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-10-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-10-01,793.17,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-10-01,13938.09,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-10-01,1508.57,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-10-01,5731.34,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-10-01,45659.81,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-10-01,13849.58,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-10-01,35665.17,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-10-01,12411.79,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-11-01,753.87,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-11-01,6356.62,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-11-01,62514.24,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-11-01,28593.16,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-11-01,7423.98,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-11-01,10484.72,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-11-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2025-11-01,19811.43,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-11-01,1511.27,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-11-01,14646.92,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-11-01,8122.3,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-11-01,25000.16,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-11-01,13654.92,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-11-01,12809.18,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-12-01,13986.23,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2025-12-01,8185.3,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2025-12-01,31513.4,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2025-12-01,764.84,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2025-12-01,28864.32,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2025-12-01,28616.36,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2025-12-01,17780.96,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2025-12-01,7529.75,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2025-12-01,5695.14,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2025-12-01,12139.05,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2025-12-01,65785.17,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2025-12-01,13141.47,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2025-12-01,1472.73,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2025-12-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2026-01-01,29070.37,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2026-01-01,752.97,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2026-01-01,4758.96,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2026-01-01,1495.73,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2026-01-01,8072.95,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2026-01-01,14704.16,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2026-01-01,7360.54,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2026-01-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2026-01-01,11857.66,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2026-01-01,18846.22,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2026-01-01,11686.19,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2026-01-01,27941.59,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2026-01-01,12681.32,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2026-01-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2026-01-01,48036.32,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2026-02-01,29307.62,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2026-02-01,26404.96,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2026-02-01,21671.38,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2026-02-01,7533.1,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2026-02-01,15321.98,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2026-02-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2026-02-01,737.17,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2026-02-01,5309.7,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2026-02-01,13755.13,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2026-02-01,1523.09,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2026-02-01,13502.57,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2026-02-01,12770.51,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2026-02-01,49733.77,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2026-02-01,8180.46,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2026-03-01,16317.14,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2026-03-01,14177.71,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2026-03-01,1371.74,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2026-03-01,48371.34,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2026-03-01,30069.92,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2026-03-01,14531.99,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2026-03-01,729.87,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2026-03-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2026-03-01,4577.21,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2026-03-01,21886.5,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2026-03-01,17740.59,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2026-03-01,13678.31,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2026-03-01,7588.36,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
+2026-03-01,8199.68,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2026-04-01,23959.39,Marketing,Google Ads,USD,GL-1004,CC-01,trend_demo_data.csv
+2026-04-01,49104.08,Cloud Infrastructure,AWS,USD,GL-1000,CC-01,trend_demo_data.csv
+2026-04-01,15000.0,Real Estate,WeWork,USD,GL-1011,CC-01,trend_demo_data.csv
+2026-04-01,21059.61,Logistics,FedEx,USD,GL-1009,CC-01,trend_demo_data.csv
+2026-04-01,15232.85,Travel & Expenses,Uber,USD,GL-1010,CC-01,trend_demo_data.csv
+2026-04-01,14804.36,SaaS,Salesforce,USD,GL-1001,CC-01,trend_demo_data.csv
+2026-04-01,8468.04,SaaS,Slack,USD,GL-1008,CC-01,trend_demo_data.csv
+2026-04-01,14066.27,SaaS,Zendesk,USD,GL-1007,CC-01,trend_demo_data.csv
+2026-04-01,50000.0,Professional Services,McKinsey,USD,GL-1006,CC-01,trend_demo_data.csv
+2026-04-01,4383.33,Marketing,LinkedIn Ads,USD,GL-1005,CC-01,trend_demo_data.csv
+2026-04-01,15841.09,Cloud Infrastructure,Datadog,USD,GL-1003,CC-01,trend_demo_data.csv
+2026-04-01,711.81,SaaS,Zoom,USD,GL-1013,CC-01,trend_demo_data.csv
+2026-04-01,30920.42,Payroll,Gusto,USD,GL-1002,CC-01,trend_demo_data.csv
+2026-04-01,1398.89,SaaS,DocuSign,USD,GL-1012,CC-01,trend_demo_data.csv
+2026-04-01,7720.27,SaaS,Okta,USD,GL-1014,CC-01,trend_demo_data.csv
