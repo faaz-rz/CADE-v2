@@ -11,7 +11,7 @@ class CanonicalFinancialRecord(BaseModel):
     amount: float = Field(..., description="Monetary value in normalized base currency")
     category: str = Field(..., description="Normalized expense category")
     entity: str = Field(..., description="Vendor, Project, or Department name")
-    currency: str = Field(default="USD", description="ISO currency code")
+    currency: str = Field(default="INR", description="ISO currency code")
     gl_code: Optional[str] = None
     cost_center: Optional[str] = None
     po_number: Optional[str] = None

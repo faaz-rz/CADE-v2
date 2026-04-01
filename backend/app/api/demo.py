@@ -18,21 +18,21 @@ router = APIRouter()
 
 # ── Demo vendor definitions (exact names and amounts from spec) ──
 DEMO_VENDORS = [
-    {"entity": "SALESFORCE",             "amount": 210000, "category": "SaaS",                  "currency": "USD"},
-    {"entity": "AMAZON WEB SERVICES",    "amount": 340000, "category": "Cloud Infrastructure",  "currency": "USD"},
-    {"entity": "WORKDAY",                "amount": 180000, "category": "SaaS",                  "currency": "USD"},
-    {"entity": "SNOWFLAKE",              "amount": 95000,  "category": "Cloud Infrastructure",  "currency": "USD"},
-    {"entity": "HUBSPOT",                "amount": 72000,  "category": "SaaS",                  "currency": "USD"},
-    {"entity": "SLACK",                  "amount": 48000,  "category": "SaaS",                  "currency": "USD"},
-    {"entity": "ZENDESK",                "amount": 36000,  "category": "SaaS",                  "currency": "USD"},
-    {"entity": "DOCUSIGN",               "amount": 24000,  "category": "SaaS",                  "currency": "USD"},
-    {"entity": "GUSTO",                  "amount": 120000, "category": "Payroll",               "currency": "USD"},
-    {"entity": "ADP",                    "amount": 85000,  "category": "Payroll",               "currency": "USD"},
-    {"entity": "MCKINSEY",               "amount": 40000,  "category": "Professional Services", "currency": "USD"},
-    {"entity": "DELOITTE",               "amount": 35000,  "category": "Professional Services", "currency": "USD"},
-    {"entity": "LINKEDIN ADS",           "amount": 25000,  "category": "Marketing",             "currency": "USD"},
-    {"entity": "FEDEX",                  "amount": 15000,  "category": "Logistics",             "currency": "USD"},
-    {"entity": "STAPLES",                "amount": 5000,   "category": "Office Supplies",       "currency": "USD"},
+    {"entity": "SALESFORCE",             "amount": 210000, "category": "SaaS",                  "currency": "INR"},
+    {"entity": "AMAZON WEB SERVICES",    "amount": 340000, "category": "Cloud Infrastructure",  "currency": "INR"},
+    {"entity": "WORKDAY",                "amount": 180000, "category": "SaaS",                  "currency": "INR"},
+    {"entity": "SNOWFLAKE",              "amount": 95000,  "category": "Cloud Infrastructure",  "currency": "INR"},
+    {"entity": "HUBSPOT",                "amount": 72000,  "category": "SaaS",                  "currency": "INR"},
+    {"entity": "SLACK",                  "amount": 48000,  "category": "SaaS",                  "currency": "INR"},
+    {"entity": "ZENDESK",                "amount": 36000,  "category": "SaaS",                  "currency": "INR"},
+    {"entity": "DOCUSIGN",               "amount": 24000,  "category": "SaaS",                  "currency": "INR"},
+    {"entity": "GUSTO",                  "amount": 120000, "category": "Payroll",               "currency": "INR"},
+    {"entity": "ADP",                    "amount": 85000,  "category": "Payroll",               "currency": "INR"},
+    {"entity": "MCKINSEY",               "amount": 40000,  "category": "Professional Services", "currency": "INR"},
+    {"entity": "DELOITTE",               "amount": 35000,  "category": "Professional Services", "currency": "INR"},
+    {"entity": "LINKEDIN ADS",           "amount": 25000,  "category": "Marketing",             "currency": "INR"},
+    {"entity": "FEDEX",                  "amount": 15000,  "category": "Logistics",             "currency": "INR"},
+    {"entity": "STAPLES",                "amount": 5000,   "category": "Office Supplies",       "currency": "INR"},
 ]
 
 # Number of monthly transactions to create per vendor (spreads the total evenly)

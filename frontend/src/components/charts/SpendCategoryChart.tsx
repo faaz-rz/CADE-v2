@@ -19,7 +19,7 @@ const getBarColor = (spend: number): string => {
 };
 
 const formatCurrency = (val: number): string =>
-    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
 
 export const SpendCategoryChart: React.FC = () => {
     const [data, setData] = useState<CategoryData[]>([]);
@@ -90,7 +90,7 @@ export const SpendCategoryChart: React.FC = () => {
                         <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
                         <XAxis
                             type="number"
-                            tickFormatter={(val: number) => `$${(val / 1000).toFixed(0)}K`}
+                            tickFormatter={(val: number) => `₹${(val / 1000).toFixed(0)}K`}
                             tick={{ fontSize: 11, fill: '#6b7280' }}
                             tickLine={false}
                             axisLine={{ stroke: '#e5e7eb' }}

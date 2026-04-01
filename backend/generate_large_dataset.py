@@ -51,7 +51,7 @@ def generate_large_dataset(filename="mock_enterprise_spend.csv", num_records=500
             "amount": amount,
             "category": cat,
             "entity": entity,
-            "currency": "USD",
+            "currency": "INR",
             "gl_code": f"GL-{random.randint(1000, 9999)}",
             "cost_center": f"CC-{random.randint(10, 99)}",
             "source_file": filename

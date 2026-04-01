@@ -126,7 +126,7 @@ class HeuristicMapper:
         avg_confidence = sum(m.confidence for m in matches if m.canonical_field in HeuristicMapper.REQUIRED_FIELDS) / len(HeuristicMapper.REQUIRED_FIELDS)
         
         # Build Schema Object
-        defaults = {"currency": "USD"}
+        defaults = {"currency": "INR"}
         if "date" not in mapping_dict:
              defaults["date"] = "2023-01-01" # Default snapshot
         if "category" not in mapping_dict:
@@ -301,7 +301,7 @@ async def map_columns(columns: List[str], df_sample: pd.DataFrame, explicit_conf
             
     if "entity" in mapping_dict and "amount" in mapping_dict:
         avg_conf = (confidence_sum / matched_fields) if matched_fields > 0 else 0
-        return SchemaMapping(name="Fuzzy Auto-Detected", column_mapping=mapping_dict, defaults={"currency": "USD", "category": "Uncategorized"}, multipliers=multipliers), "fuzzy", avg_conf
+        return SchemaMapping(name="Fuzzy Auto-Detected", column_mapping=mapping_dict, defaults={"currency": "INR", "category": "Uncategorized"}, multipliers=multipliers), "fuzzy", avg_conf
         
     # 4. LLM
     from app.core.llm_column_mapper import map_columns_with_llm
@@ -314,6 +314,6 @@ async def map_columns(columns: List[str], df_sample: pd.DataFrame, explicit_conf
         clean_map = {v: k for k, v in llm_map.items() if v in ["entity", "amount", "date", "category", "currency", "gl_code", "cost_center", "po_number"] and k in columns}
         if "entity" in clean_map.values() and "amount" in clean_map.values():
             flipped = {v:k for k,v in clean_map.items()}
-            return SchemaMapping(name="LLM Fallback", column_mapping=flipped, defaults={"currency": "USD", "category": "Uncategorized"}, multipliers={}), "llm", 0.9
+            return SchemaMapping(name="LLM Fallback", column_mapping=flipped, defaults={"currency": "INR", "category": "Uncategorized"}, multipliers={}), "llm", 0.9
             
     return None, "none", 0.0

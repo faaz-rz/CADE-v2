@@ -15,7 +15,7 @@ class SchemaMapping(BaseModel):
     # Optional date format string for parsing (e.g., "%Y-%m-%d")
     date_format: Optional[str] = None
     
-    # Default values for missing fields (e.g., currency='USD', category='Uncategorized')
+    # Default values for missing fields (e.g., currency='INR', category='Uncategorized')
     defaults: Dict[str, str] = {}
     
     # Optional multipliers for numeric fields (e.g., amount: 1000 for 'K')

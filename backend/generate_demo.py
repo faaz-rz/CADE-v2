@@ -38,7 +38,7 @@ for i in range(NUM_ROWS):
         "Vendor": vendor,
         "Amount": amount,
         "Category": cat,
-        "Currency": "USD"
+        "Currency": "INR"
     })
 
 df = pd.DataFrame(data)

@@ -70,7 +70,7 @@ class IngestionService:
         rejections = []
         warnings = []
         
-        currency_default = mapping.defaults.get("currency", "USD")
+        currency_default = mapping.defaults.get("currency", "INR")
         category_default = mapping.defaults.get("category", "Uncategorized")
         
         for idx, row in df.iterrows():
@@ -109,7 +109,7 @@ class IngestionService:
                     
             ccy = clean_currency(raw_ccy) if "currency" in mapping.column_mapping else currency_default
             if "currency" not in mapping.column_mapping:
-                warnings.append("No currency column found \u2014 defaulted to USD")
+                warnings.append("No currency column found — defaulted to INR")
                 
             cat = str(raw_cat).strip() if pd.notna(raw_cat) and "category" in mapping.column_mapping else category_default
             

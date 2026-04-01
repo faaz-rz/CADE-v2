@@ -64,7 +64,7 @@ def get_savings_summary(payload: dict = Depends(verify_token)):
         "decisions_pending_count": pending_count,
         "decisions_rejected_count": rejected_count,
         "roi_multiple": roi_multiple,
-        "currency": "USD",
+        "currency": "INR",
     }
 
 @router.get("/{decision_id}", response_model=Decision)

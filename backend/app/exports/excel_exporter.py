@@ -26,7 +26,7 @@ from app.services.decision_store import DecisionStore
 HEADER_FONT = Font(name="Calibri", bold=True, size=11, color="FFFFFF")
 HEADER_FILL = PatternFill(start_color="1F4E79", end_color="1F4E79", fill_type="solid")
 HEADER_ALIGNMENT = Alignment(horizontal="center", vertical="center", wrap_text=True)
-CURRENCY_FORMAT = '#,##0.00'
+CURRENCY_FORMAT = '₹#,##0.00'
 PERCENT_FORMAT = '0.00%'
 THIN_BORDER = Border(
     left=Side(style="thin", color="D9D9D9"),
@@ -236,12 +236,12 @@ def _build_board_executive_summary(
     grey_fill = PatternFill(start_color=LIGHT_GREY, end_color=LIGHT_GREY, fill_type="solid")
 
     kpi_rows = [
-        ("Total Vendor Spend", f"${total_spend:,.0f}", "Across all categories"),
+        ("Total Vendor Spend", f"₹{total_spend:,.0f}", "Across all categories"),
         ("HIGH Risk Vendors", str(high_risk_count), "Require immediate review"),
         ("MEDIUM Risk Vendors", str(medium_risk_count), "Monitor closely"),
         ("Decisions Generated", str(decision_count), "This period"),
-        ("Estimated Savings", f"${estimated_savings:,.0f}", "If actions implemented"),
-        ("EBITDA at Risk (10%)", f"${ebitda_at_risk:,.0f}", "10% price shock scenario"),
+        ("Estimated Savings", f"₹{estimated_savings:,.0f}", "If actions implemented"),
+        ("EBITDA at Risk (10%)", f"₹{ebitda_at_risk:,.0f}", "10% price shock scenario"),
         ("Vendors Tracked", str(vendor_count), "Active this period"),
     ]
 

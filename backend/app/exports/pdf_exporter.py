@@ -43,10 +43,10 @@ def generate_executive_pdf(
     elements.append(Spacer(1, 10))
     
     kpi_data = [
-        ["Total Spend Analyzed", f"${total_spend:,.0f}"],
+        ["Total Spend Analyzed", f"₹{total_spend:,.0f}"],
         ["Total Vendors", str(vendor_count)],
-        ["Estimated Savings Identified", f"${estimated_savings:,.0f}"],
-        ["EBITDA at Risk (10% Shock)", f"${ebitda_at_risk:,.0f}"],
+        ["Estimated Savings Identified", f"₹{estimated_savings:,.0f}"],
+        ["EBITDA at Risk (10% Shock)", f"₹{ebitda_at_risk:,.0f}"],
         ["High Risk Vendors", str(high_risk_count)],
         ["Total Recommendations", str(decision_count)]
     ]
@@ -79,8 +79,8 @@ def generate_executive_pdf(
         table_data.append([
             exp.vendor_id,
             exp.category,
-            f"${exp.annual_spend:,.0f}",
-            f"${exp.worst_case_exposure:,.0f}"
+            f"₹{exp.annual_spend:,.0f}",
+            f"₹{exp.worst_case_exposure:,.0f}"
         ])
         
     vendor_table = Table(table_data, colWidths=[120, 120, 100, 100])

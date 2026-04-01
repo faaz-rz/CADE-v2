@@ -10,7 +10,7 @@ class FinancialRecord(BaseModel):
     entity: str = Field(..., description="Vendor or Project name")
     category: str = Field(..., description="Expense category (e.g. Software, contractor)")
     amount: float = Field(..., description="Monetary value")
-    currency: str = "USD"
+    currency: str = "INR"
     description: Optional[str] = None
     
     @field_validator('amount')

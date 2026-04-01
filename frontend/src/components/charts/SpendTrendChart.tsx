@@ -18,7 +18,7 @@ const formatMonth = (month: string): string => {
 };
 
 const formatCurrency = (val: number): string =>
-    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
 
 export const SpendTrendChart: React.FC<SpendTrendChartProps> = ({ vendorId, vendorName }) => {
     const [trend, setTrend] = useState<VendorTrend | null>(null);
@@ -102,7 +102,7 @@ export const SpendTrendChart: React.FC<SpendTrendChartProps> = ({ vendorId, vend
                             axisLine={{ stroke: '#e5e7eb' }}
                         />
                         <YAxis
-                            tickFormatter={(val: number) => `$${(val / 1000).toFixed(0)}K`}
+                            tickFormatter={(val: number) => `₹${(val / 1000).toFixed(0)}K`}
                             tick={{ fontSize: 11, fill: '#6b7280' }}
                             tickLine={false}
                             axisLine={{ stroke: '#e5e7eb' }}

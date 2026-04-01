@@ -79,8 +79,8 @@ def clean_vendor_name(val) -> str:
 
 def clean_currency(val) -> str:
     if pd.isna(val) or val is None:
-        return "USD"
+        return "INR"
     s = str(val).strip().upper()
     if len(s) == 3 and s.isalpha():
         return s
-    return "USD"
+    return "INR"

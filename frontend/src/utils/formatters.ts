@@ -3,12 +3,12 @@
  */
 
 /**
- * Formats a raw number into standard US currency (e.g. 2100000 -> "$2,100,000")
+ * Formats a raw number into Indian Rupees (e.g. 2100000 -> "₹21,00,000")
  */
 export const formatCurrency = (amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
         style: 'currency',
-        currency: 'USD',
+        currency: 'INR',
         maximumFractionDigits: 0
     }).format(amount);
 };

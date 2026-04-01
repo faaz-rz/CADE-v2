@@ -2,23 +2,22 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
     PriceShockResponse,
     SimulationService,
-    PortfolioShockResponse,
     ScenarioDefinition
 } from '../services/api';
 import {
-    Zap, Target, TrendingDown, Layers, Briefcase, Activity, ShieldAlert, CheckCircle, RefreshCw, Dice5
+    Zap, TrendingDown, Briefcase, Activity, CheckCircle, RefreshCw, Dice5
 } from 'lucide-react';
 import { formatCurrency, formatPct } from '../utils/formatters';
 import { MonteCarloPanel } from './MonteCarloPanel';
 
 interface PriceShockPanelProps {
-    vendorId: string; // Maintain strict compatibility for DecisionDetail.tsx
+    vendorId: string;
 }
 
 const PRESET_SHOCKS = [5, 10, 15, 20, 25];
 
 export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) => {
-    const [activeTab, setActiveTab] = useState<'single' | 'portfolio' | 'scenarios' | 'probability'>('single');
+    const [activeTab, setActiveTab] = useState<'single' | 'scenarios' | 'probability'>('single');
 
     // Core Single Vendor State
     const [shockPct, setShockPct] = useState(10);
@@ -27,18 +26,10 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Portfolio State
-    const [portCategory, setPortCategory] = useState<string>('SaaS');
-    const [portResult, setPortResult] = useState<PortfolioShockResponse | null>(null);
-    const [portLoading, setPortLoading] = useState(false);
-
     // Scenarios State
     const [scenarios, setScenarios] = useState<ScenarioDefinition[]>([]);
     const [scenariosLoading, setScenariosLoading] = useState(false);
     const [activeScenario, setActiveScenario] = useState<string | null>(null);
-
-    // Dynamic Categories State
-    const [categories, setCategories] = useState<string[]>(['All Vendors']);
 
     // Initial Load for scenarios
     useEffect(() => {
@@ -55,15 +46,6 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
     useEffect(() => {
         if (activeTab === 'single' && !result && !loading && !error) {
             runSimulation(10, 0.25);
-        }
-
-        if (activeTab === 'portfolio' && categories.length === 1) {
-            import('../services/api').then(({ ExposureService }) => {
-                ExposureService.getAllExposures().then(exposures => {
-                    const uniqueCats = Array.from(new Set(exposures.map(e => e.category).filter(Boolean)));
-                    setCategories(['All Vendors', ...uniqueCats]);
-                }).catch(err => console.error("Failed to fetch exposures for categories", err));
-            });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeTab]);
@@ -100,42 +82,12 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
         runSimulation(shockPct, val);
     };
 
-    const runPortfolio = async () => {
-        setPortLoading(true);
-        try {
-            const data = await SimulationService.runPortfolioShock({
-                category: portCategory !== 'All Vendors' ? portCategory : null,
-                shock_percentage: shockPct,
-                ebitda_margin: margin
-            });
-            setPortResult(data);
-        } catch (e) {
-            console.error(e);
-        } finally {
-            setPortLoading(false);
-        }
-    };
-
-    const applyScenario = async (s: ScenarioDefinition) => {
+    const applyScenario = (s: ScenarioDefinition) => {
         setActiveScenario(s.id);
-        setActiveTab('portfolio');
         setShockPct(s.shock_percentage);
         setMargin(s.ebitda_margin);
-        setPortCategory(s.category_focus);
-
-        setPortLoading(true);
-        try {
-            const data = await SimulationService.runPortfolioShock({
-                category: s.category_focus !== 'All' && s.category_focus !== 'All Vendors' ? s.category_focus : null,
-                shock_percentage: s.shock_percentage,
-                ebitda_margin: s.ebitda_margin
-            });
-            setPortResult(data);
-        } catch (e) {
-            console.error(e);
-        } finally {
-            setPortLoading(false);
-        }
+        setActiveTab('single');
+        runSimulation(s.shock_percentage, s.ebitda_margin);
     };
 
     return (
@@ -147,12 +99,6 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
                     className={`flex-1 py-3 text-sm font-medium border-b-2 flex items-center justify-center gap-2 transition-colors ${activeTab === 'single' ? 'border-purple-600 text-purple-700 bg-white' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-700'}`}
                 >
                     <Zap className="w-4 h-4" /> Single Vendor
-                </button>
-                <button
-                    onClick={() => setActiveTab('portfolio')}
-                    className={`flex-1 py-3 text-sm font-medium border-b-2 flex items-center justify-center gap-2 transition-colors ${activeTab === 'portfolio' ? 'border-blue-600 text-blue-700 bg-white' : 'border-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-700'}`}
-                >
-                    <Layers className="w-4 h-4" /> Portfolio View
                 </button>
                 <button
                     onClick={() => setActiveTab('scenarios')}
@@ -295,71 +241,11 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
                     </div>
                 )}
 
-                {/* TAB 2: PORTFOLIO VIEW */}
-                {activeTab === 'portfolio' && (
-                    <div className="space-y-5">
-                        <div className="flex flex-col md:flex-row gap-4 items-end bg-blue-50/50 p-4 rounded-xl border border-blue-100">
-                            <div className="w-full md:w-1/3">
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1 block">Category Filter</label>
-                                <select
-                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
-                                    value={portCategory}
-                                    onChange={(e) => setPortCategory(e.target.value)}
-                                >
-                                    {categories.map(c => (
-                                        <option key={c} value={c}>{c}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="w-full md:w-1/3">
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1 block">Shock (%)</label>
-                                <input
-                                    type="number" className="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white"
-                                    value={shockPct} onChange={(e) => setShockPct(parseFloat(e.target.value) || 0)}
-                                />
-                            </div>
-                            <div className="w-full md:w-1/3">
-                                <button onClick={runPortfolio} disabled={portLoading} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm">
-                                    {portLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Target className="w-4 h-4" />} Simulate Portfolio Focus
-                                </button>
-                            </div>
-                        </div>
-
-                        {portResult && (
-                            <div className="bg-white border flex flex-col items-center border-blue-100 rounded-xl p-6 shadow-sm animate-in fade-in slide-in-from-bottom-2">
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full text-center">
-                                    <div className="space-y-1">
-                                        <span className="text-xs text-gray-500 font-medium uppercase block">Vendors Hit</span>
-                                        <span className="text-2xl font-black text-gray-900">{portResult.affected_vendors}</span>
-                                    </div>
-                                    <div className="space-y-1">
-                                        <span className="text-xs text-gray-500 font-medium uppercase block">Original Spend</span>
-                                        <span className="text-xl font-bold text-gray-700">{formatCurrency(portResult.total_base_spend)}</span>
-                                    </div>
-                                    <div className="space-y-1">
-                                        <span className="text-xs text-gray-500 font-medium uppercase block">New Spend</span>
-                                        <span className="text-xl font-bold text-blue-700">{formatCurrency(portResult.total_new_spend)}</span>
-                                    </div>
-                                    <div className="space-y-1 bg-red-50 rounded-lg flex flex-col justify-center items-center shadow-inner border border-red-100 px-4 py-2">
-                                        <span className="text-[10px] text-red-800 font-bold uppercase block mb-1 tracking-wider flex items-center gap-1"><ShieldAlert className="w-3 h-3" /> Mass EBITDA Impact</span>
-                                        <span className="text-2xl font-black text-red-600">-{formatCurrency(portResult.total_ebitda_delta)}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        {!portResult && !portLoading && (
-                            <div className="py-8 text-center text-gray-400 text-sm">
-                                Define filters and click Simulate to calculate portfolio wide damage paths.
-                            </div>
-                        )}
-                    </div>
-                )}
-
-                {/* TAB 3: MACRO SCENARIOS */}
+                {/* TAB 2: MACRO SCENARIOS */}
                 {activeTab === 'scenarios' && (
                     <div className="space-y-4">
                         <p className="text-sm text-gray-600 mb-4 bg-emerald-50 px-4 py-3 rounded-lg border border-emerald-100">
-                            Apply predefined macro-economic events instantly to your portfolio matrix to measure structural resiliency.
+                            Apply predefined macro-economic scenarios to this vendor to measure resilience under stress conditions.
                         </p>
 
                         {scenariosLoading ? (
@@ -395,7 +281,7 @@ export const PriceShockPanel: React.FC<PriceShockPanelProps> = ({ vendorId }) =>
                     </div>
                 )}
 
-                {/* TAB 4: PROBABILITY ANALYSIS (MONTE CARLO) */}
+                {/* TAB 3: PROBABILITY ANALYSIS (MONTE CARLO) */}
                 {activeTab === 'probability' && (
                     <div className="space-y-4">
                         <MonteCarloPanel vendorId={vendorId} vendorName={vendorId} />

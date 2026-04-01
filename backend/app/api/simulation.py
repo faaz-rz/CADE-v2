@@ -57,7 +57,9 @@ async def simulate_vendor_monte_carlo(request: dict):
     """
     vendor_id = request.get("vendor_id")
     ebitda_margin = request.get("ebitda_margin", 0.25)
-    simulations = request.get("simulations", 10000)
+    simulations = request.get("simulations", 50000)
+    distribution = request.get("distribution", "student_t")
+    seed = request.get("seed", None)
 
     exposures = calculate_all_exposures()
     vendor = next(
@@ -72,6 +74,8 @@ async def simulate_vendor_monte_carlo(request: dict):
         annual_spend=vendor.annual_spend,
         ebitda_margin=ebitda_margin,
         simulations=simulations,
+        distribution=distribution,
+        seed=seed,
     )
     return result.__dict__
 
@@ -83,9 +87,11 @@ async def simulate_portfolio_monte_carlo(request: dict):
     Supports correlated shocks for realistic portfolio risk modeling.
     """
     ebitda_margin = request.get("ebitda_margin", 0.25)
-    simulations = request.get("simulations", 10000)
+    simulations = request.get("simulations", 50000)
     correlated = request.get("correlated", True)
     vendor_ids = request.get("vendor_ids", None)
+    distribution = request.get("distribution", "student_t")
+    seed = request.get("seed", None)
 
     exposures = calculate_all_exposures()
 
@@ -109,6 +115,8 @@ async def simulate_portfolio_monte_carlo(request: dict):
         ebitda_margin=ebitda_margin,
         simulations=simulations,
         correlated=correlated,
+        distribution=distribution,
+        seed=seed,
     )
 
     # Serialize dataclass results

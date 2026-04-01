@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FinancialExposure, ExposureService, ExportService } from '../services/api';
-import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X, PieChart as PieChartIcon } from 'lucide-react';
+import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X, PieChart as PieChartIcon, ChevronDown, ChevronUp, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { usePermission } from '../hooks/usePermission';
 import { RiskDistributionChart } from '../components/charts/RiskDistributionChart';
@@ -14,6 +14,9 @@ export const ExposureDashboard: React.FC = () => {
     const [exportLoading, setExportLoading] = useState(false);
     const [exportError, setExportError] = useState<string | null>(null);
     const isAdmin = usePermission('ADMIN');
+    const [showAllHeatmap, setShowAllHeatmap] = useState(false);
+    const [showAllTable, setShowAllTable] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const loadExposures = async () => {
@@ -46,7 +49,7 @@ export const ExposureDashboard: React.FC = () => {
     };
 
     const fmt = (val: number) =>
-        new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+        new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
 
     const pct = (val: number) => `${(val * 100).toFixed(1)}%`;
 
@@ -60,6 +63,14 @@ export const ExposureDashboard: React.FC = () => {
         if (share >= 0.25) return 'bg-yellow-300 text-gray-900';
         return 'bg-green-200 text-gray-900';
     };
+
+    const filteredExposures = searchQuery.trim()
+        ? exposures.filter(e =>
+            e.vendor_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            e.category.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : exposures;
+    const isSearching = searchQuery.trim().length > 0;
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">
@@ -199,11 +210,39 @@ export const ExposureDashboard: React.FC = () => {
                         </div>
                     </div>
 
+                    {/* Search / Filter Bar */}
+                    <div className="mb-6">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <input
+                                type="text"
+                                placeholder="Search vendors or categories..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                            />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                >
+                                    <X className="w-4 h-4" />
+                                </button>
+                            )}
+                        </div>
+                        {isSearching && (
+                            <p className="text-xs text-gray-500 mt-1.5 ml-1">
+                                Showing {filteredExposures.length} of {exposures.length} vendors
+                            </p>
+                        )}
+                    </div>
+
                     {/* Vendor Concentration Heatmap */}
                     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-8">
                         <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                             <BarChart3 className="w-5 h-5 text-gray-400" />
                             Vendor Concentration Heatmap
+                            <span className="text-xs font-normal text-gray-400 ml-2">{filteredExposures.length} vendors</span>
                         </h2>
                         <div className="flex gap-2 mb-4 text-xs">
                             <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-200"></span>Low (&lt;25%)</span>
@@ -212,8 +251,9 @@ export const ExposureDashboard: React.FC = () => {
                             <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-500"></span>Critical (&gt;60%)</span>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                            {exposures
+                            {filteredExposures
                                 .sort((a, b) => b.vendor_share_pct - a.vendor_share_pct)
+                                .slice(0, isSearching ? undefined : (showAllHeatmap ? undefined : 10))
                                 .map(exp => (
                                     <div
                                         key={exp.vendor_id}
@@ -228,6 +268,15 @@ export const ExposureDashboard: React.FC = () => {
                                 ))
                             }
                         </div>
+                        {!isSearching && filteredExposures.length > 10 && (
+                            <button
+                                onClick={() => setShowAllHeatmap(!showAllHeatmap)}
+                                className="mt-4 w-full flex items-center justify-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-700 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
+                            >
+                                {showAllHeatmap ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                {showAllHeatmap ? 'Show Top 10' : `Show All ${filteredExposures.length} Vendors`}
+                            </button>
+                        )}
                     </div>
 
                     {/* Detailed Exposure Table */}
@@ -253,7 +302,10 @@ export const ExposureDashboard: React.FC = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100">
-                                        {exposures.map(exp => (
+                                        {filteredExposures
+                                            .sort((a, b) => b.annual_spend - a.annual_spend)
+                                            .slice(0, isSearching ? undefined : (showAllTable ? undefined : 10))
+                                            .map(exp => (
                                             <tr key={exp.vendor_id} className="hover:bg-gray-50 transition-colors">
                                                 <td className="px-6 py-3 font-medium text-gray-900">{exp.vendor_id}</td>
                                                 <td className="px-4 py-3 text-gray-600">{exp.category}</td>
@@ -270,6 +322,17 @@ export const ExposureDashboard: React.FC = () => {
                                         ))}
                                     </tbody>
                                 </table>
+                                {!isSearching && filteredExposures.length > 10 && (
+                                    <div className="px-6 py-3 border-t border-gray-100">
+                                        <button
+                                            onClick={() => setShowAllTable(!showAllTable)}
+                                            className="w-full flex items-center justify-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                                        >
+                                            {showAllTable ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                            {showAllTable ? 'Show Top 10' : `Show All ${filteredExposures.length} Vendors`}
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}

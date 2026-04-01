@@ -8,9 +8,9 @@ interface SavingsTrackerProps {
 }
 
 const formatCurrency = (value: number): string => {
-    if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
-    if (value >= 1_000) return `$${Math.round(value / 1_000).toLocaleString()}K`;
-    return `$${Math.round(value).toLocaleString()}`;
+    if (value >= 1_000_000) return `₹${(value / 1_000_000).toFixed(1)}M`;
+    if (value >= 1_000) return `₹${Math.round(value / 1_000).toLocaleString('en-IN')}K`;
+    return `₹${Math.round(value).toLocaleString('en-IN')}`;
 };
 
 export const SavingsTracker: React.FC<SavingsTrackerProps> = ({ refreshKey = 0 }) => {

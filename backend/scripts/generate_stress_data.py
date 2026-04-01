@@ -54,7 +54,7 @@ def generate_stress_dataset(num_rows=100000, num_vendors=500):
             "Total Spend": amount,
             "Category": vendor_category_map[vendor],
             "Cost Center": random.choice(cost_centers),
-            "Currency": "USD",
+            "Currency": "INR",
             "Description": f"Recurring payment for {vendor_category_map[vendor]} - REF-{random.randint(10000, 99999)}"
         })
         
