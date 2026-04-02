@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Decision } from '../services/api';
-import { X, Calendar, Hash, FileText, User, ChevronDown, ChevronUp } from 'lucide-react';
+import { Decision, ExportService } from '../services/api';
+import { X, Calendar, Hash, FileText, User, ChevronDown, ChevronUp, FileDown } from 'lucide-react';
 import { ExposurePanel } from './ExposurePanel';
 import { PriceShockPanel } from './PriceShockPanel';
 import { SpendTrendChart } from './charts/SpendTrendChart';
@@ -208,6 +208,19 @@ export const DecisionDetail: React.FC<DecisionDetailProps> = ({ decision, onClos
                 </div>
 
                 <div className="p-4 border-t border-gray-100 bg-gray-50/50 flex justify-end">
+                    <button
+                        onClick={async () => {
+                            try {
+                                await ExportService.downloadDecisionReport(decision.id);
+                            } catch (error) {
+                                console.error('Failed to download evidence package:', error);
+                            }
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors mr-2"
+                    >
+                        <FileDown className="w-4 h-4" />
+                        Export Evidence Package
+                    </button>
                     <button
                         onClick={onClose}
                         className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"

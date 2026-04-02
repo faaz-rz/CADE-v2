@@ -1,4 +1,8 @@
+import logging
 from fastapi import APIRouter, HTTPException
+from app.services.simulation_store import SimulationStore
+
+logger = logging.getLogger(__name__)
 from app.simulation.price_shock import (
     PriceShockRequest,
     PriceShockResponse,
@@ -27,7 +31,21 @@ def run_price_shock_simulation(request: PriceShockRequest):
     Returns: impact on spend, EBITDA delta, and risk classification shift.
     """
     try:
-        return simulate_price_shock(request)
+        result = simulate_price_shock(request)
+        try:
+            SimulationStore.save_snapshot(
+                vendor_id=request.vendor_id,
+                snapshot_type="price_shock",
+                parameters={
+                    "shock_percentage": request.shock_percentage,
+                    "ebitda_margin": getattr(request, "ebitda_margin", 0.25)
+                },
+                result=result.dict(),
+                decision_id=getattr(request, "decision_id", None)
+            )
+        except Exception as e:
+            logger.warning(f"Failed to save simulation snapshot: {e}")
+        return result
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -77,6 +95,23 @@ async def simulate_vendor_monte_carlo(request: dict):
         distribution=distribution,
         seed=seed,
     )
+    
+    try:
+        SimulationStore.save_snapshot(
+            vendor_id=vendor_id,
+            snapshot_type="monte_carlo",
+            parameters={
+                "ebitda_margin": ebitda_margin,
+                "simulations": simulations,
+                "distribution": distribution,
+                "seed": seed
+            },
+            result=result.__dict__,
+            decision_id=request.get("decision_id")
+        )
+    except Exception as e:
+        logger.warning(f"Failed to save MC snapshot: {e}")
+        
     return result.__dict__
 
 
@@ -122,4 +157,22 @@ async def simulate_portfolio_monte_carlo(request: dict):
     # Serialize dataclass results
     response = result.__dict__.copy()
     response["vendor_results"] = [vr.__dict__ for vr in result.vendor_results]
+    
+    try:
+        SimulationStore.save_snapshot(
+            vendor_id="PORTFOLIO",
+            snapshot_type="portfolio_mc",
+            parameters={
+                "ebitda_margin": ebitda_margin,
+                "simulations": simulations,
+                "correlated": correlated,
+                "distribution": distribution,
+                "seed": seed
+            },
+            result=response,
+            decision_id=None
+        )
+    except Exception as e:
+        logger.warning(f"Failed to save Portfolio MC snapshot: {e}")
+        
     return response

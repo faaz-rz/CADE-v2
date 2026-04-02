@@ -188,14 +188,18 @@ export const SimulationService = {
     runPriceShock: async (vendorId: string, shockPercentage: number, ebitdaMargin: number = 0.25) => {
         const response = await api.post<PriceShockResponse>(
             `/simulate/price_shock`,
-            { vendor_id: vendorId, shock_percentage: shockPercentage, ebitda_margin: ebitdaMargin }
+            { vendor_id: vendorId, shock_percentage: shockPercentage / 100, ebitda_margin: ebitdaMargin }
         );
         return response.data;
     },
     runPortfolioShock: async (request: PortfolioShockRequest) => {
+        const payload = {
+            ...request,
+            shock_percentage: request.shock_percentage / 100
+        };
         const response = await api.post<PortfolioShockResponse>(
             `/simulate/portfolio_shock`,
-            request
+            payload
         );
         return response.data;
     },
@@ -230,6 +234,20 @@ export const ExportService = {
         const link = document.createElement('a');
         link.href = url;
         link.setAttribute('download', 'executive_report.pdf');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    },
+
+    downloadDecisionReport: async (decisionId: string) => {
+        const response = await api.get(`/export/decision_report_pdf?decision_id=${decisionId}`, {
+            responseType: 'blob',
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `cade_evidence_${decisionId.slice(0,8)}.pdf`);
         document.body.appendChild(link);
         link.click();
         link.remove();

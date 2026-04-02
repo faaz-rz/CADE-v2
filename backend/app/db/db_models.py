@@ -12,6 +12,18 @@ from sqlalchemy import Column, String, Float, Integer, DateTime, ForeignKey, Tex
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 
+class SimulationSnapshot(Base):
+    __tablename__ = "simulation_snapshots"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    vendor_id = Column(String, nullable=False, index=True)
+    snapshot_type = Column(String, nullable=False)
+    # "price_shock" | "monte_carlo" | "portfolio_mc"
+    parameters = Column(Text, nullable=False)  # JSON string
+    result = Column(Text, nullable=False)       # JSON string
+    decision_id = Column(String, nullable=True, index=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
 
 class VendorTable(Base):
     __tablename__ = "vendors"

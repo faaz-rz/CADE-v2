@@ -14,6 +14,8 @@ from app.services.policy_engine import policy_engine
 class PriceShockRequest(BaseModel):
     vendor_id: str
     shock_percentage: float
+    ebitda_margin: float | None = 0.25
+    decision_id: str | None = None
 
 
 class PriceShockResponse(BaseModel):

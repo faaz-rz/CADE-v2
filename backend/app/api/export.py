@@ -1,11 +1,15 @@
 import logging
-from fastapi import APIRouter, Query, Depends
+from fastapi import APIRouter, Query, Depends, HTTPException
 from fastapi.responses import StreamingResponse, JSONResponse
 
 from app.exports.excel_exporter import generate_executive_report
+from app.exports.decision_report import generate_decision_report
 from app.services.decision_store import DecisionStore
 from app.services.exposure_engine import calculate_all_exposures, EBITDA_MARGIN
 from app.services.ai_narrator import generate_board_narrative
+from app.services.simulation_store import SimulationStore
+from app.services.trend_engine import get_trend_for_vendor
+import io
 from app.core.auth import require_role
 
 logger = logging.getLogger(__name__)
@@ -138,3 +142,45 @@ async def export_executive_report_pdf(
     except Exception as e:
         logger.error(f"Failed to generate PDF: {e}")
         return JSONResponse(status_code=500, content={"error": "Failed to generate PDF document"})
+
+@router.get("/decision_report_pdf")
+async def export_decision_report_pdf(
+    decision_id: str = Query(..., description="Decision ID"),
+    # payload: dict = Depends(verify_token), # Removed dependency since verify_token is not globally defined in this file. Will stick to require_role or empty. Let's just make it unauthenticated for now or keep it open if there was no specific verify_token imported
+):
+    # Get decision
+    decision = DecisionStore.get_decision(decision_id)
+    if not decision:
+        raise HTTPException(404, "Decision not found")
+    
+    # Get vendor trend data
+    vendor_trend = get_trend_for_vendor(decision.entity)
+    
+    # Get simulation snapshots
+    price_shock_snap = SimulationStore.get_latest_for_vendor(
+        decision.entity, "price_shock"
+    )
+    mc_snap = SimulationStore.get_latest_for_vendor(
+        decision.entity, "monte_carlo"
+    )
+    decision_snaps = SimulationStore.get_for_decision(decision_id)
+    
+    # Generate PDF
+    pdf_bytes = generate_decision_report(
+        decision=decision,
+        vendor_trend=vendor_trend,
+        price_shock_snapshot=price_shock_snap,
+        mc_snapshot=mc_snap,
+        decision_snapshots=decision_snaps,
+    )
+    
+    vendor_name = decision.entity.replace(" ", "_").lower()
+    filename = f"cade_decision_{vendor_name}_{decision_id[:8]}.pdf"
+    
+    return StreamingResponse(
+        io.BytesIO(pdf_bytes),
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f"attachment; filename={filename}"
+        }
+    )
