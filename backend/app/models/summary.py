@@ -12,3 +12,5 @@ class DecisionSummary(BaseModel):
     impact_breakdown: Dict[str, int] # e.g. {"HIGH": 5, "MEDIUM": 2, "LOW": 10}
     risk_breakdown: Dict[str, int]   # e.g. {"LOW": 15, "MEDIUM": 2}
     is_demo: bool = False            # True if backed by demo dataset
+    vertical: str = "general"        # "hospital" if medical categories detected
+

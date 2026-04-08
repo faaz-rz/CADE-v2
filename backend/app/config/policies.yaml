@@ -41,6 +41,60 @@ categories:
     regulatory_sensitive: false
     operational_critical: false
 
+  # ── Hospital Vertical Categories ──
+  Medical Equipment:
+    spend_threshold: 500000
+    frequency_threshold: 2
+    savings_rate: 0.12
+    regulatory_sensitive: true
+    operational_critical: true
+    amc_typical_rate: 0.10
+    amc_market_rate: 0.08
+
+  Pharma and Consumables:
+    spend_threshold: 200000
+    frequency_threshold: 4
+    savings_rate: 0.15
+    regulatory_sensitive: true
+    operational_critical: true
+    price_volatility: high
+
+  Medical Consumables:
+    spend_threshold: 150000
+    frequency_threshold: 3
+    savings_rate: 0.20
+    regulatory_sensitive: true
+    operational_critical: false
+    consolidation_opportunity: true
+
+  Hospital IT Systems:
+    spend_threshold: 300000
+    frequency_threshold: 1
+    savings_rate: 0.12
+    regulatory_sensitive: false
+    operational_critical: true
+
+  Facility Management:
+    spend_threshold: 150000
+    frequency_threshold: 2
+    savings_rate: 0.18
+    regulatory_sensitive: false
+    operational_critical: false
+
+  Insurance TPA:
+    spend_threshold: 100000
+    frequency_threshold: 1
+    savings_rate: 0.08
+    regulatory_sensitive: true
+    operational_critical: false
+
+  Lab Reagents:
+    spend_threshold: 200000
+    frequency_threshold: 3
+    savings_rate: 0.20
+    regulatory_sensitive: true
+    operational_critical: true
+
 default:
   spend_threshold: 100
   frequency_threshold: 1

@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Auth0Provider } from '@auth0/auth0-react'
+// import { Auth0Provider } from '@auth0/auth0-react'
 import App from './App.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <Auth0Provider
+        {/* Auth0Provider commented out — will re-enable for production */}
+        {/* <Auth0Provider
             domain={import.meta.env.VITE_AUTH0_DOMAIN}
             clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
             authorizationParams={{
@@ -15,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 scope: "openid profile email"
             }}
             cacheLocation="localstorage"
-        >
+        > */}
             <App />
-        </Auth0Provider>
+        {/* </Auth0Provider> */}
     </React.StrictMode>,
 )

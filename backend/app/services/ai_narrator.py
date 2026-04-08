@@ -204,3 +204,113 @@ def _fallback_narrative(
         f"Implementing the recommended actions could yield "
         f"estimated savings of ${estimated_savings:,.0f}."
     )
+
+
+async def generate_hospital_board_narrative(
+    total_vendor_spend: float,
+    pharma_spend: float,
+    equipment_spend: float,
+    high_risk_count: int,
+    top_vendor: str,
+    estimated_savings: float,
+    amc_savings_opportunity: float,
+    price_comparison_savings: float,
+) -> str:
+    """
+    Generate a 4-sentence hospital CFO board summary using Groq LLM.
+    Uses Indian Rupees. Falls back to template if API key is missing.
+    """
+    api_key = os.environ.get("GROQ_API_KEY", "")
+    if not api_key:
+        return _fallback_hospital_narrative(
+            total_vendor_spend, pharma_spend, equipment_spend,
+            high_risk_count, top_vendor, estimated_savings,
+            amc_savings_opportunity, price_comparison_savings,
+        )
+
+    try:
+        client = Groq(api_key=api_key)
+        prompt = f"""You are writing the procurement summary \
+for a hospital CFO board report in India.
+Write exactly 4 sentences. Use Indian Rupees (₹).
+Be specific about medical procurement.
+Sound like a senior hospital finance advisor.
+No bullet points. Plain paragraph only.
+
+Hospital procurement data:
+- Total annual vendor spend: ₹{total_vendor_spend:,.0f}
+- Pharma and consumables spend: ₹{pharma_spend:,.0f}
+- Medical equipment spend: ₹{equipment_spend:,.0f}
+- High risk vendors: {high_risk_count}
+- Highest risk vendor: {top_vendor}
+- Total savings identified: ₹{estimated_savings:,.0f}
+- AMC renegotiation opportunity: ₹{amc_savings_opportunity:,.0f}
+- Supplier consolidation savings: ₹{price_comparison_savings:,.0f}
+
+Write the 4-sentence hospital CFO board summary:"""
+
+        import hashlib
+        import sqlite3
+
+        prompt_hash = hashlib.md5(prompt.encode()).hexdigest()
+        cache_db_path = os.path.join("data", "ai_cache.db")
+        os.makedirs("data", exist_ok=True)
+
+        with sqlite3.connect(cache_db_path) as conn:
+            conn.execute("CREATE TABLE IF NOT EXISTS cache (hash TEXT PRIMARY KEY, response TEXT)")
+            cursor = conn.cursor()
+            cursor.execute("SELECT response FROM cache WHERE hash = ?", (prompt_hash,))
+            row = cursor.fetchone()
+            if row:
+                logger.info("Hospital board narrative CACHE HIT")
+                return row[0]
+
+        response = client.chat.completions.create(
+            model="llama-3.1-70b-versatile",
+            temperature=0.0,
+            max_tokens=350,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        narrative = response.choices[0].message.content.strip()
+
+        with sqlite3.connect(cache_db_path) as conn:
+            conn.execute("INSERT OR REPLACE INTO cache (hash, response) VALUES (?, ?)", (prompt_hash, narrative))
+
+        logger.info("Hospital board narrative generated (and cached)")
+        return narrative
+
+    except Exception as e:
+        logger.warning(f"Groq API failed for hospital narrative: {e} — using fallback")
+        return _fallback_hospital_narrative(
+            total_vendor_spend, pharma_spend, equipment_spend,
+            high_risk_count, top_vendor, estimated_savings,
+            amc_savings_opportunity, price_comparison_savings,
+        )
+
+
+def _fallback_hospital_narrative(
+    total_vendor_spend: float,
+    pharma_spend: float,
+    equipment_spend: float,
+    high_risk_count: int,
+    top_vendor: str,
+    estimated_savings: float,
+    amc_savings_opportunity: float,
+    price_comparison_savings: float,
+) -> str:
+    """Template-based fallback for hospital board narrative."""
+    return (
+        f"Total hospital vendor spend this period reached "
+        f"₹{total_vendor_spend:,.0f}, with pharma and consumables "
+        f"accounting for ₹{pharma_spend:,.0f} and medical equipment "
+        f"at ₹{equipment_spend:,.0f}. "
+        f"{high_risk_count} vendor(s) have been flagged as HIGH risk, "
+        f"with {top_vendor} representing the greatest procurement "
+        f"exposure requiring immediate management attention. "
+        f"The platform identified ₹{estimated_savings:,.0f} in total "
+        f"savings through vendor consolidation, contract renegotiation, "
+        f"and competitive tendering. "
+        f"Additional opportunities include ₹{amc_savings_opportunity:,.0f} "
+        f"in AMC renegotiation and ₹{price_comparison_savings:,.0f} "
+        f"through supplier price optimization."
+    )

@@ -1,0 +1,322 @@
+[
+  {
+    "item_name": "Paracetamol 500mg",
+    "item_code": "PARA-500",
+    "vendor": "ABBOTT INDIA",
+    "unit_price": 2.5,
+    "unit": "tablet",
+    "monthly_qty": 50000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 125000.0
+  },
+  {
+    "item_name": "Paracetamol 500mg",
+    "item_code": "PARA-500",
+    "vendor": "CIPLA LIMITED",
+    "unit_price": 1.8,
+    "unit": "tablet",
+    "monthly_qty": 30000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 54000.0
+  },
+  {
+    "item_name": "Paracetamol 500mg",
+    "item_code": "PARA-500",
+    "vendor": "SUN PHARMA",
+    "unit_price": 1.95,
+    "unit": "tablet",
+    "monthly_qty": 10000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 19500.0
+  },
+  {
+    "item_name": "Amoxicillin 500mg",
+    "item_code": "AMOX-500",
+    "vendor": "CIPLA LIMITED",
+    "unit_price": 4.2,
+    "unit": "capsule",
+    "monthly_qty": 25000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 105000.0
+  },
+  {
+    "item_name": "Amoxicillin 500mg",
+    "item_code": "AMOX-500",
+    "vendor": "DR REDDYS LABS",
+    "unit_price": 3.5,
+    "unit": "capsule",
+    "monthly_qty": 15000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 52500.0
+  },
+  {
+    "item_name": "Amoxicillin 500mg",
+    "item_code": "AMOX-500",
+    "vendor": "SUN PHARMA",
+    "unit_price": 3.8,
+    "unit": "capsule",
+    "monthly_qty": 8000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 30400.0
+  },
+  {
+    "item_name": "Metformin 500mg",
+    "item_code": "METF-500",
+    "vendor": "ABBOTT INDIA",
+    "unit_price": 3.8,
+    "unit": "tablet",
+    "monthly_qty": 20000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 76000.0
+  },
+  {
+    "item_name": "Metformin 500mg",
+    "item_code": "METF-500",
+    "vendor": "CIPLA LIMITED",
+    "unit_price": 2.1,
+    "unit": "tablet",
+    "monthly_qty": 12000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 25200.0
+  },
+  {
+    "item_name": "Atorvastatin 10mg",
+    "item_code": "ATOR-10",
+    "vendor": "SUN PHARMA",
+    "unit_price": 5.5,
+    "unit": "tablet",
+    "monthly_qty": 15000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 82500.0
+  },
+  {
+    "item_name": "Atorvastatin 10mg",
+    "item_code": "ATOR-10",
+    "vendor": "DR REDDYS LABS",
+    "unit_price": 4.2,
+    "unit": "tablet",
+    "monthly_qty": 8000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 33600.0
+  },
+  {
+    "item_name": "Atorvastatin 10mg",
+    "item_code": "ATOR-10",
+    "vendor": "BIOCON LIMITED",
+    "unit_price": 4.8,
+    "unit": "tablet",
+    "monthly_qty": 5000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 24000.0
+  },
+  {
+    "item_name": "Pantoprazole 40mg",
+    "item_code": "PANT-40",
+    "vendor": "ABBOTT INDIA",
+    "unit_price": 6.2,
+    "unit": "tablet",
+    "monthly_qty": 12000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 74400.0
+  },
+  {
+    "item_name": "Pantoprazole 40mg",
+    "item_code": "PANT-40",
+    "vendor": "CIPLA LIMITED",
+    "unit_price": 4.5,
+    "unit": "tablet",
+    "monthly_qty": 6000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 27000.0
+  },
+  {
+    "item_name": "Ceftriaxone 1g Inj",
+    "item_code": "CEFT-1G",
+    "vendor": "ABBOTT INDIA",
+    "unit_price": 85.0,
+    "unit": "vial",
+    "monthly_qty": 3000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 255000.0
+  },
+  {
+    "item_name": "Ceftriaxone 1g Inj",
+    "item_code": "CEFT-1G",
+    "vendor": "CIPLA LIMITED",
+    "unit_price": 62.0,
+    "unit": "vial",
+    "monthly_qty": 2000,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 124000.0
+  },
+  {
+    "item_name": "Ceftriaxone 1g Inj",
+    "item_code": "CEFT-1G",
+    "vendor": "DR REDDYS LABS",
+    "unit_price": 58.0,
+    "unit": "vial",
+    "monthly_qty": 1500,
+    "category": "Pharma and Consumables",
+    "monthly_spend": 87000.0
+  },
+  {
+    "item_name": "Surgical Gloves (Sterile)",
+    "item_code": "GLOVE-S",
+    "vendor": "3M INDIA",
+    "unit_price": 12.0,
+    "unit": "pair",
+    "monthly_qty": 15000,
+    "category": "Medical Consumables",
+    "monthly_spend": 180000.0
+  },
+  {
+    "item_name": "Surgical Gloves (Sterile)",
+    "item_code": "GLOVE-S",
+    "vendor": "BECTON DICKINSON",
+    "unit_price": 9.5,
+    "unit": "pair",
+    "monthly_qty": 10000,
+    "category": "Medical Consumables",
+    "monthly_spend": 95000.0
+  },
+  {
+    "item_name": "Surgical Gloves (Sterile)",
+    "item_code": "GLOVE-S",
+    "vendor": "JOHNSON AND JOHNSON MED",
+    "unit_price": 14.0,
+    "unit": "pair",
+    "monthly_qty": 5000,
+    "category": "Medical Consumables",
+    "monthly_spend": 70000.0
+  },
+  {
+    "item_name": "IV Cannula 20G",
+    "item_code": "IVC-20G",
+    "vendor": "BECTON DICKINSON",
+    "unit_price": 18.0,
+    "unit": "piece",
+    "monthly_qty": 8000,
+    "category": "Medical Consumables",
+    "monthly_spend": 144000.0
+  },
+  {
+    "item_name": "IV Cannula 20G",
+    "item_code": "IVC-20G",
+    "vendor": "MEDTRONIC INDIA",
+    "unit_price": 22.0,
+    "unit": "piece",
+    "monthly_qty": 5000,
+    "category": "Medical Consumables",
+    "monthly_spend": 110000.0
+  },
+  {
+    "item_name": "Vicryl Suture 3-0",
+    "item_code": "SUTR-30",
+    "vendor": "JOHNSON AND JOHNSON MED",
+    "unit_price": 180.0,
+    "unit": "piece",
+    "monthly_qty": 2000,
+    "category": "Medical Consumables",
+    "monthly_spend": 360000.0
+  },
+  {
+    "item_name": "Vicryl Suture 3-0",
+    "item_code": "SUTR-30",
+    "vendor": "MEDTRONIC INDIA",
+    "unit_price": 145.0,
+    "unit": "piece",
+    "monthly_qty": 1500,
+    "category": "Medical Consumables",
+    "monthly_spend": 217500.0
+  },
+  {
+    "item_name": "Disposable Syringe 5ml",
+    "item_code": "SYR-5ML",
+    "vendor": "BECTON DICKINSON",
+    "unit_price": 4.5,
+    "unit": "piece",
+    "monthly_qty": 20000,
+    "category": "Medical Consumables",
+    "monthly_spend": 90000.0
+  },
+  {
+    "item_name": "Disposable Syringe 5ml",
+    "item_code": "SYR-5ML",
+    "vendor": "3M INDIA",
+    "unit_price": 5.8,
+    "unit": "piece",
+    "monthly_qty": 12000,
+    "category": "Medical Consumables",
+    "monthly_spend": 69600.0
+  },
+  {
+    "item_name": "CBC Reagent Kit",
+    "item_code": "CBC-KIT",
+    "vendor": "ROCHE DIAGNOSTICS INDIA",
+    "unit_price": 45.0,
+    "unit": "test",
+    "monthly_qty": 8000,
+    "category": "Lab Reagents",
+    "monthly_spend": 360000.0
+  },
+  {
+    "item_name": "CBC Reagent Kit",
+    "item_code": "CBC-KIT",
+    "vendor": "ABBOTT DIAGNOSTICS",
+    "unit_price": 38.0,
+    "unit": "test",
+    "monthly_qty": 5000,
+    "category": "Lab Reagents",
+    "monthly_spend": 190000.0
+  },
+  {
+    "item_name": "CBC Reagent Kit",
+    "item_code": "CBC-KIT",
+    "vendor": "SIEMENS DIAGNOSTICS",
+    "unit_price": 42.0,
+    "unit": "test",
+    "monthly_qty": 3000,
+    "category": "Lab Reagents",
+    "monthly_spend": 126000.0
+  },
+  {
+    "item_name": "HbA1c Test Kit",
+    "item_code": "HBA1C",
+    "vendor": "ROCHE DIAGNOSTICS INDIA",
+    "unit_price": 120.0,
+    "unit": "test",
+    "monthly_qty": 3000,
+    "category": "Lab Reagents",
+    "monthly_spend": 360000.0
+  },
+  {
+    "item_name": "HbA1c Test Kit",
+    "item_code": "HBA1C",
+    "vendor": "ABBOTT DIAGNOSTICS",
+    "unit_price": 95.0,
+    "unit": "test",
+    "monthly_qty": 2000,
+    "category": "Lab Reagents",
+    "monthly_spend": 190000.0
+  },
+  {
+    "item_name": "Lipid Panel Reagent",
+    "item_code": "LIPID-P",
+    "vendor": "SIEMENS DIAGNOSTICS",
+    "unit_price": 65.0,
+    "unit": "test",
+    "monthly_qty": 4000,
+    "category": "Lab Reagents",
+    "monthly_spend": 260000.0
+  },
+  {
+    "item_name": "Lipid Panel Reagent",
+    "item_code": "LIPID-P",
+    "vendor": "ROCHE DIAGNOSTICS INDIA",
+    "unit_price": 78.0,
+    "unit": "test",
+    "monthly_qty": 3000,
+    "category": "Lab Reagents",
+    "monthly_spend": 234000.0
+  }
+]

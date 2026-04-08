@@ -75,6 +75,7 @@ export interface DecisionSummary {
     impact_breakdown: Record<string, number>;
     risk_breakdown: Record<string, number>;
     is_demo: boolean;
+    vertical: string;
 }
 
 export interface FinancialExposure {
@@ -318,8 +319,25 @@ export interface RenewalsResponse {
     urgent: ContractRenewal[];
     upcoming: ContractRenewal[];
     planned: ContractRenewal[];
+    amc_contracts: AMCContract[];
     total_renewals_90_days: number;
     total_savings_opportunity: number;
+    amc_savings_opportunity: number;
+}
+
+export interface AMCContract {
+    vendor_name: string;
+    category: string;
+    annual_spend: number;
+    renewal_date: string;
+    days_until_renewal: number;
+    is_amc: boolean;
+    amc_type: string;
+    typical_amc_rate: string;
+    market_amc_rate: string;
+    potential_saving: number;
+    negotiation_tip: string;
+    recommended_action: string;
 }
 
 export const ContractService = {
@@ -330,8 +348,8 @@ export const ContractService = {
 };
 
 export const DemoService = {
-    loadDemo: async () => {
-        const response = await api.post<{ status: string; decisions_generated: number }>('/demo');
+    loadDemo: async (vertical: string = 'it_services') => {
+        const response = await api.post<{ status: string; decisions_generated: number; vertical: string; vendors: number; months_of_data: number }>(`/demo?vertical=${vertical}`);
         return response.data;
     },
     clearDemo: async () => {
@@ -339,3 +357,89 @@ export const DemoService = {
         return response.data;
     },
 };
+
+// ── Procurement Intelligence ──
+
+export interface PriceComparisonSupplier {
+    name: string;
+    avg_purchase_amount: number;
+    total_purchased: number;
+    purchase_count: number;
+    price_trend: 'RISING' | 'STABLE' | 'FALLING';
+    reliability_score: number;
+}
+
+export interface PriceComparisonCategory {
+    category: string;
+    supplier_count: number;
+    suppliers: PriceComparisonSupplier[];
+    cheapest_supplier: string;
+    price_variance_pct: number;
+    annual_overspend: number;
+    recommended_primary: string;
+    recommended_backup: string | null;
+    estimated_savings: number;
+    bulk_buy_recommended: boolean;
+    bulk_buy_reasoning: string;
+    consolidation_recommended: boolean;
+}
+
+export interface PriceComparisonResponse {
+    categories_analyzed: number;
+    categories_with_multiple_suppliers: number;
+    total_annual_overspend: number;
+    total_estimated_savings: number;
+    comparisons: PriceComparisonCategory[];
+}
+
+export interface BulkBuyAlert {
+    category: string;
+    reasoning: string;
+    estimated_savings: number;
+    recommended_supplier: string;
+}
+
+export interface BulkBuyResponse {
+    total_alerts: number;
+    total_savings_opportunity: number;
+    alerts: BulkBuyAlert[];
+}
+
+export const ProcurementService = {
+    getPriceComparison: async () => {
+        const response = await api.get<PriceComparisonResponse>('/procurement/price-comparison');
+        return response.data;
+    },
+    getBulkBuyAlerts: async () => {
+        const response = await api.get<BulkBuyResponse>('/procurement/bulk-buy-alerts');
+        return response.data;
+    },
+    getItemPriceMismatches: async () => {
+        const response = await api.get<ItemPriceMismatchResponse>('/procurement/item-price-mismatches');
+        return response.data;
+    },
+};
+
+// ── Item-Level Price Mismatches ──
+
+export interface ItemPriceMismatch {
+    item_name: string;
+    item_code: string;
+    category: string;
+    unit: string;
+    cheapest_vendor: string;
+    cheapest_price: number;
+    expensive_vendor: string;
+    expensive_price: number;
+    price_diff_pct: number;
+    monthly_qty_at_expensive: number;
+    monthly_savings: number;
+    annual_savings: number;
+    recommendation: string;
+}
+
+export interface ItemPriceMismatchResponse {
+    total_mismatches: number;
+    total_annual_savings: number;
+    mismatches: ItemPriceMismatch[];
+}

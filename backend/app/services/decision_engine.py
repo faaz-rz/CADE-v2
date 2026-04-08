@@ -4,7 +4,30 @@ from collections import defaultdict
 from app.models.decision import Decision, DecisionType, DecisionScope, DecisionStatus, RiskLevel
 from app.services.risk_engine import RiskEngine
 
+# Hospital categories that should trigger contract renewal logic
+HOSPITAL_RENEWAL_CATEGORIES = {"Medical Equipment", "Hospital IT Systems", "Insurance TPA"}
+
+# Hospital category set for context detection
+HOSPITAL_CATEGORIES = {
+    "medical equipment", "pharma and consumables",
+    "medical consumables", "hospital it systems",
+    "facility management", "insurance tpa",
+    "lab reagents"
+}
+
+
 class DecisionEngine:
+
+    @staticmethod
+    def _is_hospital_context(vendor_stats_map) -> bool:
+        """Detect if current dataset is hospital context based on categories present."""
+        categories = {
+            getattr(s, 'category', '').lower() for s in vendor_stats_map.values()
+            if getattr(s, 'category', '')
+        }
+        overlap = categories & HOSPITAL_CATEGORIES
+        return len(overlap) >= 2
+
     @staticmethod
     async def analyze_uploaded_data() -> List[Decision]:
         """
@@ -33,6 +56,9 @@ class DecisionEngine:
 
         vendor_stats = SpendingAnalyzer.get_vendor_stats()
         decisions = []
+
+        # Detect hospital context for message customization
+        is_hospital = DecisionEngine._is_hospital_context(vendor_stats)
 
         # Hardcoded for v1, in real app this comes from filter selection
         analysis_period = "Uploaded Period"
@@ -156,6 +182,18 @@ class DecisionEngine:
                     explanation_kwargs={"entity": vendor, "vendor_share": vendor_share},
                     rule_thresholds={"spend_threshold": spend_threshold, "concentration_threshold": 0.40},
                 )
+                # Hospital-specific message override
+                if is_hospital and decisions:
+                    d = decisions[-1]
+                    d.recommended_action = "Critical medical vendor concentration risk"
+                    d.explanation = (
+                        f"{vendor} represents {vendor_share:.0%} of {category} spend "
+                        f"at \u20b9{stats.total_spend:,.0f} annually. Single supplier dependency "
+                        f"on {category} creates both pricing power and supply chain risk. "
+                        f"Qualify at least one alternative supplier and establish a "
+                        f"dual-vendor policy for this category. "
+                        f"Estimated negotiation leverage gained: 15-20% on renewal."
+                    )
                 continue
 
             # ═══════════════════════════════════════════
@@ -192,6 +230,18 @@ class DecisionEngine:
                         override_risk_level=risk_override,
                         override_risk_score=score_override,
                     )
+                    # Hospital-specific message override
+                    if is_hospital and decisions:
+                        d = decisions[-1]
+                        projected_annual = stats.total_spend * (1 + growth_rate)
+                        d.recommended_action = "Vendor spend growing faster than patient volume"
+                        d.explanation = (
+                            f"{vendor} spend grew {growth_rate:.0%} in 3 months — "
+                            f"significantly outpacing typical hospital volume growth of 8-12%. "
+                            f"Immediate audit recommended: review purchase orders for duplicate "
+                            f"orders, expired items, or unauthorized purchases. At current growth "
+                            f"rate, annual spend will reach \u20b9{projected_annual:,.0f}."
+                        )
                     continue
 
             # ═══════════════════════════════════════════
@@ -213,14 +263,29 @@ class DecisionEngine:
                     },
                     rule_thresholds={"spend_threshold": spend_threshold},
                 )
+                # Hospital-specific message override
+                if is_hospital and decisions:
+                    d = decisions[-1]
+                    d.recommended_action = "Vendor spend significantly above benchmark"
+                    d.explanation = (
+                        f"Annual spend with {vendor} (\u20b9{stats.total_spend:,.0f}) is "
+                        f"{multiple:.1f}x above the \u20b9{spend_threshold:,.0f} review threshold "
+                        f"for {category}. Issue a competitive tender to 3 alternative "
+                        f"suppliers. Industry benchmark suggests 12-18% savings are "
+                        f"achievable through competitive procurement. "
+                        f"Estimated annual savings: \u20b9{savings:,.0f}."
+                    )
                 continue
 
             # ═══════════════════════════════════════════
             # RULE 4: CONTRACT_RENEWAL_WINDOW
             # ═══════════════════════════════════════════
-            if category == "SaaS" and spend_threshold > 0 and stats.total_spend >= spend_threshold:
+            is_saas_renewal = (category == "SaaS" and spend_threshold > 0 and stats.total_spend >= spend_threshold)
+            is_hospital_renewal = (category in HOSPITAL_RENEWAL_CATEGORIES and spend_threshold > 0 and stats.total_spend >= spend_threshold)
+
+            if is_saas_renewal or is_hospital_renewal:
                 # SaaS renewal discount estimate: 15-20%, use 0.175 midpoint
-                saas_savings = stats.total_spend * 0.175
+                renewal_savings = stats.total_spend * 0.175
 
                 _make_decision(
                     template_key="CONTRACT_RENEWAL",
@@ -228,10 +293,22 @@ class DecisionEngine:
                     explanation_kwargs={
                         "entity": vendor,
                         "total_spend": stats.total_spend,
-                        "savings": saas_savings,
+                        "savings": renewal_savings,
                     },
                     rule_thresholds={"spend_threshold": spend_threshold},
                 )
+                # Hospital-specific message override for hospital categories
+                if is_hospital_renewal and is_hospital and decisions:
+                    d = decisions[-1]
+                    d.recommended_action = "Equipment or software contract renewal window"
+                    d.explanation = (
+                        f"{vendor} contract renewal approaching. "
+                        f"{category} vendors typically offer 12-18% discount "
+                        f"when presented with competitive quotes at renewal. "
+                        f"Obtain quotes from 2 alternatives now to use as "
+                        f"negotiating leverage. Estimated savings at "
+                        f"renewal: \u20b9{renewal_savings:,.0f}."
+                    )
                 continue
 
             # ═══════════════════════════════════════════
@@ -261,6 +338,18 @@ class DecisionEngine:
                         },
                         rule_thresholds={"min_vendors_in_category": 3},
                     )
+                    # Hospital-specific message override
+                    if is_hospital and decisions:
+                        d = decisions[-1]
+                        d.recommended_action = f"Consolidation opportunity in {category}"
+                        d.explanation = (
+                            f"You have {len(vendors_in_cat)} vendors in {category}. "
+                            f"Consolidating to 1-2 preferred vendors through a competitive "
+                            f"tender process allows volume commitment discounts of 20-30%. "
+                            f"Recommended action: issue RFQ to all {len(vendors_in_cat)} vendors, "
+                            f"negotiate preferred vendor agreement with top 2. "
+                            f"Estimated annual savings: \u20b9{consolidation_savings:,.0f}."
+                        )
                     continue
 
             # ═══════════════════════════════════════════

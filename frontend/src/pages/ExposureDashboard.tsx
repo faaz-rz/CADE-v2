@@ -6,6 +6,8 @@ import { usePermission } from '../hooks/usePermission';
 import { RiskDistributionChart } from '../components/charts/RiskDistributionChart';
 import { SpendCategoryChart } from '../components/charts/SpendCategoryChart';
 import { MonteCarloPanel } from '../components/MonteCarloPanel';
+import { PriceComparisonPanel } from '../components/PriceComparisonPanel';
+import { ItemPriceMismatchPanel } from '../components/ItemPriceMismatchPanel';
 
 export const ExposureDashboard: React.FC = () => {
     const [exposures, setExposures] = useState<FinancialExposure[]>([]);
@@ -345,6 +347,16 @@ export const ExposureDashboard: React.FC = () => {
                         </h2>
                         <p className="text-sm text-gray-500 mb-4">Monte Carlo simulation across all vendors</p>
                         <MonteCarloPanel />
+                    </div>
+
+                    {/* Procurement Intelligence */}
+                    <div className="mb-8">
+                        <PriceComparisonPanel />
+                    </div>
+
+                    {/* Item-Level Price Mismatches */}
+                    <div className="mb-8">
+                        <ItemPriceMismatchPanel />
                     </div>
                 </>
             )}

@@ -6,7 +6,7 @@ import { PortfolioSummary } from '../components/PortfolioSummary';
 import { SavingsTracker } from '../components/SavingsTracker';
 import { TrendAlerts } from '../components/TrendAlerts';
 import { UploadDataButton } from '../components/UploadDataButton';
-import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2, Info, Upload } from 'lucide-react';
+import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2, Info, Upload, Stethoscope, Monitor } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sampleData } from '../data/sampleData';
 
@@ -22,6 +22,8 @@ export const DecisionsPage: React.FC = () => {
     const [demoBannerDismissed, setDemoBannerDismissed] = useState(false);
     const [savingsRefreshKey, setSavingsRefreshKey] = useState(0);
     const [riskFilter, setRiskFilter] = useState<'ALL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
+    const [demoLoading, setDemoLoading] = useState(false);
+    const [activeVertical, setActiveVertical] = useState<string>('it_services');
 
     const selectedDecision = decisions.find(d => d.id === selectedId) || null;
 
@@ -75,6 +77,21 @@ export const DecisionsPage: React.FC = () => {
             console.error('Failed to load data', e);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleSwitchVertical = async (vertical: string) => {
+        setDemoLoading(true);
+        try {
+            await DemoService.loadDemo(vertical);
+            setActiveVertical(vertical);
+            setIsDemoMode(true);
+            setDemoBannerDismissed(false);
+            await loadData();
+        } catch (e) {
+            console.error(`Failed to load ${vertical} demo`, e);
+        } finally {
+            setDemoLoading(false);
         }
     };
 
@@ -157,6 +174,40 @@ export const DecisionsPage: React.FC = () => {
                     >
                         <X className="h-5 w-5" />
                     </button>
+                </div>
+            )}
+
+            {/* Vertical Switcher — always visible */}
+            {(
+                <div className="mb-6 flex items-center gap-3">
+                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Demo Dataset:</span>
+                    <button
+                        onClick={() => handleSwitchVertical('it_services')}
+                        disabled={demoLoading}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                            activeVertical === 'it_services'
+                                ? 'bg-blue-600 text-white shadow-sm'
+                                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                        } ${demoLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                        <Monitor className="w-3.5 h-3.5" />
+                        IT Services
+                    </button>
+                    <button
+                        onClick={() => handleSwitchVertical('hospital')}
+                        disabled={demoLoading}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                            activeVertical === 'hospital'
+                                ? 'bg-teal-600 text-white shadow-sm'
+                                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                        } ${demoLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                        <Stethoscope className="w-3.5 h-3.5" />
+                        Hospital (25 vendors)
+                    </button>
+                    {demoLoading && (
+                        <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
+                    )}
                 </div>
             )}
 
