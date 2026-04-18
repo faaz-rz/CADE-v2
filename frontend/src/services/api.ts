@@ -348,8 +348,8 @@ export const ContractService = {
 };
 
 export const DemoService = {
-    loadDemo: async (vertical: string = 'it_services') => {
-        const response = await api.post<{ status: string; decisions_generated: number; vertical: string; vendors: number; months_of_data: number }>(`/demo?vertical=${vertical}`);
+    loadDemo: async () => {
+        const response = await api.post<{ status: string; decisions_generated: number; vertical: string; vendors: number; months_of_data: number }>('/demo');
         return response.data;
     },
     clearDemo: async () => {
@@ -443,3 +443,257 @@ export interface ItemPriceMismatchResponse {
     total_annual_savings: number;
     mismatches: ItemPriceMismatch[];
 }
+
+// ── Vendor Deep Dive ──
+
+export interface VendorIntelligence {
+    vendor_id: string;
+    vendor_name: string;
+    category: string;
+    risk_level: string;
+    risk_score: number;
+    financial_summary: {
+        annual_spend: number;
+        monthly_avg: number;
+        monthly_trend: Array<{ month: string; spend: number; transaction_count: number }>;
+        growth_pct_3m: number | null;
+        growth_pct_6m: number | null;
+        category_share_pct: number;
+        worst_case_exposure: number;
+        ytd_spend: number;
+        last_month_spend: number;
+        spend_vs_last_month_pct: number;
+    };
+    product_breakdown: Array<{
+        product_name: string;
+        product_code: string;
+        unit: string;
+        avg_unit_price: number;
+        min_price_seen: number;
+        max_price_seen: number;
+        monthly_volume: number;
+        monthly_spend: number;
+        pct_of_vendor_total: number;
+        price_trend: string;
+        last_purchase_date: string;
+        market_benchmark_price: number | null;
+        vs_market_pct: number | null;
+        overpaying: boolean;
+    }>;
+    price_history: Array<{
+        date: string;
+        avg_transaction_amount: number;
+        transaction_count: number;
+        price_change_pct: number;
+    }>;
+    competitive_position: {
+        category_vendors: Array<{
+            vendor_id: string;
+            vendor_name: string;
+            annual_spend: number;
+            is_current_vendor: boolean;
+            price_rank: number;
+            reliability_score: number;
+        }>;
+        cheapest_alternative: string | null;
+        potential_saving_if_switched: number;
+        switching_recommendation: string;
+    };
+    contract_info: {
+        renewal_date: string;
+        days_until_renewal: number;
+        is_amc: boolean;
+        amc_rate_current: number | null;
+        amc_rate_market: number | null;
+        amc_saving_opportunity: number;
+        negotiation_tip: string;
+        contract_type: string;
+    };
+    decisions: Array<{
+        decision_id: string;
+        title: string;
+        risk_level: string;
+        status: string;
+        annual_impact: number;
+        created_at: string;
+    }>;
+    performance_score: {
+        overall_score: number;
+        price_competitiveness: number;
+        price_stability: number;
+        spend_efficiency: number;
+        risk_score: number;
+        grade: string;
+        grade_explanation: string;
+    };
+    recommended_actions: Array<{
+        priority: string;
+        action_type: string;
+        title: string;
+        description: string;
+        estimated_saving: number;
+        deadline: string | null;
+    }>;
+    market_intelligence: {
+        category_market_size: string;
+        typical_contract_duration: string;
+        average_discount_at_renewal: number;
+        bulk_buy_discount_available: number;
+        market_price_trend: string;
+        regulatory_notes: string;
+    };
+}
+
+export const VendorDetailService = {
+    getIntelligence: async (vendorId: string) => {
+        const response = await api.get<VendorIntelligence>(`/vendors/${encodeURIComponent(vendorId)}/intelligence`);
+        return response.data;
+    },
+    downloadReport: async (vendorId: string) => {
+        const response = await api.get(`/vendors/${encodeURIComponent(vendorId)}/report`, {
+            responseType: 'blob',
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `vendor_report_${vendorId}.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    },
+};
+
+// ── Hospital Alerts ──
+
+export interface HospitalAlert {
+    alert_id: string;
+    severity: string;
+    category: string;
+    title: string;
+    message: string;
+    vendor_id: string;
+    estimated_impact: number;
+    action_url: string;
+    created_at: string;
+    is_read: boolean;
+}
+
+export interface AlertsResponse {
+    total: number;
+    unread: number;
+    critical: number;
+    high: number;
+    medium: number;
+    low: number;
+    alerts: HospitalAlert[];
+}
+
+export const AlertsService = {
+    getAlerts: async () => {
+        const response = await api.get<AlertsResponse>('/alerts');
+        return response.data;
+    },
+};
+
+// ── Procurement Score ──
+
+export interface ProcurementScoreResponse {
+    overall_score: number;
+    grade: string;
+    components: {
+        price_competitiveness: number;
+        vendor_diversification: number;
+        contract_management: number;
+        spend_control: number;
+        savings_capture: number;
+    };
+    benchmarks: {
+        your_score: number;
+        industry_average: number;
+        top_quartile: number;
+    };
+    improvement_roadmap: Array<{
+        component: string;
+        current_score: number;
+        action: string;
+        expected_improvement: number;
+        effort: string;
+    }>;
+}
+
+export const ProcurementScoreService = {
+    getScore: async () => {
+        const response = await api.get<ProcurementScoreResponse>('/procurement/score');
+        return response.data;
+    },
+};
+
+// ── Bulk Buy Intelligence ──
+
+export interface BulkBuyRecommendation {
+    vendor_id: string;
+    product_name: string;
+    category: string;
+    current_unit_price: number;
+    price_trend_3m: number;
+    recommended_order_months: number;
+    current_monthly_spend: number;
+    bulk_order_amount: number;
+    estimated_price_saving: number;
+    storage_cost_estimate: number;
+    net_saving: number;
+    confidence: number;
+    reasoning: string;
+    urgency: string;
+}
+
+export interface BulkBuyRecommendationsResponse {
+    total_recommendations: number;
+    urgent_count: number;
+    total_net_saving: number;
+    recommendations: BulkBuyRecommendation[];
+}
+
+export const BulkBuyService = {
+    getRecommendations: async () => {
+        const response = await api.get<BulkBuyRecommendationsResponse>('/procurement/bulk-buy-recommendations');
+        return response.data;
+    },
+};
+
+// ── Price Mismatch Report Export ──
+
+export const ProcurementExportService = {
+    downloadPriceMismatchReport: async () => {
+        const response = await api.get('/procurement/price-comparison/report', {
+            responseType: 'blob',
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `price_mismatch_report.xlsx`);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    },
+};
+
+// ── Manual Decision Creation ──
+
+export const ManualDecisionService = {
+    createFromPriceMismatch: async (data: {
+        entity: string;
+        recommended_supplier: string;
+        product: string;
+        current_price: number;
+        best_price: number;
+        price_diff_pct: number;
+        estimated_saving: number;
+        category: string;
+    }) => {
+        const response = await api.post('/decisions/manual', data);
+        return response.data;
+    },
+};

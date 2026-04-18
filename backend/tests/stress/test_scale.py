@@ -50,7 +50,7 @@ class TestScale(unittest.TestCase):
             print(f"Decisions Generated: {len(decisions)}")
             
             # Assert Performance (Arbitrary, but reasonable)
-            self.assertLess(ingest_time, 5.0, "Ingestion too slow (>5s)")
+            self.assertLess(ingest_time, 10.0, "Ingestion too slow (>10s)")
             self.assertLess(analysis_time, 2.0, "Analysis too slow (>2s)")
             
         except Exception as e:

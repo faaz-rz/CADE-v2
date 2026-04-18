@@ -1,0 +1,301 @@
+Transaction_ID,Date,Amount,Currency,Vendor_Name,Category,Description,GL_Code
+TXN-17323-0,2026-04-17,440000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-825
+TXN-56289-1,2026-04-17,252000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-633
+TXN-51761-2,2026-04-17,110000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-635
+TXN-80646-3,2026-04-17,133000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-775
+TXN-85494-4,2026-04-17,63000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-755
+TXN-35297-5,2026-04-17,380000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-343
+TXN-19957-6,2026-04-17,169000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-537
+TXN-38947-7,2026-04-17,140000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-784
+TXN-29090-8,2026-04-17,86000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-519
+TXN-61992-9,2026-04-17,109000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-471
+TXN-87385-10,2026-04-17,160000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-703
+TXN-59881-11,2026-04-17,155000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-412
+TXN-56953-12,2026-04-17,93000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-366
+TXN-12089-13,2026-04-17,78000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-705
+TXN-40389-14,2026-04-17,84000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-371
+TXN-92361-15,2026-04-17,99000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-590
+TXN-58513-16,2026-04-17,42000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-646
+TXN-25316-17,2026-04-17,99000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-765
+TXN-44636-18,2026-04-17,71000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-505
+TXN-34721-19,2026-04-17,81000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-138
+TXN-93922-20,2026-04-17,54000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-176
+TXN-88715-21,2026-04-17,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-849
+TXN-37280-22,2026-04-17,165000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-141
+TXN-53180-23,2026-04-17,175000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-900
+TXN-18076-24,2026-04-17,67000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-296
+TXN-20799-25,2026-03-18,430000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-416
+TXN-88937-26,2026-03-18,248000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-666
+TXN-94708-27,2026-03-18,122000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-152
+TXN-46508-28,2026-03-18,95000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-723
+TXN-70647-29,2026-03-18,62000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-785
+TXN-13467-30,2026-03-18,350000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-254
+TXN-56323-31,2026-03-18,205000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-213
+TXN-14846-32,2026-03-18,132000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-187
+TXN-89658-33,2026-03-18,85000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-752
+TXN-70660-34,2026-03-18,60000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-685
+TXN-36089-35,2026-03-18,155000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-880
+TXN-94443-36,2026-03-18,152000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-324
+TXN-10845-37,2026-03-18,95000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-155
+TXN-67335-38,2026-03-18,86000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-189
+TXN-89444-39,2026-03-18,84000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-802
+TXN-47782-40,2026-03-18,96000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-204
+TXN-12331-41,2026-03-18,38000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-629
+TXN-23257-42,2026-03-18,100000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-345
+TXN-19466-43,2026-03-18,70000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-292
+TXN-49338-44,2026-03-18,80000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-739
+TXN-75123-45,2026-03-18,54000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-438
+TXN-17368-46,2026-03-18,42000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-351
+TXN-64488-47,2026-03-18,135000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-766
+TXN-75451-48,2026-03-18,96000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-143
+TXN-60774-49,2026-03-18,72000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-890
+TXN-94372-50,2026-02-16,420000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-406
+TXN-54521-51,2026-02-16,245000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-782
+TXN-82116-52,2026-02-16,120000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-600
+TXN-85945-53,2026-02-16,92000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-340
+TXN-82565-54,2026-02-16,60000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-379
+TXN-97044-55,2026-02-16,340000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-775
+TXN-79026-56,2026-02-16,200000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-118
+TXN-21290-57,2026-02-16,130000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-472
+TXN-92938-58,2026-02-16,84000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-389
+TXN-19263-59,2026-02-16,58000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-563
+TXN-79646-60,2026-02-16,152000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-582
+TXN-55308-61,2026-02-16,150000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-818
+TXN-56707-62,2026-02-16,112000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-410
+TXN-38425-63,2026-02-16,84000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-145
+TXN-62382-64,2026-02-16,84000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-236
+TXN-75687-65,2026-02-16,94000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-370
+TXN-16068-66,2026-02-16,38000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-752
+TXN-39008-67,2026-02-16,102000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-496
+TXN-99939-68,2026-02-16,72000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-740
+TXN-36102-69,2026-02-16,82000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-216
+TXN-96296-70,2026-02-16,52000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-734
+TXN-75277-71,2026-02-16,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-260
+TXN-24319-72,2026-02-16,130000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-616
+TXN-82094-73,2026-02-16,92000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-688
+TXN-56566-74,2026-02-16,70000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-672
+TXN-82692-75,2026-01-17,410000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-833
+TXN-32944-76,2026-01-17,242000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-874
+TXN-56687-77,2026-01-17,118000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-622
+TXN-87678-78,2026-01-17,90000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-353
+TXN-25202-79,2026-01-17,62000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-208
+TXN-36301-80,2026-01-17,330000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-757
+TXN-35609-81,2026-01-17,198000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-772
+TXN-13483-82,2026-01-17,128000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-108
+TXN-52704-83,2026-01-17,82000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-522
+TXN-39967-84,2026-01-17,56000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-630
+TXN-55699-85,2026-01-17,155000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-528
+TXN-98575-86,2026-01-17,148000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-530
+TXN-48650-87,2026-01-17,110000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-755
+TXN-55129-88,2026-01-17,82000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-759
+TXN-73408-89,2026-01-17,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-395
+TXN-46188-90,2026-01-17,94000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-203
+TXN-61198-91,2026-01-17,38000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-816
+TXN-33009-92,2026-01-17,102000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-761
+TXN-55979-93,2026-01-17,72000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-639
+TXN-70549-94,2026-01-17,82000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-102
+TXN-96031-95,2026-01-17,52000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-741
+TXN-65454-96,2026-01-17,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-869
+TXN-39326-97,2026-01-17,125000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-864
+TXN-43081-98,2026-01-17,88000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-753
+TXN-54200-99,2026-01-17,70000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-876
+TXN-44590-100,2025-12-18,400000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-859
+TXN-17309-101,2025-12-18,238000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-708
+TXN-76070-102,2025-12-18,115000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-566
+TXN-89299-103,2025-12-18,88000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-552
+TXN-85256-104,2025-12-18,58000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-811
+TXN-92818-105,2025-12-18,350000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-163
+TXN-11031-106,2025-12-18,196000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-596
+TXN-22002-107,2025-12-18,130000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-551
+TXN-35150-108,2025-12-18,80000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-899
+TXN-15413-109,2025-12-18,58000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-633
+TXN-47046-110,2025-12-18,160000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-182
+TXN-56116-111,2025-12-18,145000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-260
+TXN-99712-112,2025-12-18,108000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-308
+TXN-46357-113,2025-12-18,78000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-666
+TXN-20311-114,2025-12-18,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-647
+TXN-62857-115,2025-12-18,92000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-722
+TXN-75333-116,2025-12-18,36000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-537
+TXN-19892-117,2025-12-18,100000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-828
+TXN-53040-118,2025-12-18,72000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-559
+TXN-81711-119,2025-12-18,82000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-619
+TXN-14345-120,2025-12-18,54000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-579
+TXN-41070-121,2025-12-18,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-144
+TXN-43977-122,2025-12-18,120000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-484
+TXN-63566-123,2025-12-18,84000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-842
+TXN-14823-124,2025-12-18,68000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-634
+TXN-98246-125,2025-11-18,380000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-492
+TXN-16473-126,2025-11-18,240000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-382
+TXN-12935-127,2025-11-18,118000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-294
+TXN-89361-128,2025-11-18,85000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-369
+TXN-45040-129,2025-11-18,60000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-264
+TXN-68916-130,2025-11-18,360000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-384
+TXN-37485-131,2025-11-18,192000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-520
+TXN-31554-132,2025-11-18,132000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-407
+TXN-34481-133,2025-11-18,82000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-755
+TXN-26941-134,2025-11-18,60000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-355
+TXN-19104-135,2025-11-18,158000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-342
+TXN-17710-136,2025-11-18,142000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-329
+TXN-35065-137,2025-11-18,105000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-218
+TXN-40791-138,2025-11-18,80000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-895
+TXN-23342-139,2025-11-18,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-557
+TXN-51522-140,2025-11-18,94000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-243
+TXN-62236-141,2025-11-18,36000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-551
+TXN-12067-142,2025-11-18,100000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-413
+TXN-43186-143,2025-11-18,72000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-509
+TXN-15458-144,2025-11-18,82000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-562
+TXN-29622-145,2025-11-18,54000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-164
+TXN-90563-146,2025-11-18,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-829
+TXN-81487-147,2025-11-18,115000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-693
+TXN-86745-148,2025-11-18,80000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-514
+TXN-11189-149,2025-11-18,68000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-214
+TXN-84517-150,2025-10-19,420000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-452
+TXN-70176-151,2025-10-19,245000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-582
+TXN-58632-152,2025-10-19,122000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-272
+TXN-64627-153,2025-10-19,82000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-152
+TXN-19638-154,2025-10-19,64000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-117
+TXN-77683-155,2025-10-19,340000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-634
+TXN-96851-156,2025-10-19,188000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-111
+TXN-80168-157,2025-10-19,130000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-200
+TXN-47118-158,2025-10-19,84000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-428
+TXN-67238-159,2025-10-19,58000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-277
+TXN-73704-160,2025-10-19,155000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-457
+TXN-50444-161,2025-10-19,140000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-549
+TXN-34024-162,2025-10-19,102000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-551
+TXN-88718-163,2025-10-19,82000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-235
+TXN-90631-164,2025-10-19,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-220
+TXN-59485-165,2025-10-19,94000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-177
+TXN-39419-166,2025-10-19,36000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-830
+TXN-90340-167,2025-10-19,102000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-231
+TXN-44978-168,2025-10-19,72000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-690
+TXN-66658-169,2025-10-19,82000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-218
+TXN-33668-170,2025-10-19,54000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-661
+TXN-12427-171,2025-10-19,42000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-642
+TXN-47339-172,2025-10-19,110000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-847
+TXN-79464-173,2025-10-19,78000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-306
+TXN-75453-174,2025-10-19,66000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-191
+TXN-53976-175,2025-09-19,400000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-339
+TXN-62287-176,2025-09-19,240000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-106
+TXN-59770-177,2025-09-19,120000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-144
+TXN-35206-178,2025-09-19,80000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-411
+TXN-17732-179,2025-09-19,62000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-837
+TXN-32146-180,2025-09-19,320000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-839
+TXN-60680-181,2025-09-19,182000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-535
+TXN-75291-182,2025-09-19,128000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-620
+TXN-14497-183,2025-09-19,82000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-448
+TXN-42616-184,2025-09-19,58000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-342
+TXN-95600-185,2025-09-19,152000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-707
+TXN-79395-186,2025-09-19,138000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-697
+TXN-84922-187,2025-09-19,100000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-232
+TXN-26375-188,2025-09-19,80000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-808
+TXN-97998-189,2025-09-19,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-187
+TXN-25779-190,2025-09-19,92000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-861
+TXN-72082-191,2025-09-19,35000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-374
+TXN-51150-192,2025-09-19,102000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-620
+TXN-69922-193,2025-09-19,70000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-398
+TXN-47760-194,2025-09-19,80000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-250
+TXN-32068-195,2025-09-19,52000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-529
+TXN-97446-196,2025-09-19,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-386
+TXN-17451-197,2025-09-19,100000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-559
+TXN-95999-198,2025-09-19,72000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-634
+TXN-82589-199,2025-09-19,64000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-551
+TXN-16776-200,2025-08-20,380000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-506
+TXN-52445-201,2025-08-20,235000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-317
+TXN-76618-202,2025-08-20,118000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-258
+TXN-88311-203,2025-08-20,78000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-274
+TXN-53521-204,2025-08-20,60000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-463
+TXN-48825-205,2025-08-20,310000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-250
+TXN-32132-206,2025-08-20,175000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-246
+TXN-63122-207,2025-08-20,125000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-756
+TXN-79375-208,2025-08-20,82000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-180
+TXN-23993-209,2025-08-20,56000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-190
+TXN-67985-210,2025-08-20,150000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-159
+TXN-11703-211,2025-08-20,135000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-154
+TXN-28090-212,2025-08-20,98000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-623
+TXN-31971-213,2025-08-20,78000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-271
+TXN-10044-214,2025-08-20,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-840
+TXN-76005-215,2025-08-20,92000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-513
+TXN-19851-216,2025-08-20,35000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-408
+TXN-83291-217,2025-08-20,100000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-829
+TXN-54314-218,2025-08-20,70000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-580
+TXN-30124-219,2025-08-20,80000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-325
+TXN-46204-220,2025-08-20,52000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-804
+TXN-91624-221,2025-08-20,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-122
+TXN-31466-222,2025-08-20,95000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-667
+TXN-56513-223,2025-08-20,68000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-110
+TXN-75261-224,2025-08-20,62000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-543
+TXN-21866-225,2025-07-21,360000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-593
+TXN-70033-226,2025-07-21,230000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-578
+TXN-86855-227,2025-07-21,115000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-784
+TXN-51496-228,2025-07-21,75000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-168
+TXN-68580-229,2025-07-21,58000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-202
+TXN-90415-230,2025-07-21,300000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-174
+TXN-98815-231,2025-07-21,170000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-664
+TXN-73886-232,2025-07-21,120000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-272
+TXN-70567-233,2025-07-21,80000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-649
+TXN-31756-234,2025-07-21,55000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-348
+TXN-66614-235,2025-07-21,148000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-204
+TXN-63426-236,2025-07-21,130000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-642
+TXN-53984-237,2025-07-21,95000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-414
+TXN-48009-238,2025-07-21,76000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-262
+TXN-29554-239,2025-07-21,82000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-749
+TXN-79138-240,2025-07-21,90000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-622
+TXN-70474-241,2025-07-21,34000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-218
+TXN-57140-242,2025-07-21,100000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-418
+TXN-53569-243,2025-07-21,68000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-899
+TXN-83890-244,2025-07-21,78000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-797
+TXN-93663-245,2025-07-21,52000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-725
+TXN-17411-246,2025-07-21,40000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-326
+TXN-68401-247,2025-07-21,90000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-500
+TXN-79390-248,2025-07-21,65000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-178
+TXN-87671-249,2025-07-21,60000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-454
+TXN-74860-250,2025-06-21,340000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-709
+TXN-73888-251,2025-06-21,225000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-875
+TXN-18981-252,2025-06-21,112000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-810
+TXN-36498-253,2025-06-21,72000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-568
+TXN-40045-254,2025-06-21,56000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-232
+TXN-33426-255,2025-06-21,290000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-456
+TXN-32640-256,2025-06-21,165000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-702
+TXN-58780-257,2025-06-21,115000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-107
+TXN-37927-258,2025-06-21,78000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-679
+TXN-56827-259,2025-06-21,52000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-355
+TXN-15717-260,2025-06-21,145000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-639
+TXN-11053-261,2025-06-21,125000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-751
+TXN-37345-262,2025-06-21,92000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-604
+TXN-75806-263,2025-06-21,74000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-459
+TXN-38541-264,2025-06-21,80000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-425
+TXN-75998-265,2025-06-21,88000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-564
+TXN-84222-266,2025-06-21,32000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-247
+TXN-22156-267,2025-06-21,98000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-321
+TXN-72952-268,2025-06-21,66000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-333
+TXN-66745-269,2025-06-21,76000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-603
+TXN-57936-270,2025-06-21,50000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-401
+TXN-85378-271,2025-06-21,38000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-381
+TXN-67720-272,2025-06-21,85000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-384
+TXN-22174-273,2025-06-21,62000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-177
+TXN-97328-274,2025-06-21,58000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-852
+TXN-55059-275,2025-05-22,320000.0,INR,GE HEALTHCARE INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-676
+TXN-80029-276,2025-05-22,220000.0,INR,SIEMENS HEALTHINEERS,Medical Equipment,Monthly billing for Medical Equipment,GL-158
+TXN-90666-277,2025-05-22,110000.0,INR,PHILIPS INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-737
+TXN-10116-278,2025-05-22,70000.0,INR,MINDRAY MEDICAL INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-736
+TXN-84763-279,2025-05-22,55000.0,INR,DRAGER INDIA,Medical Equipment,Monthly billing for Medical Equipment,GL-105
+TXN-81989-280,2025-05-22,280000.0,INR,ABBOTT INDIA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-760
+TXN-94564-281,2025-05-22,160000.0,INR,CIPLA LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-130
+TXN-63275-282,2025-05-22,110000.0,INR,SUN PHARMA,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-314
+TXN-75153-283,2025-05-22,75000.0,INR,DR REDDYS LABS,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-899
+TXN-18812-284,2025-05-22,50000.0,INR,BIOCON LIMITED,Pharma and Consumables,Monthly billing for Pharma and Consumables,GL-511
+TXN-36751-285,2025-05-22,140000.0,INR,3M INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-146
+TXN-58879-286,2025-05-22,120000.0,INR,BECTON DICKINSON,Medical Consumables,Monthly billing for Medical Consumables,GL-597
+TXN-84429-287,2025-05-22,90000.0,INR,MEDTRONIC INDIA,Medical Consumables,Monthly billing for Medical Consumables,GL-591
+TXN-84521-288,2025-05-22,72000.0,INR,JOHNSON AND JOHNSON MED,Medical Consumables,Monthly billing for Medical Consumables,GL-232
+TXN-39260-289,2025-05-22,80000.0,INR,ORACLE HEALTH,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-346
+TXN-40635-290,2025-05-22,85000.0,INR,EPIC SYSTEMS INDIA,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-320
+TXN-61087-291,2025-05-22,30000.0,INR,PRACTO TECHNOLOGIES,Hospital IT Systems,Monthly billing for Hospital IT Systems,GL-146
+TXN-67748-292,2025-05-22,95000.0,INR,MEDIFIT FACILITY SERVICES,Facility Management,Monthly billing for Facility Management,GL-197
+TXN-94245-293,2025-05-22,65000.0,INR,BVG INDIA HOUSEKEEPING,Facility Management,Monthly billing for Facility Management,GL-801
+TXN-77509-294,2025-05-22,75000.0,INR,SODEXO INDIA,Facility Management,Monthly billing for Facility Management,GL-793
+TXN-90386-295,2025-05-22,50000.0,INR,STAR HEALTH TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-510
+TXN-88162-296,2025-05-22,38000.0,INR,MEDI ASSIST TPA,Insurance TPA,Monthly billing for Insurance TPA,GL-250
+TXN-66453-297,2025-05-22,80000.0,INR,ROCHE DIAGNOSTICS INDIA,Lab Reagents,Monthly billing for Lab Reagents,GL-724
+TXN-66351-298,2025-05-22,60000.0,INR,ABBOTT DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-475
+TXN-83081-299,2025-05-22,55000.0,INR,SIEMENS DIAGNOSTICS,Lab Reagents,Monthly billing for Lab Reagents,GL-599

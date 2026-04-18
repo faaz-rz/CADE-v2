@@ -1,12 +1,93 @@
+import uuid
+
 from fastapi import APIRouter, HTTPException, Path, Depends
 from typing import List, Optional
 from pydantic import BaseModel
-from app.models.decision import Decision, DecisionStatus, DecisionEvent, DecisionEventType
+from app.models.decision import (
+    Decision, DecisionStatus, DecisionEvent, DecisionEventType,
+    DecisionType, DecisionScope, DecisionContext, ImpactLabel, RiskLevel,
+)
 from app.services.decision_engine import DecisionEngine
 from app.services.decision_store import DecisionStore
 from app.core.auth import verify_token
 
 router = APIRouter()
+
+
+@router.post("/manual")
+async def create_manual_decision(request: dict):
+    """
+    Create a decision from a manual action (e.g. price mismatch SWITCH).
+    Uses UUID5 deterministic ID from (entity + recommended_supplier + product).
+    """
+    vendor_id = request.get("entity", "UNKNOWN")
+    recommended = request.get("recommended_supplier", "")
+    product = request.get("product", "")
+    saving = float(request.get("estimated_saving", 0))
+    current_price = float(request.get("current_price", 0))
+    best_price = float(request.get("best_price", 0))
+    price_diff_pct = float(request.get("price_diff_pct", 0))
+
+    # Deterministic UUID5
+    seed = f"{vendor_id}_{recommended}_{product}"
+    decision_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, seed))
+
+    # Determine impact and risk
+    if saving > 500000:
+        impact_label = ImpactLabel.HIGH
+        risk_level = RiskLevel.HIGH
+        risk_score = 8
+    elif saving > 100000:
+        impact_label = ImpactLabel.MEDIUM
+        risk_level = RiskLevel.MEDIUM
+        risk_score = 5
+    else:
+        impact_label = ImpactLabel.LOW
+        risk_level = RiskLevel.MEDIUM
+        risk_score = 5
+
+    context = DecisionContext(
+        analysis_period="Manual — Price Mismatch Detection",
+        rule_id="PRICE_MISMATCH",
+        thresholds={"price_diff_threshold": 0.15},
+        metrics={
+            "current_price": current_price,
+            "best_price": best_price,
+        },
+        vendor_share_of_category=0,
+        rule_version="1.0",
+    )
+
+    decision = Decision(
+        id=decision_id,
+        entity=vendor_id,
+        recommended_action=f"Switch {product} procurement to {recommended}",
+        explanation=(
+            f"Price difference detected: {price_diff_pct:.0%}. "
+            f"Current supplier charges ₹{current_price:,.0f} "
+            f"vs ₹{best_price:,.0f} from {recommended}. "
+            f"Estimated annual saving: ₹{saving:,.0f}."
+        ),
+        annual_impact=saving,
+        expected_monthly_impact=saving / 12,
+        cost_of_inaction=saving,
+        impact_label=impact_label,
+        risk_level=risk_level,
+        risk_score=risk_score,
+        risk_range={
+            "best_case": saving * 0.7,
+            "worst_case": saving * 1.3,
+        },
+        confidence=0.85,
+        status=DecisionStatus.PENDING,
+        decision_type=DecisionType.COST_REDUCE,
+        scope=DecisionScope.VENDOR,
+        context=context,
+    )
+
+    DecisionStore.save_decision(decision)
+    return {"status": "created", "decision_id": str(decision.id)}
+
 
 @router.get("", response_model=List[Decision])
 async def get_decisions(payload: dict = Depends(verify_token)):

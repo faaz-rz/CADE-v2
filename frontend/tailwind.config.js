@@ -7,13 +7,15 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Premium, curated palette (not just default blue)
+                // Hospital procurement teal palette
                 brand: {
-                    50: '#f0f9ff',
-                    100: '#e0f2fe',
-                    500: '#0ea5e9', // Sky 500
-                    600: '#0284c7',
-                    900: '#0c4a6e',
+                    50: '#f0fdfa',
+                    100: '#ccfbf1',
+                    200: '#99f6e4',
+                    500: '#14b8a6', // Teal 500
+                    600: '#0d9488', // Teal 600
+                    700: '#0f766e', // Teal 700
+                    900: '#134e4a',
                 },
                 risk: {
                     low: '#22c55e',    // Green

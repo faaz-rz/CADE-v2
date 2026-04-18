@@ -19,16 +19,6 @@ HOSPITAL_CATEGORIES = {
 class DecisionEngine:
 
     @staticmethod
-    def _is_hospital_context(vendor_stats_map) -> bool:
-        """Detect if current dataset is hospital context based on categories present."""
-        categories = {
-            getattr(s, 'category', '').lower() for s in vendor_stats_map.values()
-            if getattr(s, 'category', '')
-        }
-        overlap = categories & HOSPITAL_CATEGORIES
-        return len(overlap) >= 2
-
-    @staticmethod
     async def analyze_uploaded_data() -> List[Decision]:
         """
         Generates decisions based on actual uploaded transaction data.
@@ -56,9 +46,6 @@ class DecisionEngine:
 
         vendor_stats = SpendingAnalyzer.get_vendor_stats()
         decisions = []
-
-        # Detect hospital context for message customization
-        is_hospital = DecisionEngine._is_hospital_context(vendor_stats)
 
         # Hardcoded for v1, in real app this comes from filter selection
         analysis_period = "Uploaded Period"
@@ -182,8 +169,7 @@ class DecisionEngine:
                     explanation_kwargs={"entity": vendor, "vendor_share": vendor_share},
                     rule_thresholds={"spend_threshold": spend_threshold, "concentration_threshold": 0.40},
                 )
-                # Hospital-specific message override
-                if is_hospital and decisions:
+                if decisions:
                     d = decisions[-1]
                     d.recommended_action = "Critical medical vendor concentration risk"
                     d.explanation = (
@@ -230,8 +216,7 @@ class DecisionEngine:
                         override_risk_level=risk_override,
                         override_risk_score=score_override,
                     )
-                    # Hospital-specific message override
-                    if is_hospital and decisions:
+                    if decisions:
                         d = decisions[-1]
                         projected_annual = stats.total_spend * (1 + growth_rate)
                         d.recommended_action = "Vendor spend growing faster than patient volume"
@@ -263,8 +248,7 @@ class DecisionEngine:
                     },
                     rule_thresholds={"spend_threshold": spend_threshold},
                 )
-                # Hospital-specific message override
-                if is_hospital and decisions:
+                if decisions:
                     d = decisions[-1]
                     d.recommended_action = "Vendor spend significantly above benchmark"
                     d.explanation = (
@@ -280,11 +264,9 @@ class DecisionEngine:
             # ═══════════════════════════════════════════
             # RULE 4: CONTRACT_RENEWAL_WINDOW
             # ═══════════════════════════════════════════
-            is_saas_renewal = (category == "SaaS" and spend_threshold > 0 and stats.total_spend >= spend_threshold)
-            is_hospital_renewal = (category in HOSPITAL_RENEWAL_CATEGORIES and spend_threshold > 0 and stats.total_spend >= spend_threshold)
+            is_renewal = (category in HOSPITAL_RENEWAL_CATEGORIES and spend_threshold > 0 and stats.total_spend >= spend_threshold)
 
-            if is_saas_renewal or is_hospital_renewal:
-                # SaaS renewal discount estimate: 15-20%, use 0.175 midpoint
+            if is_renewal:
                 renewal_savings = stats.total_spend * 0.175
 
                 _make_decision(
@@ -297,8 +279,7 @@ class DecisionEngine:
                     },
                     rule_thresholds={"spend_threshold": spend_threshold},
                 )
-                # Hospital-specific message override for hospital categories
-                if is_hospital_renewal and is_hospital and decisions:
+                if decisions:
                     d = decisions[-1]
                     d.recommended_action = "Equipment or software contract renewal window"
                     d.explanation = (
@@ -338,8 +319,7 @@ class DecisionEngine:
                         },
                         rule_thresholds={"min_vendors_in_category": 3},
                     )
-                    # Hospital-specific message override
-                    if is_hospital and decisions:
+                    if decisions:
                         d = decisions[-1]
                         d.recommended_action = f"Consolidation opportunity in {category}"
                         d.explanation = (

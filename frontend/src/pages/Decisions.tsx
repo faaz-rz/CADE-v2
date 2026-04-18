@@ -6,7 +6,7 @@ import { PortfolioSummary } from '../components/PortfolioSummary';
 import { SavingsTracker } from '../components/SavingsTracker';
 import { TrendAlerts } from '../components/TrendAlerts';
 import { UploadDataButton } from '../components/UploadDataButton';
-import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2, Info, Upload, Stethoscope, Monitor } from 'lucide-react';
+import { RefreshCw, Filter, CheckCircle, Shield, Download, AlertTriangle, X, Loader2, Info, Upload } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sampleData } from '../data/sampleData';
 
@@ -22,8 +22,6 @@ export const DecisionsPage: React.FC = () => {
     const [demoBannerDismissed, setDemoBannerDismissed] = useState(false);
     const [savingsRefreshKey, setSavingsRefreshKey] = useState(0);
     const [riskFilter, setRiskFilter] = useState<'ALL' | 'HIGH' | 'MEDIUM' | 'LOW'>('ALL');
-    const [demoLoading, setDemoLoading] = useState(false);
-    const [activeVertical, setActiveVertical] = useState<string>('it_services');
 
     const selectedDecision = decisions.find(d => d.id === selectedId) || null;
 
@@ -77,21 +75,6 @@ export const DecisionsPage: React.FC = () => {
             console.error('Failed to load data', e);
         } finally {
             setLoading(false);
-        }
-    };
-
-    const handleSwitchVertical = async (vertical: string) => {
-        setDemoLoading(true);
-        try {
-            await DemoService.loadDemo(vertical);
-            setActiveVertical(vertical);
-            setIsDemoMode(true);
-            setDemoBannerDismissed(false);
-            await loadData();
-        } catch (e) {
-            console.error(`Failed to load ${vertical} demo`, e);
-        } finally {
-            setDemoLoading(false);
         }
     };
 
@@ -151,17 +134,17 @@ export const DecisionsPage: React.FC = () => {
 
             {/* Demo Mode Banner */}
             {isDemoMode && !demoBannerDismissed && (
-                <div className="mb-6 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-md flex justify-between items-start shadow-sm">
+                <div className="mb-6 bg-teal-50 border-l-4 border-teal-400 p-4 rounded-md flex justify-between items-start shadow-sm">
                     <div className="flex items-start">
-                        <Info className="h-5 w-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" />
+                        <Info className="h-5 w-5 text-teal-500 mt-0.5 mr-3 flex-shrink-0" />
                         <div>
-                            <h3 className="text-sm font-medium text-blue-800">You are viewing demo data</h3>
-                            <p className="mt-1 text-sm text-blue-700">
-                                Upload your own file to analyze real vendor spend.
+                            <h3 className="text-sm font-medium text-teal-800">You are viewing hospital demo data</h3>
+                            <p className="mt-1 text-sm text-teal-700">
+                                25 vendors across 7 procurement categories. Upload your own data to analyze.
                             </p>
                             <Link
                                 to="/upload"
-                                className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-md hover:bg-blue-700 transition-colors"
+                                className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-600 text-white text-xs font-medium rounded-md hover:bg-teal-700 transition-colors"
                             >
                                 <Upload className="w-3.5 h-3.5" />
                                 Upload Now
@@ -170,64 +153,30 @@ export const DecisionsPage: React.FC = () => {
                     </div>
                     <button
                         onClick={() => setDemoBannerDismissed(true)}
-                        className="text-blue-400 hover:text-blue-600 focus:outline-none"
+                        className="text-teal-400 hover:text-teal-600 focus:outline-none"
                     >
                         <X className="h-5 w-5" />
                     </button>
                 </div>
             )}
 
-            {/* Vertical Switcher — always visible */}
-            {(
-                <div className="mb-6 flex items-center gap-3">
-                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Demo Dataset:</span>
-                    <button
-                        onClick={() => handleSwitchVertical('it_services')}
-                        disabled={demoLoading}
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                            activeVertical === 'it_services'
-                                ? 'bg-blue-600 text-white shadow-sm'
-                                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
-                        } ${demoLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        <Monitor className="w-3.5 h-3.5" />
-                        IT Services
-                    </button>
-                    <button
-                        onClick={() => handleSwitchVertical('hospital')}
-                        disabled={demoLoading}
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                            activeVertical === 'hospital'
-                                ? 'bg-teal-600 text-white shadow-sm'
-                                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
-                        } ${demoLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                        <Stethoscope className="w-3.5 h-3.5" />
-                        Hospital (25 vendors)
-                    </button>
-                    {demoLoading && (
-                        <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
-                    )}
-                </div>
-            )}
-
             <header className="mb-8 flex justify-between items-center">
                 <div>
                     <div className="flex items-center gap-3">
-                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Decision Inbox</h1>
+                        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Procurement Decisions</h1>
                         {isDemoMode && (
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-wide border border-blue-200">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-100 text-teal-800 text-xs font-semibold uppercase tracking-wide border border-teal-200">
                                 <Info className="w-3.5 h-3.5" />
                                 Demo Data
                             </span>
                         )}
                     </div>
-                    <p className="text-gray-500 mt-1">AI-Recommended Capital Allocation Actions</p>
+                    <p className="text-gray-500 mt-1">AI-Recommended Hospital Procurement Actions</p>
                 </div>
                 <div className="flex gap-3">
                     <Link
                         to="/exposure"
-                        className="flex items-center gap-2 px-3 py-2 bg-orange-50 text-orange-700 border border-orange-200 rounded-lg hover:bg-orange-100 transition-colors text-sm font-medium"
+                        className="flex items-center gap-2 px-3 py-2 bg-teal-50 text-teal-700 border border-teal-200 rounded-lg hover:bg-teal-100 transition-colors text-sm font-medium"
                     >
                         <Shield className="w-4 h-4" />
                         Exposure

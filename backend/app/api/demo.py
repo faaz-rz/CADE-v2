@@ -1,12 +1,9 @@
 """
-Demo Mode — Seed realistic vendor data so the dashboard is populated on first visit.
+Demo Mode — Seed realistic hospital vendor data so the dashboard
+is populated on first visit.
 
 POST /api/demo/load  → writes synthetic transactions, runs DecisionEngine, returns count
 DELETE /api/demo/clear → wipes demo data, returns to empty state
-
-Supports vertical parameter:
-  ?vertical=hospital   → loads hospital vendors
-  ?vertical=it_services → loads current vendors (default)
 """
 
 import json
@@ -14,32 +11,13 @@ import os
 from datetime import date, timedelta
 from typing import List
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends
 from app.models.canonical import CanonicalFinancialRecord
 from app.core.auth import verify_token
 
 router = APIRouter()
 
-# ── Demo vendor definitions (exact names and amounts from spec) ──
-DEMO_VENDORS = [
-    {"entity": "SALESFORCE",             "amount": 210000, "category": "SaaS",                  "currency": "INR"},
-    {"entity": "AMAZON WEB SERVICES",    "amount": 340000, "category": "Cloud Infrastructure",  "currency": "INR"},
-    {"entity": "WORKDAY",                "amount": 180000, "category": "SaaS",                  "currency": "INR"},
-    {"entity": "SNOWFLAKE",              "amount": 95000,  "category": "Cloud Infrastructure",  "currency": "INR"},
-    {"entity": "HUBSPOT",                "amount": 72000,  "category": "SaaS",                  "currency": "INR"},
-    {"entity": "SLACK",                  "amount": 48000,  "category": "SaaS",                  "currency": "INR"},
-    {"entity": "ZENDESK",                "amount": 36000,  "category": "SaaS",                  "currency": "INR"},
-    {"entity": "DOCUSIGN",               "amount": 24000,  "category": "SaaS",                  "currency": "INR"},
-    {"entity": "GUSTO",                  "amount": 120000, "category": "Payroll",               "currency": "INR"},
-    {"entity": "ADP",                    "amount": 85000,  "category": "Payroll",               "currency": "INR"},
-    {"entity": "MCKINSEY",               "amount": 40000,  "category": "Professional Services", "currency": "INR"},
-    {"entity": "DELOITTE",               "amount": 35000,  "category": "Professional Services", "currency": "INR"},
-    {"entity": "LINKEDIN ADS",           "amount": 25000,  "category": "Marketing",             "currency": "INR"},
-    {"entity": "FEDEX",                  "amount": 15000,  "category": "Logistics",             "currency": "INR"},
-    {"entity": "STAPLES",                "amount": 5000,   "category": "Office Supplies",       "currency": "INR"},
-]
-
-# ── Hospital vertical vendors (25 vendors, 7 categories) ──
+# ── Hospital vendors (25 vendors, 7 categories) ──
 HOSPITAL_VENDORS = [
     # ═══ MEDICAL EQUIPMENT (5 vendors — GE dominant = concentration risk) ═══
     {
@@ -368,32 +346,6 @@ MONTHS = 12
 
 def _build_demo_records() -> List[CanonicalFinancialRecord]:
     """
-    Turn DEMO_VENDORS into CanonicalFinancialRecord objects —
-    one transaction per month per vendor, amount split evenly.
-    """
-    records: List[CanonicalFinancialRecord] = []
-    base_date = date(2025, 1, 15)
-
-    for vendor in DEMO_VENDORS:
-        monthly_amount = vendor["amount"] / MONTHS
-        for month_offset in range(MONTHS):
-            txn_date = base_date + timedelta(days=30 * month_offset)
-            records.append(
-                CanonicalFinancialRecord(
-                    date=txn_date,
-                    amount=round(monthly_amount, 2),
-                    category=vendor["category"],
-                    entity=vendor["entity"],
-                    currency=vendor["currency"],
-                    source_file="demo_data.csv",
-                )
-            )
-
-    return records
-
-
-def _build_hospital_records() -> List[CanonicalFinancialRecord]:
-    """
     Build hospital demo records using realistic per-month amounts.
     Creates 12 months of data going back from today.
     """
@@ -403,7 +355,6 @@ def _build_hospital_records() -> List[CanonicalFinancialRecord]:
     for vendor in HOSPITAL_VENDORS:
         monthly_amounts = vendor["monthly_amounts"]
         for month_offset in range(MONTHS):
-            # Go 12 months back to current month
             months_back = MONTHS - 1 - month_offset
             txn_date = today - timedelta(days=30 * months_back)
             records.append(
@@ -422,27 +373,21 @@ def _build_hospital_records() -> List[CanonicalFinancialRecord]:
 
 @router.post("")
 async def load_demo_data(
-    vertical: str = Query("it_services", description="Vertical: it_services | hospital"),
     payload: dict = Depends(verify_token),
 ):
     """
-    Load realistic demo data into the decision store.
+    Load hospital procurement demo data into the decision store.
     Wipes existing data first, then generates decisions through the real engine.
-    Supports vertical parameter: it_services (default), hospital.
     """
     from app.services.decision_store import DecisionStore
     from app.services.decision_engine import DecisionEngine
+    from app.services.item_price_engine import ItemPriceEngine
 
     # 1. Clear existing state
     DecisionStore.clear()
 
-    # 2. Build records based on vertical
-    if vertical == "hospital":
-        records = _build_hospital_records()
-        vendor_count = len(HOSPITAL_VENDORS)
-    else:
-        records = _build_demo_records()
-        vendor_count = len(DEMO_VENDORS)
+    # 2. Build hospital records
+    records = _build_demo_records()
 
     # 3. Write transactions to data/transactions.json
     data_dir = "data"
@@ -451,34 +396,24 @@ async def load_demo_data(
     with open(os.path.join(data_dir, "transactions.json"), "w") as f:
         json.dump(output_data, f, indent=2)
 
-    # 3b. Write item-level procurement data (hospital only)
-    item_mismatch_count = 0
-    if vertical == "hospital":
-        # Add monthly_spend to each item
-        items_with_spend = []
-        for item in HOSPITAL_PROCUREMENT_ITEMS:
-            entry = dict(item)
-            entry["monthly_spend"] = round(entry["unit_price"] * entry["monthly_qty"], 2)
-            items_with_spend.append(entry)
-        with open(os.path.join(data_dir, "procurement_items.json"), "w") as f:
-            json.dump(items_with_spend, f, indent=2)
-        # Count mismatches
-        from app.services.item_price_engine import ItemPriceEngine
-        item_mismatch_count = len(ItemPriceEngine.find_price_mismatches())
-    else:
-        # Clear item data for non-hospital verticals
-        items_path = os.path.join(data_dir, "procurement_items.json")
-        if os.path.exists(items_path):
-            os.remove(items_path)
+    # 4. Write item-level procurement data
+    items_with_spend = []
+    for item in HOSPITAL_PROCUREMENT_ITEMS:
+        entry = dict(item)
+        entry["monthly_spend"] = round(entry["unit_price"] * entry["monthly_qty"], 2)
+        items_with_spend.append(entry)
+    with open(os.path.join(data_dir, "procurement_items.json"), "w") as f:
+        json.dump(items_with_spend, f, indent=2)
+    item_mismatch_count = len(ItemPriceEngine.find_price_mismatches())
 
-    # 4. Run the real DecisionEngine (reads transactions.json → generates decisions)
+    # 5. Run the real DecisionEngine
     decisions = await DecisionEngine.analyze_uploaded_data()
 
-    # 5. Return response
+    # 6. Return response
     return {
         "status": "loaded",
-        "vertical": vertical,
-        "vendors": vendor_count,
+        "vertical": "hospital",
+        "vendors": len(HOSPITAL_VENDORS),
         "decisions_generated": len(decisions),
         "months_of_data": MONTHS,
         "item_price_mismatches": item_mismatch_count,

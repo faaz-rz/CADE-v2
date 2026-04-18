@@ -11,6 +11,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import decisions, approvals, upload, summary, exposure, simulation, export, trends, demo, contracts, procurement
+from app.api import vendor_detail as vendor_detail_api
+from app.api import alerts as alerts_api
 from app.db.database import init_db
 from app.services.decision_store import DecisionStore
 
@@ -51,6 +53,8 @@ app.include_router(data_router, tags=["Data"])
 app.include_router(demo.router, prefix="/api/demo", tags=["Demo"])
 app.include_router(contracts.router, prefix="/api/contracts", tags=["Contracts"])
 app.include_router(procurement.router, prefix="/api/procurement", tags=["Procurement"])
+app.include_router(vendor_detail_api.router, prefix="/api/vendors", tags=["Vendor Detail"])
+app.include_router(alerts_api.router, prefix="/api/alerts", tags=["Alerts"])
 
 @app.get("/")
 def health_check():

@@ -1,0 +1,33 @@
+Item_Code,Item_Name,Vendor,Category,Unit_Type,Unit_Price_INR,Monthly_Quantity,Total_Monthly_Spend
+PARA-500,Paracetamol 500mg,ABBOTT INDIA,Pharma and Consumables,tablet,2.5,50000,125000.0
+PARA-500,Paracetamol 500mg,CIPLA LIMITED,Pharma and Consumables,tablet,1.8,30000,54000.0
+PARA-500,Paracetamol 500mg,SUN PHARMA,Pharma and Consumables,tablet,1.95,10000,19500.0
+AMOX-500,Amoxicillin 500mg,CIPLA LIMITED,Pharma and Consumables,capsule,4.2,25000,105000.0
+AMOX-500,Amoxicillin 500mg,DR REDDYS LABS,Pharma and Consumables,capsule,3.5,15000,52500.0
+AMOX-500,Amoxicillin 500mg,SUN PHARMA,Pharma and Consumables,capsule,3.8,8000,30400.0
+METF-500,Metformin 500mg,ABBOTT INDIA,Pharma and Consumables,tablet,3.8,20000,76000.0
+METF-500,Metformin 500mg,CIPLA LIMITED,Pharma and Consumables,tablet,2.1,12000,25200.0
+ATOR-10,Atorvastatin 10mg,SUN PHARMA,Pharma and Consumables,tablet,5.5,15000,82500.0
+ATOR-10,Atorvastatin 10mg,DR REDDYS LABS,Pharma and Consumables,tablet,4.2,8000,33600.0
+ATOR-10,Atorvastatin 10mg,BIOCON LIMITED,Pharma and Consumables,tablet,4.8,5000,24000.0
+PANT-40,Pantoprazole 40mg,ABBOTT INDIA,Pharma and Consumables,tablet,6.2,12000,74400.0
+PANT-40,Pantoprazole 40mg,CIPLA LIMITED,Pharma and Consumables,tablet,4.5,6000,27000.0
+CEFT-1G,Ceftriaxone 1g Inj,ABBOTT INDIA,Pharma and Consumables,vial,85.0,3000,255000.0
+CEFT-1G,Ceftriaxone 1g Inj,CIPLA LIMITED,Pharma and Consumables,vial,62.0,2000,124000.0
+CEFT-1G,Ceftriaxone 1g Inj,DR REDDYS LABS,Pharma and Consumables,vial,58.0,1500,87000.0
+GLOVE-S,Surgical Gloves (Sterile),3M INDIA,Medical Consumables,pair,12.0,15000,180000.0
+GLOVE-S,Surgical Gloves (Sterile),BECTON DICKINSON,Medical Consumables,pair,9.5,10000,95000.0
+GLOVE-S,Surgical Gloves (Sterile),JOHNSON AND JOHNSON MED,Medical Consumables,pair,14.0,5000,70000.0
+IVC-20G,IV Cannula 20G,BECTON DICKINSON,Medical Consumables,piece,18.0,8000,144000.0
+IVC-20G,IV Cannula 20G,MEDTRONIC INDIA,Medical Consumables,piece,22.0,5000,110000.0
+SUTR-30,Vicryl Suture 3-0,JOHNSON AND JOHNSON MED,Medical Consumables,piece,180.0,2000,360000.0
+SUTR-30,Vicryl Suture 3-0,MEDTRONIC INDIA,Medical Consumables,piece,145.0,1500,217500.0
+SYR-5ML,Disposable Syringe 5ml,BECTON DICKINSON,Medical Consumables,piece,4.5,20000,90000.0
+SYR-5ML,Disposable Syringe 5ml,3M INDIA,Medical Consumables,piece,5.8,12000,69600.0
+CBC-KIT,CBC Reagent Kit,ROCHE DIAGNOSTICS INDIA,Lab Reagents,test,45.0,8000,360000.0
+CBC-KIT,CBC Reagent Kit,ABBOTT DIAGNOSTICS,Lab Reagents,test,38.0,5000,190000.0
+CBC-KIT,CBC Reagent Kit,SIEMENS DIAGNOSTICS,Lab Reagents,test,42.0,3000,126000.0
+HBA1C,HbA1c Test Kit,ROCHE DIAGNOSTICS INDIA,Lab Reagents,test,120.0,3000,360000.0
+HBA1C,HbA1c Test Kit,ABBOTT DIAGNOSTICS,Lab Reagents,test,95.0,2000,190000.0
+LIPID-P,Lipid Panel Reagent,SIEMENS DIAGNOSTICS,Lab Reagents,test,65.0,4000,260000.0
+LIPID-P,Lipid Panel Reagent,ROCHE DIAGNOSTICS INDIA,Lab Reagents,test,78.0,3000,234000.0

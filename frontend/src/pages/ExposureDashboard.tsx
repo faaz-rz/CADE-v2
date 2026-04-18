@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FinancialExposure, ExposureService, ExportService } from '../services/api';
 import { Shield, Download, AlertTriangle, TrendingUp, BarChart3, Loader2, X, PieChart as PieChartIcon, ChevronDown, ChevronUp, Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePermission } from '../hooks/usePermission';
 import { RiskDistributionChart } from '../components/charts/RiskDistributionChart';
 import { SpendCategoryChart } from '../components/charts/SpendCategoryChart';
 import { MonteCarloPanel } from '../components/MonteCarloPanel';
 import { PriceComparisonPanel } from '../components/PriceComparisonPanel';
 import { ItemPriceMismatchPanel } from '../components/ItemPriceMismatchPanel';
+import { BulkBuyPanel } from '../components/BulkBuyPanel';
 
 export const ExposureDashboard: React.FC = () => {
     const [exposures, setExposures] = useState<FinancialExposure[]>([]);
@@ -19,6 +20,8 @@ export const ExposureDashboard: React.FC = () => {
     const [showAllHeatmap, setShowAllHeatmap] = useState(false);
     const [showAllTable, setShowAllTable] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState<string>('ALL');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadExposures = async () => {
@@ -60,19 +63,22 @@ export const ExposureDashboard: React.FC = () => {
     const totalEbitdaDelta10 = exposures.reduce((s, e) => s + e.estimated_ebitda_delta_10pct, 0);
 
     const getHeatColor = (share: number): string => {
-        if (share >= 0.6) return 'bg-red-500 text-white';
+        if (share >= 0.55) return 'bg-red-500 text-white';
         if (share >= 0.4) return 'bg-orange-400 text-white';
         if (share >= 0.25) return 'bg-yellow-300 text-gray-900';
         return 'bg-green-200 text-gray-900';
     };
 
-    const filteredExposures = searchQuery.trim()
-        ? exposures.filter(e =>
-            e.vendor_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            e.category.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        : exposures;
-    const isSearching = searchQuery.trim().length > 0;
+    const categories = [...new Set(exposures.map(e => e.category))].sort();
+    const filteredExposures = exposures.filter(e => {
+        if (categoryFilter !== 'ALL' && e.category !== categoryFilter) return false;
+        if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase();
+            return e.vendor_id.toLowerCase().includes(q) || e.category.toLowerCase().includes(q);
+        }
+        return true;
+    });
+    const isSearching = searchQuery.trim().length > 0 || categoryFilter !== 'ALL';
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">
@@ -237,6 +243,29 @@ export const ExposureDashboard: React.FC = () => {
                                 Showing {filteredExposures.length} of {exposures.length} vendors
                             </p>
                         )}
+                        {categories.length > 1 && (
+                            <div className="flex flex-wrap gap-1.5 mt-3">
+                                <button
+                                    onClick={() => setCategoryFilter('ALL')}
+                                    className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${categoryFilter === 'ALL'
+                                        ? 'bg-gray-900 text-white shadow-sm'
+                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`}
+                                >
+                                    All Categories
+                                </button>
+                                {categories.map(cat => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setCategoryFilter(cat)}
+                                        className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${categoryFilter === cat
+                                            ? 'bg-gray-900 text-white shadow-sm'
+                                            : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`}
+                                    >
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {/* Vendor Concentration Heatmap */}
@@ -249,8 +278,8 @@ export const ExposureDashboard: React.FC = () => {
                         <div className="flex gap-2 mb-4 text-xs">
                             <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-200"></span>Low (&lt;25%)</span>
                             <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-yellow-300"></span>Moderate (25-40%)</span>
-                            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-orange-400"></span>High (40-60%)</span>
-                            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-500"></span>Critical (&gt;60%)</span>
+                            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-orange-400"></span>High (40-55%)</span>
+                            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-500"></span>Critical (&gt;55%)</span>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                             {filteredExposures
@@ -259,7 +288,8 @@ export const ExposureDashboard: React.FC = () => {
                                 .map(exp => (
                                     <div
                                         key={exp.vendor_id}
-                                        className={`rounded-lg p-3 ${getHeatColor(exp.vendor_share_pct)} transition-transform hover:scale-105 cursor-default`}
+                                        onClick={() => navigate(`/vendor/${encodeURIComponent(exp.vendor_id)}`)}
+                                        className={`rounded-lg p-3 ${getHeatColor(exp.vendor_share_pct)} transition-transform hover:scale-105 cursor-pointer`}
                                         title={`${exp.vendor_id}: ${pct(exp.vendor_share_pct)} of ${exp.category}`}
                                     >
                                         <div className="text-sm font-bold truncate">{exp.vendor_id}</div>
@@ -347,6 +377,11 @@ export const ExposureDashboard: React.FC = () => {
                         </h2>
                         <p className="text-sm text-gray-500 mb-4">Monte Carlo simulation across all vendors</p>
                         <MonteCarloPanel />
+                    </div>
+
+                    {/* Bulk Buy Intelligence */}
+                    <div className="mb-8">
+                        <BulkBuyPanel />
                     </div>
 
                     {/* Procurement Intelligence */}
